@@ -3,17 +3,27 @@ import Footer from "@/components/Footer";
 import QuoteDialog from "@/components/QuoteDialog";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { 
+  FileText, 
+  CreditCard, 
+  BookOpen, 
+  Notebook, 
+  Image, 
+  ShoppingBag, 
+  FolderOpen, 
+  User 
+} from "lucide-react";
 
 const Products = () => {
   const products = [
-    { name: "Premium Paper Rolls", specs: "80-300 GSM, Various finishes", availability: "In Stock" },
-    { name: "Industrial Ink Drums", specs: "CMYK + Pantone, 20L/50L", availability: "In Stock" },
-    { name: "Packaging Units", specs: "Corrugated, E-flute to B-flute", availability: "Made to Order" },
-    { name: "Label Stock", specs: "Self-adhesive, Roll-fed", availability: "In Stock" },
-    { name: "Printing Plates", specs: "Offset & Flexo compatible", availability: "In Stock" },
-    { name: "Adhesives", specs: "Industrial grade, Food-safe", availability: "In Stock" },
-    { name: "Coating Materials", specs: "UV, Aqueous, Lamination", availability: "In Stock" },
-    { name: "Die-Cut Blanks", specs: "Custom shapes & sizes", availability: "Made to Order" },
+    { name: "Letterheads", specs: "Custom designs, various paper qualities", availability: "In Stock", icon: FileText },
+    { name: "Visiting Cards", specs: "Premium finishes, custom sizes", availability: "In Stock", icon: User },
+    { name: "Diaries", specs: "Corporate & personal, custom covers", availability: "In Stock", icon: BookOpen },
+    { name: "Notebooks", specs: "Spiral bound, hardcover options", availability: "In Stock", icon: Notebook },
+    { name: "Posters", specs: "Large format printing, various materials", availability: "Made to Order", icon: Image },
+    { name: "Carry Bags", specs: "Eco-friendly, custom branding", availability: "In Stock", icon: ShoppingBag },
+    { name: "File Covers", specs: "Professional look, various sizes", availability: "In Stock", icon: FolderOpen },
+    { name: "Business Cards", specs: "Premium quality, instant delivery", availability: "In Stock", icon: CreditCard },
   ];
 
   return (
@@ -25,11 +35,11 @@ const Products = () => {
         <section className="py-24 bg-background">
           <div className="container mx-auto px-6 text-center">
             <h1 className="text-4xl md:text-6xl font-heading font-bold mb-6">
-              Industrial Grade Materials
+              Printing Stationery & Print Media
             </h1>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Premium printing materials and consumables sourced from trusted manufacturers, 
-              available for bulk orders with competitive wholesale pricing.
+              Premium printing stationery and print media products designed for your business needs. 
+              Quality materials and professional finishes for every order.
             </p>
           </div>
         </section>
@@ -38,7 +48,9 @@ const Products = () => {
         <section className="py-24 bg-muted/30 paper-texture">
           <div className="container mx-auto px-6">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {products.map((product, index) => (
+              {products.map((product, index) => {
+                const IconComponent = product.icon;
+                return (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
@@ -51,8 +63,8 @@ const Products = () => {
                   {/* Circular Frame */}
                   <div className="relative mb-6 mx-auto w-32 h-32 rounded-full border-[3px] border-secondary/30 flex items-center justify-center overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-br from-secondary/5 to-transparent" />
-                    <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center">
-                      <div className="w-12 h-12 rounded-full border-2 border-primary" />
+                    <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-300">
+                      <IconComponent className="w-8 h-8 text-primary group-hover:scale-110 transition-transform duration-300" />
                     </div>
                     {/* Radial Highlight on Hover */}
                     <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -74,12 +86,14 @@ const Products = () => {
                     </span>
                   </div>
                 </motion.div>
-              ))}
+                );
+              })}
             </div>
 
             <div className="text-center mt-12">
               <p className="text-sm text-muted-foreground mb-6">
-                All products available in bulk quantities. Custom specifications available on request.
+                All products available with custom specifications and fast delivery. 
+                Contact us for bulk orders and special requirements.
               </p>
               <QuoteDialog buttonSize="lg" buttonText="Request Product Catalog">
                 <Button size="lg">Request Product Catalog</Button>
@@ -93,25 +107,25 @@ const Products = () => {
           <div className="container mx-auto px-6">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl md:text-5xl font-heading font-bold text-center mb-12">
-                Quality Standards
+                Our Quality Promise
               </h2>
               <div className="grid md:grid-cols-2 gap-8">
                 <div className="bg-card/50 rounded-lg p-6 border border-border">
-                  <h3 className="font-heading font-bold text-xl mb-4">Certifications</h3>
+                  <h3 className="font-heading font-bold text-xl mb-4">Premium Materials</h3>
                   <ul className="space-y-2 text-sm text-muted-foreground">
-                    <li>• ISO 9001:2015 Quality Management</li>
-                    <li>• FSC Chain of Custody</li>
-                    <li>• FDA Food-Safe Materials</li>
-                    <li>• SGS Product Testing</li>
+                    <li>• High-quality paper and cardstock</li>
+                    <li>• Professional ink and printing</li>
+                    <li>• Durable finishes and coatings</li>
+                    <li>• Eco-friendly options available</li>
                   </ul>
                 </div>
                 <div className="bg-card/50 rounded-lg p-6 border border-border">
-                  <h3 className="font-heading font-bold text-xl mb-4">Testing</h3>
+                  <h3 className="font-heading font-bold text-xl mb-4">Quality Assurance</h3>
                   <ul className="space-y-2 text-sm text-muted-foreground">
-                    <li>• Batch quality control</li>
-                    <li>• Color consistency verification</li>
-                    <li>• Durability stress testing</li>
-                    <li>• Environmental compliance</li>
+                    <li>• Rigorous quality checks</li>
+                    <li>• Custom design capabilities</li>
+                    <li>• Fast turnaround times</li>
+                    <li>• Customer satisfaction guarantee</li>
                   </ul>
                 </div>
               </div>
@@ -123,15 +137,15 @@ const Products = () => {
         <section className="py-24 bg-primary text-primary-foreground">
           <div className="container mx-auto px-6 text-center">
             <h2 className="text-3xl md:text-5xl font-heading font-bold mb-6">
-              Bulk Inquiry?
+              Need Custom Stationery?
             </h2>
             <p className="text-lg text-primary-foreground/80 mb-8 max-w-2xl mx-auto">
-              Contact our sales team for volume pricing, custom specifications, 
-              and supply agreements tailored to your production schedule.
+              Contact us for custom designs, bulk orders, and special requirements. 
+              We deliver quality printing stationery tailored to your needs.
             </p>
-            <QuoteDialog buttonSize="lg" buttonVariant="secondary" buttonText="Contact Sales Team">
+            <QuoteDialog buttonSize="lg" buttonVariant="secondary" buttonText="Get Custom Quote">
               <Button size="lg" variant="secondary">
-                Contact Sales Team
+                Get Custom Quote
               </Button>
             </QuoteDialog>
           </div>

@@ -4,10 +4,10 @@ import { motion } from "framer-motion";
 
 const About = () => {
   const milestones = [
-    { year: "1995", title: "Founded", desc: "Established with a vision for precision printing" },
-    { year: "2005", title: "Expansion", desc: "Opened second facility, doubled capacity" },
-    { year: "2015", title: "Innovation", desc: "Adopted digital printing technology" },
-    { year: "2025", title: "Leadership", desc: "Market leader in industrial printing solutions" },
+    { year: "2014", title: "Founded", desc: "Established with a vision for quality printing stationery" },
+    { year: "2018", title: "Growth", desc: "Expanded product range and client base significantly" },
+    { year: "2020", title: "Leadership", desc: "Arun Garg's leadership drives excellence in print media" },
+    { year: "2024", title: "Excellence", desc: "Trusted partner for premium printing stationery solutions" },
   ];
 
   return (
@@ -25,11 +25,11 @@ const About = () => {
               className="text-center max-w-4xl mx-auto"
             >
               <h1 className="text-4xl md:text-6xl font-heading font-bold mb-6">
-                Engineering Excellence<br />in Every Print
+                Precision in Every Print<br />Established Excellence
               </h1>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                For over 25 years, PrintReel Industries has been at the forefront of industrial printing, 
-                combining precision engineering with sustainable practices to deliver unmatched quality.
+                For over a decade, Chandan Trading Company has been at the forefront of printing stationery and print media, 
+                combining traditional expertise with modern practices to deliver unmatched quality and service.
               </p>
             </motion.div>
           </div>
@@ -38,35 +38,77 @@ const About = () => {
         {/* Values */}
         <section className="py-24 bg-muted/30 blueprint-grid">
           <div className="container mx-auto px-6">
-            <div className="grid md:grid-cols-3 gap-12">
-              <div className="text-center">
-                <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-primary/10 flex items-center justify-center">
-                  <span className="text-3xl font-heading font-bold text-primary">P</span>
-                </div>
-                <h3 className="text-2xl font-heading font-bold mb-4">Precision</h3>
-                <p className="text-muted-foreground">
-                  Every print meets exact specifications with microscopic accuracy
-                </p>
-              </div>
-              <div className="text-center">
-                <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-primary/10 flex items-center justify-center">
-                  <span className="text-3xl font-heading font-bold text-primary">S</span>
-                </div>
-                <h3 className="text-2xl font-heading font-bold mb-4">Scale</h3>
-                <p className="text-muted-foreground">
-                  From prototype to millions of units without compromising quality
-                </p>
-              </div>
-              <div className="text-center">
-                <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-primary/10 flex items-center justify-center">
-                  <span className="text-3xl font-heading font-bold text-primary">T</span>
-                </div>
-                <h3 className="text-2xl font-heading font-bold mb-4">Trust</h3>
-                <p className="text-muted-foreground">
-                  Long-term partnerships built on reliability and transparency
-                </p>
-              </div>
-            </div>
+            <motion.div 
+              className="grid md:grid-cols-3 gap-12"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              transition={{ staggerChildren: 0.3 }}
+            >
+              {[
+                { letter: "P", title: "Precision", desc: "Every piece of stationery meets exact specifications with attention to detail" },
+                { letter: "S", title: "Service", desc: "From small orders to large-scale printing without compromising quality" },
+                { letter: "T", title: "Trust", desc: "Long-term partnerships built on reliability and transparency" }
+              ].map((value, index) => (
+                <motion.div 
+                  key={index}
+                  className="text-center group"
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: index * 0.2 }}
+                  whileHover={{ 
+                    y: -10,
+                    transition: { duration: 0.3 }
+                  }}
+                >
+                  <motion.div 
+                    className="w-20 h-20 mx-auto mb-6 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-all duration-500"
+                    initial={{ scale: 0, rotate: -180 }}
+                    whileInView={{ scale: 1, rotate: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ 
+                      duration: 0.8, 
+                      delay: index * 0.2,
+                      ease: "easeOut"
+                    }}
+                    whileHover={{ 
+                      scale: 1.1,
+                      rotate: 10,
+                      transition: { duration: 0.3 }
+                    }}
+                  >
+                    <motion.span 
+                      className="text-3xl font-heading font-bold text-primary"
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: index * 0.2 + 0.4 }}
+                    >
+                      {value.letter}
+                    </motion.span>
+                  </motion.div>
+                  <motion.h3 
+                    className="text-2xl font-heading font-bold mb-4 group-hover:text-primary transition-colors duration-300"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.2 + 0.6 }}
+                  >
+                    {value.title}
+                  </motion.h3>
+                  <motion.p 
+                    className="text-muted-foreground"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.2 + 0.8 }}
+                  >
+                    {value.desc}
+                  </motion.p>
+                </motion.div>
+              ))}
+            </motion.div>
           </div>
         </section>
 
@@ -107,27 +149,163 @@ const About = () => {
           </div>
         </section>
 
-        {/* Stats */}
-        <section className="py-24 bg-primary text-primary-foreground">
+        {/* Leadership Section */}
+        <section className="py-24 bg-muted/30">
           <div className="container mx-auto px-6">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-              <div>
-                <div className="text-4xl md:text-5xl font-heading font-bold mb-2">25+</div>
-                <div className="text-sm text-primary-foreground/70 uppercase tracking-wider">Years Experience</div>
-              </div>
-              <div>
-                <div className="text-4xl md:text-5xl font-heading font-bold mb-2">500M+</div>
-                <div className="text-sm text-primary-foreground/70 uppercase tracking-wider">Prints Delivered</div>
-              </div>
-              <div>
-                <div className="text-4xl md:text-5xl font-heading font-bold mb-2">1000+</div>
-                <div className="text-sm text-primary-foreground/70 uppercase tracking-wider">Active Clients</div>
-              </div>
-              <div>
-                <div className="text-4xl md:text-5xl font-heading font-bold mb-2">99.8%</div>
-                <div className="text-sm text-primary-foreground/70 uppercase tracking-wider">Quality Rate</div>
-              </div>
-            </div>
+            <motion.div 
+              className="max-w-4xl mx-auto text-center"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <motion.h2 
+                className="text-3xl md:text-5xl font-heading font-bold mb-12"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
+                Leadership
+              </motion.h2>
+              <motion.div 
+                className="bg-card rounded-lg p-8 border border-border group hover:shadow-xl transition-all duration-500"
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, delay: 0.4 }}
+                whileHover={{ 
+                  y: -5,
+                  transition: { duration: 0.3 }
+                }}
+              >
+                <motion.div 
+                  className="w-32 h-32 mx-auto mb-6 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-all duration-500"
+                  initial={{ scale: 0, rotate: -180 }}
+                  whileInView={{ scale: 1, rotate: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ 
+                    duration: 0.8, 
+                    delay: 0.6,
+                    ease: "easeOut"
+                  }}
+                  whileHover={{ 
+                    scale: 1.05,
+                    rotate: 5,
+                    transition: { duration: 0.3 }
+                  }}
+                >
+                  <motion.span 
+                    className="text-3xl font-heading font-bold text-primary"
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: 0.8 }}
+                  >
+                    AG
+                  </motion.span>
+                </motion.div>
+                <motion.h3 
+                  className="text-2xl font-heading font-bold mb-4 group-hover:text-primary transition-colors duration-300"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 1.0 }}
+                >
+                  Arun Garg
+                </motion.h3>
+                <motion.p 
+                  className="text-lg text-muted-foreground mb-4"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 1.1 }}
+                >
+                  Founder & Director
+                </motion.p>
+                <motion.p 
+                  className="text-muted-foreground leading-relaxed max-w-2xl mx-auto"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 1.2 }}
+                >
+                  With extensive experience in the printing and stationery industry, Arun Garg leads Chandan Trading Company 
+                  with a vision for excellence and customer satisfaction. Under his leadership, the company has grown to 
+                  become a trusted name in Delhi for premium printing stationery and print media solutions.
+                </motion.p>
+              </motion.div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Stats */}
+        <section className="py-24 bg-primary text-primary-foreground relative overflow-hidden">
+          <motion.div 
+            className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary to-primary/90"
+            initial={{ scale: 1.1, opacity: 0 }}
+            whileInView={{ scale: 1, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1 }}
+          />
+          <div className="container mx-auto px-6 relative z-10">
+            <motion.div 
+              className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              transition={{ staggerChildren: 0.2 }}
+            >
+              {[
+                { value: "10+", label: "Years Experience", suffix: "+" },
+                { value: "1000+", label: "Orders Completed", suffix: "+" },
+                { value: "500+", label: "Happy Clients", suffix: "+" },
+                { value: "100%", label: "Quality Commitment", suffix: "%" }
+              ].map((stat, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 40, scale: 0.8 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ 
+                    duration: 0.6, 
+                    delay: index * 0.2,
+                    ease: "easeOut"
+                  }}
+                  whileHover={{ 
+                    scale: 1.05,
+                    transition: { duration: 0.3 }
+                  }}
+                  className="group"
+                >
+                  <motion.div 
+                    className="text-4xl md:text-5xl font-heading font-bold mb-2 group-hover:text-primary-foreground/90 transition-colors duration-300"
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ 
+                      duration: 0.8, 
+                      delay: index * 0.2 + 0.3,
+                      ease: "easeOut"
+                    }}
+                  >
+                    {stat.value}
+                  </motion.div>
+                  <motion.div 
+                    className="text-sm text-primary-foreground/70 uppercase tracking-wider"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ 
+                      duration: 0.5, 
+                      delay: index * 0.2 + 0.5
+                    }}
+                  >
+                    {stat.label}
+                  </motion.div>
+                </motion.div>
+              ))}
+            </motion.div>
           </div>
         </section>
       </main>

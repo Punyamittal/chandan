@@ -22,11 +22,11 @@ const Contact = () => {
         <section className="py-24 bg-background paper-texture">
           <div className="container mx-auto px-6 text-center">
             <h1 className="text-4xl md:text-6xl font-heading font-bold mb-6">
-              Get in Touch
+              Contact Chandan Trading Company
             </h1>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Ready to scale your production? Request a custom quote and our team 
-              will respond within 24 hours with tailored solutions.
+              Ready to get your printing stationery and print media solutions? 
+              Contact us today and we'll respond within 24 hours.
             </p>
           </div>
         </section>
@@ -68,13 +68,13 @@ const Contact = () => {
                       className="w-full px-3 py-2 rounded-md border border-input bg-background"
                       required
                     >
-                      <option value="">Select a service</option>
-                      <option>Offset & Digital Printing</option>
-                      <option>Product Labeling</option>
-                      <option>Bulk Trading</option>
-                      <option>Custom Packaging</option>
-                      <option>Industrial Supplies</option>
-                      <option>Other</option>
+                      <option value="">Select a product/service</option>
+                      <option>Letterheads & Business Cards</option>
+                      <option>Diaries & Notebooks</option>
+                      <option>Posters & Print Media</option>
+                      <option>Carry Bags & File Covers</option>
+                      <option>Visiting Cards</option>
+                      <option>Other Stationery Items</option>
                     </select>
                   </div>
 
@@ -107,8 +107,8 @@ const Contact = () => {
                       <div>
                         <p className="font-heading font-semibold mb-1">ADDRESS</p>
                         <p className="text-sm text-muted-foreground leading-relaxed">
-                          PLOT 6A, INDUSTRIAL REEL PARK<br />
-                          MUMBAI, MAHARASHTRA 400001<br />
+                          A-1, Main Road, Kewal Park<br />
+                          Azadpur, Delhi - 110033<br />
                           INDIA
                         </p>
                       </div>
@@ -120,8 +120,7 @@ const Contact = () => {
                       </div>
                       <div>
                         <p className="font-heading font-semibold mb-1">PHONE</p>
-                        <p className="text-sm text-muted-foreground">+91-XXXX-XXX-XXX</p>
-                        <p className="text-sm text-muted-foreground">+91-YYYY-YYY-YYY</p>
+                        <p className="text-sm text-muted-foreground">+91 9873535400</p>
                       </div>
                     </div>
 
@@ -131,8 +130,7 @@ const Contact = () => {
                       </div>
                       <div>
                         <p className="font-heading font-semibold mb-1">EMAIL</p>
-                        <p className="text-sm text-muted-foreground">connect@printreel.com</p>
-                        <p className="text-sm text-muted-foreground">sales@printreel.com</p>
+                        <p className="text-sm text-muted-foreground">Chandantrading2014@gmail.com</p>
                       </div>
                     </div>
 
@@ -142,8 +140,7 @@ const Contact = () => {
                       </div>
                       <div>
                         <p className="font-heading font-semibold mb-1">BUSINESS HOURS</p>
-                        <p className="text-sm text-muted-foreground">Monday - Friday: 9:00 AM - 6:00 PM</p>
-                        <p className="text-sm text-muted-foreground">Saturday: 9:00 AM - 2:00 PM</p>
+                        <p className="text-sm text-muted-foreground">Monday - Saturday: 10:00 AM - 7:00 PM</p>
                         <p className="text-sm text-muted-foreground">Sunday: Closed</p>
                       </div>
                     </div>
@@ -160,6 +157,36 @@ const Contact = () => {
                     <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
                     <span>Currently available</span>
                   </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Google Map Section */}
+        <section className="py-24 bg-background">
+          <div className="container mx-auto px-6">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-3xl md:text-4xl font-heading font-bold text-center mb-12">
+                Find Us
+              </h2>
+              <div className="bg-card rounded-lg p-4 border border-border">
+                <div className="w-full h-96 rounded-lg overflow-hidden">
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3501.764889489!2d77.18162331508197!3d28.71542568241223!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd1b2b1d3c3f%3A0x8b7b8b8b8b8b8b8b!2sAzadpur%2C%20Delhi%2C%20India!5e0!3m2!1sen!2sin!4v1635789123456!5m2!1sen!2sin"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Chandan Trading Company Location"
+                  />
+                </div>
+                <div className="mt-4 text-center">
+                  <p className="text-sm text-muted-foreground">
+                    A-1, Main Road, Kewal Park, Azadpur, Delhi - 110033
+                  </p>
                 </div>
               </div>
             </div>

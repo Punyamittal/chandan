@@ -1,8 +1,12 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
 import heroImage from "@/assets/hero-printing-reels.jpg";
 import inkDetail from "@/assets/ink-detail.jpg";
 import printedSheets from "@/assets/printed-sheets.jpg";
+import { Button } from "./ui/button";
+import QuoteDialog from "./QuoteDialog";
 
 const ZoomHero = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -22,8 +26,8 @@ const ZoomHero = () => {
 
   const textPhases = [
     "Precision in Every Print",
-    "Scaling Prints to Perfection",
-    "From Reels to Real Impact",
+    "Quality Stationery Solutions",
+    "Trusted Print Media Partner",
   ];
 
   return (
@@ -39,7 +43,98 @@ const ZoomHero = () => {
             alt="Industrial printing reels"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background/50" />
+          <div className="absolute inset-0 bg-black/60" />
+          
+          {/* Content Overlay on First Image */}
+          <motion.div 
+            className="absolute inset-0 flex items-center justify-center"
+            style={{ opacity: opacity1 }}
+          >
+            <div className="text-center max-w-4xl mx-auto px-6">
+              <motion.h1 
+                className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold mb-6 text-white drop-shadow-2xl"
+                style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
+                Welcome to{" "}
+                <span className="text-yellow-400" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>Chandan Trading Company</span>
+              </motion.h1>
+              <motion.p 
+                className="text-lg md:text-xl text-white drop-shadow-xl leading-relaxed mb-8 max-w-2xl mx-auto"
+                style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.8)' }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+              >
+                Your trusted partner in premium printing stationery and print media solutions. 
+                From business cards to corporate stationery, we deliver excellence in every print.
+              </motion.p>
+              <motion.div 
+                className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+              >
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <Link to="/products">
+                    <Button size="lg" className="group relative overflow-hidden bg-white text-primary hover:bg-white/90 shadow-2xl border-2 border-white">
+                      <motion.span
+                        className="relative z-10 flex items-center"
+                        whileHover={{ x: -2 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        Explore Products
+                        <motion.div
+                          whileHover={{ x: 4 }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          <ArrowRight className="ml-2" size={16} />
+                        </motion.div>
+                      </motion.span>
+                      <motion.div
+                        className="absolute inset-0 bg-gradient-to-r from-primary/20 to-transparent"
+                        initial={{ x: "-100%" }}
+                        whileHover={{ x: "0%" }}
+                        transition={{ duration: 0.5 }}
+                      />
+                    </Button>
+                  </Link>
+                </motion.div>
+                <QuoteDialog buttonSize="lg" buttonVariant="outline" buttonText="Get Quote">
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Button size="lg" variant="outline" className="group bg-transparent border-2 border-white text-white hover:bg-white hover:text-primary shadow-2xl backdrop-blur-sm">
+                      Get Custom Quote
+                      <motion.div
+                        whileHover={{ x: 4 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <ArrowRight className="ml-2" size={16} />
+                      </motion.div>
+                    </Button>
+                  </motion.div>
+                </QuoteDialog>
+              </motion.div>
+              <motion.div 
+                className="mt-12 text-sm text-white drop-shadow-lg font-medium"
+                style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.8)' }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.8 }}
+              >
+                Scroll down to explore our story and expertise
+              </motion.div>
+            </div>
+          </motion.div>
         </motion.div>
 
         {/* Image Layer 2 */}
@@ -84,7 +179,9 @@ const ZoomHero = () => {
                 <motion.h1
                   key={index}
                   style={{ opacity: textOpacity }}
-                  className="absolute inset-x-0 top-1/2 -translate-y-1/2 text-4xl md:text-6xl lg:text-7xl font-heading font-bold text-primary-foreground text-balance px-6"
+                  className={`absolute inset-x-0 top-1/2 -translate-y-1/2 text-4xl md:text-6xl lg:text-7xl font-heading font-bold text-balance px-6 ${
+                    index === 2 ? 'text-black' : 'text-primary-foreground'
+                  }`}
                 >
                   {text}
                 </motion.h1>
