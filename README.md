@@ -1,73 +1,122 @@
-# Welcome to your Lovable project
+# 🖨️ Chandan Trading Company – Premium Printing & Stationery Website
 
-## Project info
+A modern, multi-page **Next.js + Tailwind CSS** website for **Chandan Trading Company**, a leading name in **printing stationery and print media**.  
+The website combines a **premium industrial design aesthetic** with **scroll-reactive animations**, **smooth transitions**, and a **professional product showcase** inspired by modern manufacturing visuals.
 
-**URL**: https://lovable.dev/projects/dea65bae-a005-42bb-9ac2-ef1041ac9604
+---
 
-## How can I edit this code?
+## 🏭 Company Overview
 
-There are several ways of editing your application.
+**Chandan Trading Company** specializes in **printing, stationery, and bulk product trading** — offering a diverse range of high-quality products such as:
 
-**Use Lovable**
+- Letterheads  
+- Visiting Cards  
+- Calendars & Diaries  
+- Notebooks, Notepads & Spiral Pads  
+- Posters, Flyers, and 3D Prints  
+- Carry Bags  
+- File Covers (Index, Cobra, Plastic)  
+- Desk & Mouse Pads  
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/dea65bae-a005-42bb-9ac2-ef1041ac9604) and start prompting.
+> **Tagline:** “Precision in Every Print.”
 
-Changes made via Lovable will be committed automatically to this repo.
+---
 
-**Use your preferred IDE**
+## 🎨 Design Philosophy
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+The design follows a **“Precision • Production • Perfection”** philosophy, merging the aesthetics of industrial printing reels with clean, flat UI design.
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+**Theme Colors**
+- Off-White `#F5F5F4`
+- Graphite Black `#1E1E1E`
+- Metallic Gray `#8C8C8C`
+- Ink Blue `#003E6B`
 
-Follow these steps:
+**Typography**
+- Headings: `Clash Display / Satoshi Bold`
+- Body: `Inter / Work Sans`
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+**Visual Features**
+- Scroll-based **zoom transitions** between paper and printing reel imagery  
+- **Circular reel scroll animations** using Framer Motion  
+- Subtle matte gradients and static lighting (no neon or RGB glow)  
+- Flat industrial UI with clear grid structures for product displays  
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+---
 
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+## 🧱 Project Structure
 ```
+chandan-trading/
+│
+├── pages/
+│ ├── index.js # Home page with scroll zoom hero and reels
+│ ├── about.js # About the company and leadership
+│ ├── products.js # Product grid showcase
+│ ├── contact.js # Contact form, map, and company info
+│
+├── components/
+│ ├── Header.js # Navigation bar
+│ ├── Footer.js # Contact + brand footer
+│ ├── ReelScroll.js # Custom circular reel animation
+│ ├── ProductCard.js # Reusable product display cards
+│
+├── styles/
+│ ├── globals.css # Tailwind design tokens and custom classes
+│
+├── public/
+│ ├── images/ # Assets (hero images, products, brand logos)
+│
+└── package.json
+```
+---
 
-**Edit a file directly in GitHub**
+## ⚙️ Tech Stack
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+| Layer | Technology |
+|-------|-------------|
+| **Frontend** | Next.js 14 |
+| **Styling** | Tailwind CSS |
+| **Animations** | Framer Motion |
+| **UI Components** | Custom 2D static elements |
+| **Deployment** | Vercel |
 
-**Use GitHub Codespaces**
+---
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## 📞 Contact Information
 
-## What technologies are used for this project?
+**Chandan Trading Company**  
+📍 A-1, Main Road, Kewal Park, Azadpur, Delhi – 110033  
+📧 [Chandantrading2014@gmail.com](mailto:Chandantrading2014@gmail.com)  
+📞 +91 9873535400  
+🕒 Mon – Sat | 10 AM – 7 PM
 
-This project is built with:
+---
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## 🚀 Getting Started
 
-## How can I deploy this project?
+### 1️⃣ Clone the Repository
+```bash
+git clone https://github.com/yourusername/chandan-trading.git
+cd chandan-trading
 
-Simply open [Lovable](https://lovable.dev/projects/dea65bae-a005-42bb-9ac2-ef1041ac9604) and click on Share -> Publish.
+```
+🧩 Future Enhancements
 
-## Can I connect a custom domain to my Lovable project?
+Product Inquiry Form with Email Integration
 
-Yes, you can!
+Dynamic Product Management (Admin Panel)
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+PDF Catalogue Download Option
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+Light and Dark Mode
+
+Multi-language Support
+
+💡 Credits
+
+Designed & Developed by Punya Mittal
+Built with ❤️ using Next.js, Tailwind CSS, and Framer Motion
+
+---
+
+Would you like me to include **badges and preview image sections** (like deployment, tech stack icons, and live demo link placeholders) to make the README GitHub-ready?
