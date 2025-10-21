@@ -1,5 +1,6 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import QuoteDialog from "@/components/QuoteDialog";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 
@@ -80,7 +81,9 @@ const Products = () => {
               <p className="text-sm text-muted-foreground mb-6">
                 All products available in bulk quantities. Custom specifications available on request.
               </p>
-              <Button size="lg">Request Product Catalog</Button>
+              <QuoteDialog buttonSize="lg" buttonText="Request Product Catalog">
+                <Button size="lg">Request Product Catalog</Button>
+              </QuoteDialog>
             </div>
           </div>
         </section>
@@ -126,9 +129,11 @@ const Products = () => {
               Contact our sales team for volume pricing, custom specifications, 
               and supply agreements tailored to your production schedule.
             </p>
-            <Button size="lg" variant="secondary">
-              Contact Sales Team
-            </Button>
+            <QuoteDialog buttonSize="lg" buttonVariant="secondary" buttonText="Contact Sales Team">
+              <Button size="lg" variant="secondary">
+                Contact Sales Team
+              </Button>
+            </QuoteDialog>
           </div>
         </section>
       </main>

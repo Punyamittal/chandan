@@ -8,46 +8,46 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* PrintReel Industrial Design System */
-    --background: 0 0% 97%;
-    --foreground: 210 11% 13%;
+    /* PrintReel Industrial Design System - Beige Theme */
+    --background: 35 25% 96%;
+    --foreground: 30 20% 15%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 210 11% 13%;
+    --card: 40 30% 98%;
+    --card-foreground: 30 20% 15%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 210 11% 13%;
+    --popover: 40 30% 98%;
+    --popover-foreground: 30 20% 15%;
 
-    --primary: 210 11% 13%;
-    --primary-foreground: 0 0% 97%;
+    --primary: 30 20% 18%;
+    --primary-foreground: 35 25% 96%;
 
-    --secondary: 210 8% 61%;
-    --secondary-foreground: 210 11% 13%;
+    --secondary: 35 18% 65%;
+    --secondary-foreground: 30 20% 15%;
 
-    --muted: 220 13% 87%;
-    --muted-foreground: 210 8% 45%;
+    --muted: 35 20% 88%;
+    --muted-foreground: 30 15% 45%;
 
-    --accent: 217 85% 51%;
+    --accent: 25 75% 55%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 13% 87%;
-    --input: 220 13% 91%;
-    --ring: 210 11% 13%;
+    --border: 35 20% 85%;
+    --input: 35 20% 90%;
+    --ring: 30 20% 18%;
 
     --radius: 0.25rem;
     
-    /* Industrial gradients */
-    --gradient-metallic: linear-gradient(135deg, hsl(210, 8%, 70%), hsl(210, 8%, 55%));
-    --gradient-paper: linear-gradient(180deg, hsl(0, 0%, 98%), hsl(0, 0%, 95%));
-    --gradient-ink: linear-gradient(90deg, hsl(210, 11%, 13%), hsl(210, 11%, 20%));
+    /* Industrial gradients - beige tones */
+    --gradient-metallic: linear-gradient(135deg, hsl(35, 15%, 70%), hsl(30, 12%, 55%));
+    --gradient-paper: linear-gradient(180deg, hsl(40, 30%, 98%), hsl(35, 25%, 94%));
+    --gradient-ink: linear-gradient(90deg, hsl(30, 20%, 18%), hsl(30, 20%, 25%));
     
     /* Shadows - matte, no glow */
-    --shadow-reel: 0 4px 16px -2px hsl(210 11% 13% / 0.08);
-    --shadow-card: 0 2px 8px -1px hsl(210 11% 13% / 0.06);
-    --shadow-lifted: 0 8px 24px -4px hsl(210 11% 13% / 0.12);
+    --shadow-reel: 0 4px 16px -2px hsl(30 20% 15% / 0.08);
+    --shadow-card: 0 2px 8px -1px hsl(30 20% 15% / 0.06);
+    --shadow-lifted: 0 8px 24px -4px hsl(30 20% 15% / 0.12);
 
     --radius: 0.25rem;
 
@@ -69,37 +69,37 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 210 11% 8%;
-    --foreground: 0 0% 97%;
+    --background: 30 15% 10%;
+    --foreground: 35 25% 96%;
 
-    --card: 210 11% 10%;
-    --card-foreground: 0 0% 97%;
+    --card: 30 15% 12%;
+    --card-foreground: 35 25% 96%;
 
-    --popover: 210 11% 10%;
-    --popover-foreground: 0 0% 97%;
+    --popover: 30 15% 12%;
+    --popover-foreground: 35 25% 96%;
 
-    --primary: 0 0% 97%;
-    --primary-foreground: 210 11% 13%;
+    --primary: 35 25% 96%;
+    --primary-foreground: 30 20% 15%;
 
-    --secondary: 210 11% 18%;
-    --secondary-foreground: 0 0% 97%;
+    --secondary: 30 12% 22%;
+    --secondary-foreground: 35 25% 96%;
 
-    --muted: 210 11% 18%;
-    --muted-foreground: 210 8% 61%;
+    --muted: 30 12% 22%;
+    --muted-foreground: 35 18% 65%;
 
-    --accent: 217 85% 51%;
+    --accent: 25 75% 55%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 97%;
+    --destructive-foreground: 35 25% 96%;
 
-    --border: 210 11% 18%;
-    --input: 210 11% 18%;
-    --ring: 210 8% 61%;
+    --border: 30 12% 22%;
+    --input: 30 12% 22%;
+    --ring: 35 18% 65%;
     
-    --gradient-metallic: linear-gradient(135deg, hsl(210, 8%, 25%), hsl(210, 8%, 15%));
-    --gradient-paper: linear-gradient(180deg, hsl(210, 11%, 12%), hsl(210, 11%, 8%));
-    --gradient-ink: linear-gradient(90deg, hsl(0, 0%, 97%), hsl(0, 0%, 85%));
+    --gradient-metallic: linear-gradient(135deg, hsl(30, 12%, 25%), hsl(30, 12%, 15%));
+    --gradient-paper: linear-gradient(180deg, hsl(30, 15%, 12%), hsl(30, 15%, 10%));
+    --gradient-ink: linear-gradient(90deg, hsl(35, 25%, 96%), hsl(35, 20%, 85%));
     
     --shadow-reel: 0 4px 16px -2px hsl(0 0% 0% / 0.3);
     --shadow-card: 0 2px 8px -1px hsl(0 0% 0% / 0.2);

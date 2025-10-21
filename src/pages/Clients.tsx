@@ -1,5 +1,6 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import QuoteDialog from "@/components/QuoteDialog";
 import { motion } from "framer-motion";
 
 const Clients = () => {
@@ -157,9 +158,11 @@ const Clients = () => {
               Discover why leading brands choose PrintReel Industries for their 
               printing and supply chain needs.
             </p>
-            <button className="px-8 py-3 bg-primary-foreground text-primary rounded-md font-heading font-semibold hover:bg-primary-foreground/90 transition-colors">
-              Become a Partner
-            </button>
+            <QuoteDialog buttonSize="lg" buttonVariant="secondary" buttonText="Become a Partner">
+              <button className="px-8 py-3 bg-primary-foreground text-primary rounded-md font-heading font-semibold hover:bg-primary-foreground/90 transition-colors">
+                Become a Partner
+              </button>
+            </QuoteDialog>
           </div>
         </section>
       </main>

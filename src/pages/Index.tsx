@@ -2,6 +2,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ZoomHero from "@/components/ZoomHero";
 import ReelAnimation from "@/components/ReelAnimation";
+import QuoteDialog from "@/components/QuoteDialog";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Printer, Package, Truck, Recycle, Tag, Boxes } from "lucide-react";
 
@@ -104,10 +105,12 @@ const Index = () => {
           </div>
 
           <div className="text-center mt-12">
-            <Button size="lg" className="group">
-              Explore All Services
-              <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={16} />
-            </Button>
+            <QuoteDialog buttonSize="lg" buttonText="Explore All Services">
+              <Button size="lg" className="group">
+                Explore All Services
+                <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={16} />
+              </Button>
+            </QuoteDialog>
           </div>
         </div>
       </section>
@@ -122,10 +125,12 @@ const Index = () => {
             Get a custom quote for your industrial printing and trading needs. 
             Our team responds within 24 hours.
           </p>
-          <Button size="lg" variant="secondary" className="group">
-            Request a Quote
-            <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={16} />
-          </Button>
+          <QuoteDialog buttonSize="lg" buttonVariant="secondary" buttonText="Request a Quote">
+            <Button size="lg" variant="secondary" className="group">
+              Request a Quote
+              <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={16} />
+            </Button>
+          </QuoteDialog>
         </div>
       </section>
 

@@ -1,6 +1,7 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ReelAnimation from "@/components/ReelAnimation";
+import QuoteDialog from "@/components/QuoteDialog";
 import { Printer, Tag, Truck, Package, Recycle, Boxes } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -116,9 +117,11 @@ const Services = () => {
               Our engineering team can design bespoke printing and production workflows 
               tailored to your specific requirements.
             </p>
-            <Button size="lg" variant="secondary">
-              Schedule Consultation
-            </Button>
+            <QuoteDialog buttonSize="lg" buttonVariant="secondary" buttonText="Schedule Consultation">
+              <Button size="lg" variant="secondary">
+                Schedule Consultation
+              </Button>
+            </QuoteDialog>
           </div>
         </section>
       </main>
