@@ -1,4 +1,46 @@
-# Welcome to your Lovable project
+# Print Arc Hub - Bulk Order Platform
+
+## 🎨 UI Redesign (v2.0)
+
+This project has been completely redesigned as a modern bulk-order e-commerce platform, inspired by leading travel platforms (MakeMyTrip, TripAdvisor, Visit Qatar).
+
+### ✨ What's New
+
+- **🔍 Advanced Search:** Multi-field bulk order search with quantity, location, and date inputs
+- **🛒 Bulk Cart:** Floating cart with real-time price calculations and discount display
+- **📦 Product Discovery:** Advanced filters, sorting, and grid/list views
+- **⭐ Reviews & Trust:** Customer testimonials, ratings, and verified badges
+- **💰 Featured Deals:** Dedicated bulk deals page with exclusive discounts
+- **📊 Dashboard:** Order tracking, quote management, and saved products
+- **📱 Fully Responsive:** Mobile-first design with smooth animations
+
+### 📚 Documentation
+
+- **[UI Redesign Guide](./UI_REDESIGN.md)** - Complete redesign documentation
+- **[Component Library](./COMPONENT_LIBRARY.md)** - Developer guide with examples
+
+### 🗺️ Key Pages
+
+- **Homepage** (`/`) - Hero with search, featured deals, reviews, and product showcase
+- **Products** (`/products`) - Full catalog with filters and bulk pricing
+- **Bulk Deals** (`/bulk-deals`) - Featured discounts and flash sales
+- **Dashboard** (`/dashboard`) - Order management and tracking
+- **About** (`/about`) - Company information
+- **Contact** (`/contact`) - Get in touch
+
+### 🎯 Key Components
+
+- `BulkSearchBar` - Multi-field search interface
+- `BulkProductCard` - Product cards with bulk pricing
+- `BulkCart` - Floating cart with order management
+- `ProductFilters` - Advanced filtering sidebar
+- `ReviewCard` - Customer review display
+- `TrustBadge` - Trust signal components
+- `HeroBulkOrder` - Hero section with search
+- `FeaturedBulkDeals` - Deal showcase
+- `ReviewsSection` - Complete reviews section
+
+---
 
 ## Project info
 

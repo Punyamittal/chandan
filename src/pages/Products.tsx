@@ -1,156 +1,340 @@
+import { useState } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import QuoteDialog from "@/components/QuoteDialog";
+import BulkProductCard from "@/components/BulkProductCard";
+import ProductFilters, { FilterOptions } from "@/components/ProductFilters";
+import BulkSearchBar, { SearchData } from "@/components/BulkSearchBar";
+import BulkCart, { CartItem } from "@/components/BulkCart";
 import { motion } from "framer-motion";
+import { Badge } from "@/components/ui/badge";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { LayoutGrid, List } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { 
-  FileText, 
-  CreditCard, 
-  BookOpen, 
-  Notebook, 
-  Image, 
-  ShoppingBag, 
-  FolderOpen, 
-  User 
-} from "lucide-react";
 
 const Products = () => {
+  const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
+  const [sortBy, setSortBy] = useState("popular");
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [activeFilters, setActiveFilters] = useState<FilterOptions>({
+    categories: [],
+    priceRange: [0, 1000],
+    availability: [],
+    rating: 0,
+    minQuantity: 0,
+  });
+
   const products = [
-    { name: "Letterheads", specs: "Custom designs, various paper qualities", availability: "In Stock", icon: FileText },
-    { name: "Visiting Cards", specs: "Premium finishes, custom sizes", availability: "In Stock", icon: User },
-    { name: "Diaries", specs: "Corporate & personal, custom covers", availability: "In Stock", icon: BookOpen },
-    { name: "Notebooks", specs: "Spiral bound, hardcover options", availability: "In Stock", icon: Notebook },
-    { name: "Posters", specs: "Large format printing, various materials", availability: "Made to Order", icon: Image },
-    { name: "Carry Bags", specs: "Eco-friendly, custom branding", availability: "In Stock", icon: ShoppingBag },
-    { name: "File Covers", specs: "Professional look, various sizes", availability: "In Stock", icon: FolderOpen },
-    { name: "Business Cards", specs: "Premium quality, instant delivery", availability: "In Stock", icon: CreditCard },
+    {
+      id: "1",
+      name: "Premium Business Cards",
+      image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800",
+      rating: 4.9,
+      reviews: 245,
+      pricePerUnit: 2.5,
+      bulkDiscounts: [
+        { minQty: 500, discount: 15 },
+        { minQty: 1000, discount: 25 },
+        { minQty: 5000, discount: 35 },
+      ],
+      minOrderQty: 100,
+      availability: "In Stock" as const,
+      popularBadge: true,
+      specs: "Premium cardstock, custom designs, multiple finishes available",
+    },
+    {
+      id: "2",
+      name: "Corporate Letterheads",
+      image: "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=800",
+      rating: 4.8,
+      reviews: 189,
+      pricePerUnit: 1.8,
+      bulkDiscounts: [
+        { minQty: 500, discount: 20 },
+        { minQty: 1000, discount: 30 },
+        { minQty: 2500, discount: 40 },
+      ],
+      minOrderQty: 250,
+      availability: "In Stock" as const,
+      popularBadge: true,
+      specs: "High-quality paper, professional printing, custom branding",
+    },
+    {
+      id: "3",
+      name: "Executive Diaries 2025",
+      image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=800",
+      rating: 4.7,
+      reviews: 156,
+      pricePerUnit: 45,
+      bulkDiscounts: [
+        { minQty: 50, discount: 10 },
+        { minQty: 200, discount: 20 },
+        { minQty: 500, discount: 30 },
+      ],
+      minOrderQty: 25,
+      availability: "In Stock" as const,
+      specs: "Leather cover, customizable, corporate gifting perfect",
+    },
+    {
+      id: "4",
+      name: "Visiting Cards Premium",
+      image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800",
+      rating: 4.6,
+      reviews: 201,
+      pricePerUnit: 3.2,
+      bulkDiscounts: [
+        { minQty: 250, discount: 12 },
+        { minQty: 500, discount: 22 },
+        { minQty: 1000, discount: 32 },
+      ],
+      minOrderQty: 100,
+      availability: "In Stock" as const,
+      specs: "Multiple finishes, embossing available, fast turnaround",
+    },
+    {
+      id: "5",
+      name: "File Covers & Folders",
+      image: "https://images.unsplash.com/photo-1544906388-1aef9d7ab57b?w=800",
+      rating: 4.5,
+      reviews: 134,
+      pricePerUnit: 12,
+      bulkDiscounts: [
+        { minQty: 100, discount: 15 },
+        { minQty: 500, discount: 25 },
+        { minQty: 1000, discount: 35 },
+      ],
+      minOrderQty: 50,
+      availability: "In Stock" as const,
+      specs: "Durable material, custom printing, professional finish",
+    },
+    {
+      id: "6",
+      name: "Custom Notebooks",
+      image: "https://images.unsplash.com/photo-1517842645767-c639042777db?w=800",
+      rating: 4.8,
+      reviews: 178,
+      pricePerUnit: 25,
+      bulkDiscounts: [
+        { minQty: 50, discount: 10 },
+        { minQty: 200, discount: 20 },
+        { minQty: 500, discount: 30 },
+      ],
+      minOrderQty: 25,
+      availability: "In Stock" as const,
+      specs: "Spiral/hardbound, branded covers, quality paper",
+    },
+    {
+      id: "7",
+      name: "Eco-Friendly Carry Bags",
+      image: "https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=800",
+      rating: 4.6,
+      reviews: 98,
+      pricePerUnit: 8,
+      bulkDiscounts: [
+        { minQty: 500, discount: 20 },
+        { minQty: 1000, discount: 30 },
+        { minQty: 5000, discount: 40 },
+      ],
+      minOrderQty: 200,
+      availability: "In Stock" as const,
+      popularBadge: true,
+      specs: "Recyclable material, custom branding, strong handles",
+    },
+    {
+      id: "8",
+      name: "Large Format Posters",
+      image: "https://images.unsplash.com/photo-1551712185-ad471b2cee50?w=800",
+      rating: 4.7,
+      reviews: 112,
+      pricePerUnit: 55,
+      bulkDiscounts: [
+        { minQty: 50, discount: 15 },
+        { minQty: 100, discount: 25 },
+        { minQty: 500, discount: 35 },
+      ],
+      minOrderQty: 10,
+      availability: "Made to Order" as const,
+      specs: "High-resolution printing, multiple sizes, weather-resistant",
+    },
   ];
+
+  const handleAddToCart = (productId: string, quantity: number) => {
+    const product = products.find((p) => p.id === productId);
+    if (product) {
+      const discount =
+        product.bulkDiscounts
+          .filter((d) => quantity >= d.minQty)
+          .sort((a, b) => b.discount - a.discount)[0]?.discount || 0;
+
+      setCartItems([
+        ...cartItems,
+        {
+          id: productId,
+          name: product.name,
+          image: product.image,
+          quantity,
+          pricePerUnit: product.pricePerUnit,
+          discount,
+        },
+      ]);
+    }
+  };
+
+  const handleUpdateQuantity = (id: string, quantity: number) => {
+    setCartItems(
+      cartItems.map((item) => (item.id === id ? { ...item, quantity } : item))
+    );
+  };
+
+  const handleRemoveItem = (id: string) => {
+    setCartItems(cartItems.filter((item) => item.id !== id));
+  };
+
+  const handleSearch = (data: SearchData) => {
+    console.log("Search:", data);
+    // Implement search logic here
+  };
+
+  const handleFilterChange = (filters: FilterOptions) => {
+    setActiveFilters(filters);
+    console.log("Filters:", filters);
+    // Implement filter logic here
+  };
+
+  const activeFiltersCount =
+    activeFilters.categories.length +
+    activeFilters.availability.length +
+    (activeFilters.rating > 0 ? 1 : 0);
 
   return (
     <div className="min-h-screen">
       <Navigation />
-      
+
       <main className="pt-24">
-        {/* Hero */}
-        <section className="py-24 bg-background">
-          <div className="container mx-auto px-6 text-center">
-            <h1 className="text-4xl md:text-6xl font-heading font-bold mb-6">
-              Printing Stationery & Print Media
-            </h1>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Premium printing stationery and print media products designed for your business needs. 
-              Quality materials and professional finishes for every order.
-            </p>
-          </div>
-        </section>
-
-        {/* Products Grid */}
-        <section className="py-24 bg-muted/30 paper-texture">
+        {/* Header with Search */}
+        <section className="py-12 bg-gradient-to-b from-muted/50 to-background">
           <div className="container mx-auto px-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {products.map((product, index) => {
-                const IconComponent = product.icon;
-                return (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: index * 0.05 }}
-                  whileHover={{ scale: 1.05 }}
-                  className="group relative bg-card rounded-lg p-6 border-2 border-border hover:border-primary transition-all duration-300 cursor-pointer"
-                >
-                  {/* Circular Frame */}
-                  <div className="relative mb-6 mx-auto w-32 h-32 rounded-full border-[3px] border-secondary/30 flex items-center justify-center overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-br from-secondary/5 to-transparent" />
-                    <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-300">
-                      <IconComponent className="w-8 h-8 text-primary group-hover:scale-110 transition-transform duration-300" />
-                    </div>
-                    {/* Radial Highlight on Hover */}
-                    <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  </div>
-                  
-                  <h3 className="font-heading font-semibold text-lg mb-2 text-center">
-                    {product.name}
-                  </h3>
-                  <p className="text-sm text-muted-foreground text-center mb-4">
-                    {product.specs}
-                  </p>
-                  <div className="flex justify-center">
-                    <span className={`text-xs px-3 py-1 rounded-full ${
-                      product.availability === "In Stock" 
-                        ? "bg-accent/10 text-accent" 
-                        : "bg-muted text-muted-foreground"
-                    }`}>
-                      {product.availability}
-                    </span>
-                  </div>
-                </motion.div>
-                );
-              })}
-            </div>
-
-            <div className="text-center mt-12">
-              <p className="text-sm text-muted-foreground mb-6">
-                All products available with custom specifications and fast delivery. 
-                Contact us for bulk orders and special requirements.
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="text-center mb-8"
+            >
+              <Badge variant="secondary" className="mb-4">
+                🎯 Browse Bulk Products
+              </Badge>
+              <h1 className="text-4xl md:text-6xl font-heading font-bold mb-4">
+                Premium Bulk Products
+              </h1>
+              <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+                Discover our complete range of printing stationery with
+                exclusive bulk discounts
               </p>
-              <QuoteDialog buttonSize="lg" buttonText="Request Product Catalog">
-                <Button size="lg">Request Product Catalog</Button>
-              </QuoteDialog>
-            </div>
+            </motion.div>
+
+            {/* Inline Search */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+            >
+              <BulkSearchBar onSearch={handleSearch} variant="inline" />
+            </motion.div>
           </div>
         </section>
 
-        {/* Specifications */}
-        <section className="py-24 bg-background blueprint-grid">
+        {/* Products Section */}
+        <section className="py-12 bg-background">
           <div className="container mx-auto px-6">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl md:text-5xl font-heading font-bold text-center mb-12">
-                Our Quality Promise
-              </h2>
-              <div className="grid md:grid-cols-2 gap-8">
-                <div className="bg-card/50 rounded-lg p-6 border border-border">
-                  <h3 className="font-heading font-bold text-xl mb-4">Premium Materials</h3>
-                  <ul className="space-y-2 text-sm text-muted-foreground">
-                    <li>• High-quality paper and cardstock</li>
-                    <li>• Professional ink and printing</li>
-                    <li>• Durable finishes and coatings</li>
-                    <li>• Eco-friendly options available</li>
-                  </ul>
+            <div className="flex gap-8">
+              {/* Filters Sidebar */}
+              <ProductFilters
+                onFilterChange={handleFilterChange}
+                activeFiltersCount={activeFiltersCount}
+              />
+
+              {/* Products Grid */}
+              <div className="flex-1">
+                {/* Toolbar */}
+                <div className="flex items-center justify-between mb-6">
+                  <div>
+                    <p className="text-sm text-muted-foreground">
+                      Showing <strong>{products.length}</strong> products
+                    </p>
+                  </div>
+
+                  <div className="flex items-center gap-4">
+                    {/* View Mode Toggle */}
+                    <div className="hidden md:flex items-center gap-1 bg-muted rounded-lg p-1">
+                      <Button
+                        variant={viewMode === "grid" ? "default" : "ghost"}
+                        size="sm"
+                        onClick={() => setViewMode("grid")}
+                      >
+                        <LayoutGrid className="w-4 h-4" />
+                      </Button>
+                      <Button
+                        variant={viewMode === "list" ? "default" : "ghost"}
+                        size="sm"
+                        onClick={() => setViewMode("list")}
+                      >
+                        <List className="w-4 h-4" />
+                      </Button>
+                    </div>
+
+                    {/* Sort Dropdown */}
+                    <Select value={sortBy} onValueChange={setSortBy}>
+                      <SelectTrigger className="w-[180px]">
+                        <SelectValue placeholder="Sort by" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="popular">Most Popular</SelectItem>
+                        <SelectItem value="price-low">
+                          Price: Low to High
+                        </SelectItem>
+                        <SelectItem value="price-high">
+                          Price: High to Low
+                        </SelectItem>
+                        <SelectItem value="rating">Top Rated</SelectItem>
+                        <SelectItem value="newest">Newest First</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
                 </div>
-                <div className="bg-card/50 rounded-lg p-6 border border-border">
-                  <h3 className="font-heading font-bold text-xl mb-4">Quality Assurance</h3>
-                  <ul className="space-y-2 text-sm text-muted-foreground">
-                    <li>• Rigorous quality checks</li>
-                    <li>• Custom design capabilities</li>
-                    <li>• Fast turnaround times</li>
-                    <li>• Customer satisfaction guarantee</li>
-                  </ul>
+
+                {/* Products Grid */}
+                <div
+                  className={`grid gap-6 ${
+                    viewMode === "grid"
+                      ? "grid-cols-1 md:grid-cols-2 xl:grid-cols-3"
+                      : "grid-cols-1"
+                  }`}
+                >
+                  {products.map((product) => (
+                    <BulkProductCard
+                      key={product.id}
+                      {...product}
+                      onAddToCart={handleAddToCart}
+                    />
+                  ))}
                 </div>
               </div>
             </div>
           </div>
         </section>
-
-        {/* CTA */}
-        <section className="py-24 bg-primary text-primary-foreground">
-          <div className="container mx-auto px-6 text-center">
-            <h2 className="text-3xl md:text-5xl font-heading font-bold mb-6">
-              Need Custom Stationery?
-            </h2>
-            <p className="text-lg text-primary-foreground/80 mb-8 max-w-2xl mx-auto">
-              Contact us for custom designs, bulk orders, and special requirements. 
-              We deliver quality printing stationery tailored to your needs.
-            </p>
-            <QuoteDialog buttonSize="lg" buttonVariant="secondary" buttonText="Get Custom Quote">
-              <Button size="lg" variant="secondary">
-                Get Custom Quote
-              </Button>
-            </QuoteDialog>
-          </div>
-        </section>
       </main>
+
+      {/* Bulk Cart */}
+      <BulkCart
+        items={cartItems}
+        onUpdateQuantity={handleUpdateQuantity}
+        onRemoveItem={handleRemoveItem}
+        onCheckout={() => console.log("Checkout")}
+      />
 
       <Footer />
     </div>

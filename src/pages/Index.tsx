@@ -1,9 +1,13 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import ZoomHero from "@/components/ZoomHero";
+import HeroBulkOrder from "@/components/HeroBulkOrder";
+import FeaturedBulkDeals from "@/components/FeaturedBulkDeals";
+import ReviewsSection from "@/components/ReviewsSection";
 import ReelAnimation from "@/components/ReelAnimation";
+import TrustBadge from "@/components/TrustBadge";
 import QuoteDialog from "@/components/QuoteDialog";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
@@ -60,10 +64,25 @@ const Index = () => {
     <div className="min-h-screen">
       <Navigation />
       
-      {/* Hero Section with Zoom Scroll */}
-      <ZoomHero />
+      {/* Hero Section with Bulk Search */}
+      <HeroBulkOrder onSearch={(data) => console.log("Search:", data)} />
 
-      {/* Reel System Overview */}
+      {/* Trust Badges */}
+      <section className="py-16 bg-background border-b border-border">
+        <div className="container mx-auto px-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <TrustBadge type="verified" label="Verified Supplier" variant="compact" />
+            <TrustBadge type="fast-delivery" label="Fast Delivery" variant="compact" />
+            <TrustBadge type="quality" label="Premium Quality" variant="compact" />
+            <TrustBadge type="bulk-discount" label="Bulk Discounts" variant="compact" />
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Bulk Deals */}
+      <FeaturedBulkDeals />
+
+      {/* Why Order Bulk Section */}
       <section className="py-24 bg-background paper-texture">
         <div className="container mx-auto px-6" ref={ref}>
           <motion.div 
@@ -73,6 +92,7 @@ const Index = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
+            <Badge variant="secondary" className="mb-4">💡 Why Choose Us</Badge>
             <motion.h2 
               className="text-3xl md:text-5xl font-heading font-bold mb-4"
               initial={{ opacity: 0, y: 30 }}
@@ -80,7 +100,7 @@ const Index = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              Our Expertise in Printing Stationery
+              Benefits of Bulk Ordering
             </motion.h2>
             <motion.p 
               className="text-muted-foreground max-w-2xl mx-auto"
@@ -89,8 +109,7 @@ const Index = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              From consultation to delivery, we handle every aspect of your 
-              printing stationery and print media needs with precision and care.
+              Save money, get premium quality, and enjoy hassle-free bulk procurement
             </motion.p>
           </motion.div>
 
@@ -219,6 +238,9 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Customer Reviews */}
+      <ReviewsSection />
+
       {/* Services Preview */}
       <section className="py-24 bg-muted/30">
         <div className="container mx-auto px-6">
@@ -229,6 +251,7 @@ const Index = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
+            <Badge variant="secondary" className="mb-4">📦 Product Categories</Badge>
             <motion.h2 
               className="text-3xl md:text-5xl font-heading font-bold mb-4"
               initial={{ opacity: 0, y: 30 }}
@@ -383,7 +406,7 @@ const Index = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              Ready for Quality Stationery Solutions?
+              Ready for Bulk Orders?
             </motion.h2>
             <motion.p 
               className="text-lg text-primary-foreground/80 mb-8 max-w-2xl mx-auto"
@@ -392,7 +415,7 @@ const Index = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              Get a custom quote for your printing stationery and print media needs. 
+              Get a custom quote for your bulk printing needs with exclusive discounts. 
               Our team responds within 24 hours.
             </motion.p>
             <motion.div

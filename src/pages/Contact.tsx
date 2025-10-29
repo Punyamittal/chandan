@@ -32,11 +32,11 @@ const Contact = () => {
         </section>
 
         {/* Contact Form & Info */}
-        <section className="py-24 bg-muted/30">
+        <section className="py-24 bg-muted/30 relative">
           <div className="container mx-auto px-6">
             <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
               {/* Contact Form */}
-              <div className="bg-card rounded-lg p-8 border border-border">
+              <div className="bg-card rounded-lg p-8 border border-border relative z-10">
                 <h2 className="text-2xl font-heading font-bold mb-6">Request a Quote</h2>
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-4">
@@ -61,11 +61,11 @@ const Contact = () => {
                     </div>
                   </div>
 
-                  <div className="space-y-2">
+                  <div className="space-y-2 relative z-30">
                     <Label htmlFor="service">Service Required</Label>
                     <select
                       id="service"
-                      className="w-full px-3 py-2 rounded-md border border-input bg-background"
+                      className="w-full px-3 py-2 rounded-md border border-input bg-background relative z-[9999]"
                       required
                     >
                       <option value="">Select a product/service</option>
@@ -95,8 +95,8 @@ const Contact = () => {
               </div>
 
               {/* Contact Information */}
-              <div className="space-y-8">
-                <div className="bg-card rounded-lg p-8 border border-border">
+              <div className="space-y-8 relative z-10">
+                <div className="bg-card rounded-lg p-8 border border-border relative z-20">
                   <h2 className="text-2xl font-heading font-bold mb-6">Contact Information</h2>
                   
                   <div className="space-y-6">
@@ -147,7 +147,7 @@ const Contact = () => {
                   </div>
                 </div>
 
-                <div className="bg-primary text-primary-foreground rounded-lg p-8">
+                    <div className="bg-primary text-primary-foreground rounded-lg p-8 relative z-20">
                   <h3 className="text-xl font-heading font-bold mb-4">Quick Response</h3>
                   <p className="text-sm text-primary-foreground/80 leading-relaxed mb-4">
                     Our dedicated sales team responds to all inquiries within 24 hours. 

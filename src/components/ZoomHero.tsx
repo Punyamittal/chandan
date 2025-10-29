@@ -54,33 +54,49 @@ const ZoomHero = () => {
               <motion.h1 
                 className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold mb-6 text-white drop-shadow-2xl"
                 style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
+                initial={{ opacity: 0, x: -200, y: 50 }}
+                animate={{ opacity: 1, x: 0, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
               >
-                Welcome to{" "}
-                <span className="text-yellow-400" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>Chandan Trading Company</span>
+                <motion.span
+                  initial={{ opacity: 0, x: -150 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.3, delay: 0.2 }}
+                >
+                  Welcome to{" "}
+                </motion.span>
+                <motion.span 
+                  className="text-yellow-400" 
+                  style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}
+                  initial={{ opacity: 0, x: 150 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.3, delay: 0.3 }}
+                >
+                  Chandan Trading Company
+                </motion.span>
               </motion.h1>
               <motion.p 
                 className="text-lg md:text-xl text-white drop-shadow-xl leading-relaxed mb-8 max-w-2xl mx-auto"
                 style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.8)' }}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
+                initial={{ opacity: 0, x: 200, y: 30 }}
+                animate={{ opacity: 1, x: 0, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.4, ease: "easeOut" }}
               >
                 Your trusted partner in premium printing stationery and print media solutions. 
                 From business cards to corporate stationery, we deliver excellence in every print.
               </motion.p>
               <motion.div 
                 className="flex flex-col sm:flex-row gap-4 justify-center items-center"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.6 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.2, delay: 0.5 }}
               >
                 <motion.div
+                  initial={{ opacity: 0, x: -300, y: 50 }}
+                  animate={{ opacity: 1, x: 0, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.6, ease: "easeOut" }}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  transition={{ duration: 0.2 }}
                 >
                   <Link to="/products">
                     <Button size="lg" className="group relative overflow-hidden bg-white text-primary hover:bg-white/90 shadow-2xl border-2 border-white">
@@ -108,9 +124,11 @@ const ZoomHero = () => {
                 </motion.div>
                 <QuoteDialog buttonSize="lg" buttonVariant="outline" buttonText="Get Quote">
                   <motion.div
+                    initial={{ opacity: 0, x: 300, y: 50 }}
+                    animate={{ opacity: 1, x: 0, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.7, ease: "easeOut" }}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    transition={{ duration: 0.2 }}
                   >
                     <Button size="lg" variant="outline" className="group bg-transparent border-2 border-white text-white hover:bg-white hover:text-primary shadow-2xl backdrop-blur-sm">
                       Get Custom Quote
@@ -127,9 +145,9 @@ const ZoomHero = () => {
               <motion.div 
                 className="mt-12 text-sm text-white drop-shadow-lg font-medium"
                 style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.8)' }}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.6, delay: 0.8 }}
+                initial={{ opacity: 0, y: 100 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.8, ease: "easeOut" }}
               >
                 Scroll down to explore our story and expertise
               </motion.div>
@@ -178,9 +196,20 @@ const ZoomHero = () => {
               return (
                 <motion.h1
                   key={index}
-                  style={{ opacity: textOpacity }}
+                  style={{ 
+                    opacity: textOpacity,
+                    textShadow: index === 0 
+                      ? '3px 3px 6px rgba(0,0,0,0.9), 0 0 20px rgba(255,255,255,0.3), 0 0 40px rgba(255,255,255,0.1)' // Enhanced shadow for "Precision in Every Print"
+                      : index === 1 
+                      ? '3px 3px 6px rgba(0,0,0,0.8), 0 0 15px rgba(255,215,0,0.4), 0 0 30px rgba(255,215,0,0.2)' // Golden glow for "Quality Stationery Solutions"
+                      : '3px 3px 6px rgba(255,255,255,0.8), 0 0 10px rgba(0,0,0,0.5)' // White shadow for black text
+                  }}
                   className={`absolute inset-x-0 top-1/2 -translate-y-1/2 text-4xl md:text-6xl lg:text-7xl font-heading font-bold text-balance px-6 ${
-                    index === 2 ? 'text-black' : 'text-primary-foreground'
+                    index === 0 
+                      ? 'text-white' // Pure white for "Precision in Every Print"
+                      : index === 1 
+                      ? 'text-yellow-300' // Bright golden yellow for "Quality Stationery Solutions"
+                      : 'text-black' // Black for "Trusted Print Media Partner"
                   }`}
                 >
                   {text}

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { z } from "zod";
 import {
   Dialog,
@@ -143,13 +143,24 @@ const QuoteDialog = ({
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        {children || (
+        {children ? (
+          React.cloneElement(children as React.ReactElement, {
+            onClick: (e: React.MouseEvent) => {
+              console.log("Dialog trigger clicked");
+              setOpen(true);
+              // Call original onClick if it exists
+              if ((children as React.ReactElement).props.onClick) {
+                (children as React.ReactElement).props.onClick(e);
+              }
+            }
+          })
+        ) : (
           <Button variant={buttonVariant} size={buttonSize}>
             {buttonText}
           </Button>
         )}
       </DialogTrigger>
-      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto relative z-50">
         <DialogHeader>
           <DialogTitle className="text-2xl font-heading">Request a Quote</DialogTitle>
           <DialogDescription>
@@ -229,7 +240,7 @@ const QuoteDialog = ({
               name="service"
               value={formData.service}
               onChange={handleChange}
-              className={`w-full px-3 py-2 rounded-md border bg-background ${
+              className={`w-full px-3 py-2 rounded-md border bg-background relative z-[9999] ${
                 errors.service ? "border-destructive" : "border-input"
               }`}
             >
