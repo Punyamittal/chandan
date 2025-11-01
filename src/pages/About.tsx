@@ -14,20 +14,20 @@ const About = () => {
     <div className="min-h-screen">
       <Navigation />
       
-      <main className="pt-24">
+      <main className="pt-16 sm:pt-20 md:pt-24">
         {/* Hero */}
-        <section className="py-24 bg-background">
-          <div className="container mx-auto px-6">
+        <section className="py-12 sm:py-16 md:py-24 bg-background">
+          <div className="container mx-auto px-4 sm:px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="text-center max-w-4xl mx-auto"
+              className="text-center max-w-4xl mx-auto px-4"
             >
-              <h1 className="text-4xl md:text-6xl font-heading font-bold mb-6">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-heading font-bold mb-4 sm:mb-6">
                 Precision in Every Print<br />Established Excellence
               </h1>
-              <p className="text-lg text-muted-foreground leading-relaxed">
+              <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
                 For over a decade, Chandan Trading Company has been at the forefront of printing stationery and print media, 
                 combining traditional expertise with modern practices to deliver unmatched quality and service.
               </p>
@@ -36,10 +36,10 @@ const About = () => {
         </section>
 
         {/* Values */}
-        <section className="py-24 bg-muted/30 blueprint-grid">
-          <div className="container mx-auto px-6">
+        <section className="py-12 sm:py-16 md:py-24 bg-muted/30 blueprint-grid">
+          <div className="container mx-auto px-4 sm:px-6">
             <motion.div 
-              className="grid md:grid-cols-3 gap-12"
+              className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 md:gap-12"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
@@ -113,9 +113,9 @@ const About = () => {
         </section>
 
         {/* Timeline */}
-        <section className="py-24 bg-background">
-          <div className="container mx-auto px-6">
-            <h2 className="text-3xl md:text-5xl font-heading font-bold text-center mb-16">
+        <section className="py-12 sm:py-16 md:py-24 bg-background">
+          <div className="container mx-auto px-4 sm:px-6">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-center mb-8 sm:mb-12 md:mb-16 px-4">
               Our Legacy
             </h2>
             <div className="max-w-4xl mx-auto">
@@ -130,11 +130,11 @@ const About = () => {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: index * 0.2 }}
-                    className={`relative flex items-center mb-16 ${
-                      index % 2 === 0 ? "flex-row" : "flex-row-reverse"
+                    className={`relative flex flex-col sm:flex-row items-center mb-8 sm:mb-12 md:mb-16 ${
+                      index % 2 === 0 ? "sm:flex-row" : "sm:flex-row-reverse"
                     }`}
                   >
-                    <div className={`w-1/2 ${index % 2 === 0 ? "pr-12 text-right" : "pl-12 text-left"}`}>
+                    <div className={`w-full sm:w-1/2 ${index % 2 === 0 ? "sm:pr-8 md:pr-12 sm:text-right text-left" : "sm:pl-8 md:pl-12 text-left"} mb-4 sm:mb-0`}>
                       <h3 className="text-2xl font-heading font-bold mb-2">{milestone.title}</h3>
                       <p className="text-muted-foreground">{milestone.desc}</p>
                     </div>
@@ -150,8 +150,8 @@ const About = () => {
         </section>
 
         {/* Leadership Section */}
-        <section className="py-24 bg-muted/30">
-          <div className="container mx-auto px-6">
+        <section className="py-12 sm:py-16 md:py-24 bg-muted/30">
+          <div className="container mx-auto px-4 sm:px-6">
             <motion.div 
               className="max-w-4xl mx-auto text-center"
               initial={{ opacity: 0, y: 40 }}
@@ -160,7 +160,7 @@ const About = () => {
               transition={{ duration: 0.8 }}
             >
               <motion.h2 
-                className="text-3xl md:text-5xl font-heading font-bold mb-12"
+                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-heading font-bold mb-6 sm:mb-8 md:mb-12 px-4"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -240,7 +240,7 @@ const About = () => {
         </section>
 
         {/* Stats */}
-        <section className="py-24 bg-primary text-primary-foreground relative overflow-hidden">
+        <section className="py-12 sm:py-16 md:py-24 bg-primary text-primary-foreground relative overflow-hidden">
           <motion.div 
             className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary to-primary/90"
             initial={{ scale: 1.1, opacity: 0 }}
@@ -248,9 +248,9 @@ const About = () => {
             viewport={{ once: true }}
             transition={{ duration: 1 }}
           />
-          <div className="container mx-auto px-6 relative z-10">
+          <div className="container mx-auto px-4 sm:px-6 relative z-10">
             <motion.div 
-              className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center"
+              className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 text-center"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
@@ -279,7 +279,7 @@ const About = () => {
                   className="group"
                 >
                   <motion.div 
-                    className="text-4xl md:text-5xl font-heading font-bold mb-2 group-hover:text-primary-foreground/90 transition-colors duration-300"
+                    className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-heading font-bold mb-2 group-hover:text-primary-foreground/90 transition-colors duration-300"
                     initial={{ scale: 0 }}
                     whileInView={{ scale: 1 }}
                     viewport={{ once: true }}

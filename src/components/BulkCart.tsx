@@ -295,3 +295,4 @@ const BulkCart = ({
 
 export default BulkCart;
 
+

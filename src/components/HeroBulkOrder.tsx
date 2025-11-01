@@ -45,7 +45,7 @@ const HeroBulkOrder = ({ onSearch }: HeroBulkOrderProps) => {
       {/* Content */}
       <motion.div
         style={{ opacity }}
-        className="relative z-10 container mx-auto px-6 pt-32 pb-20"
+          className="relative z-10 container mx-auto px-4 sm:px-6 pt-16 sm:pt-24 md:pt-32 pb-12 sm:pb-20"
       >
         {/* Top Badges */}
         <motion.div
@@ -69,14 +69,14 @@ const HeroBulkOrder = ({ onSearch }: HeroBulkOrderProps) => {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="text-center mb-12"
         >
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-heading font-bold text-white mb-6 leading-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-heading font-bold text-white mb-4 sm:mb-6 leading-tight px-4">
             Premium Bulk
             <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-blue-400 to-purple-400">
               Printing Solutions
             </span>
           </h1>
-          <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed px-4">
             Order printing stationery and print media in bulk with exclusive
             discounts. Fast delivery, premium quality guaranteed.
           </p>
@@ -87,7 +87,7 @@ const HeroBulkOrder = ({ onSearch }: HeroBulkOrderProps) => {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="max-w-6xl mx-auto mb-16"
+          className="max-w-6xl mx-auto mb-8 sm:mb-12 md:mb-16 px-4"
         >
           <BulkSearchBar onSearch={onSearch} variant="hero" />
         </motion.div>
@@ -97,7 +97,7 @@ const HeroBulkOrder = ({ onSearch }: HeroBulkOrderProps) => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto"
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 max-w-4xl mx-auto px-4"
         >
           {statsData.map((stat, index) => {
             const Icon = stat.icon;
@@ -108,15 +108,15 @@ const HeroBulkOrder = ({ onSearch }: HeroBulkOrderProps) => {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, delay: 0.7 + index * 0.1 }}
                 whileHover={{ scale: 1.05 }}
-                className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl p-6 text-center text-white"
+                className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl sm:rounded-2xl p-4 sm:p-6 text-center text-white"
               >
                 <div className="flex justify-center mb-3">
                   <div className="p-3 bg-white/20 rounded-full">
                     <Icon className="w-6 h-6" />
                   </div>
                 </div>
-                <h3 className="text-2xl font-bold mb-1">{stat.label}</h3>
-                <p className="text-sm text-white/70">{stat.sublabel}</p>
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-1">{stat.label}</h3>
+                <p className="text-xs sm:text-sm text-white/70">{stat.sublabel}</p>
               </motion.div>
             );
           })}
@@ -147,4 +147,5 @@ const HeroBulkOrder = ({ onSearch }: HeroBulkOrderProps) => {
 };
 
 export default HeroBulkOrder;
+
 

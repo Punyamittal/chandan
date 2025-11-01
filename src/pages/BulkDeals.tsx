@@ -369,3 +369,4 @@ const BulkDeals = () => {
 
 export default BulkDeals;
 
+

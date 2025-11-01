@@ -17,14 +17,14 @@ const Contact = () => {
     <div className="min-h-screen">
       <Navigation />
       
-      <main className="pt-24">
+      <main className="pt-16 sm:pt-20 md:pt-24">
         {/* Hero */}
-        <section className="py-24 bg-background paper-texture">
-          <div className="container mx-auto px-6 text-center">
-            <h1 className="text-4xl md:text-6xl font-heading font-bold mb-6">
+        <section className="py-12 sm:py-16 md:py-24 bg-background paper-texture">
+          <div className="container mx-auto px-4 sm:px-6 text-center">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-heading font-bold mb-4 sm:mb-6 px-4">
               Contact Chandan Trading Company
             </h1>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg text-muted-foreground max-w-3xl mx-auto px-4">
               Ready to get your printing stationery and print media solutions? 
               Contact us today and we'll respond within 24 hours.
             </p>
@@ -32,12 +32,12 @@ const Contact = () => {
         </section>
 
         {/* Contact Form & Info */}
-        <section className="py-24 bg-muted/30 relative">
-          <div className="container mx-auto px-6">
-            <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+        <section className="py-12 sm:py-16 md:py-24 bg-muted/30 relative">
+          <div className="container mx-auto px-4 sm:px-6">
+            <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 md:gap-12 max-w-6xl mx-auto">
               {/* Contact Form */}
-              <div className="bg-card rounded-lg p-8 border border-border relative z-10">
-                <h2 className="text-2xl font-heading font-bold mb-6">Request a Quote</h2>
+              <div className="bg-card rounded-lg p-4 sm:p-6 md:p-8 border border-border relative z-10">
+                <h2 className="text-xl sm:text-2xl font-heading font-bold mb-4 sm:mb-6">Request a Quote</h2>
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-4">
                     <div className="space-y-2">
@@ -95,9 +95,9 @@ const Contact = () => {
               </div>
 
               {/* Contact Information */}
-              <div className="space-y-8 relative z-10">
-                <div className="bg-card rounded-lg p-8 border border-border relative z-20">
-                  <h2 className="text-2xl font-heading font-bold mb-6">Contact Information</h2>
+              <div className="space-y-6 sm:space-y-8 relative z-10">
+                <div className="bg-card rounded-lg p-4 sm:p-6 md:p-8 border border-border relative z-20">
+                  <h2 className="text-xl sm:text-2xl font-heading font-bold mb-4 sm:mb-6">Contact Information</h2>
                   
                   <div className="space-y-6">
                     <div className="flex items-start space-x-4">
@@ -147,8 +147,8 @@ const Contact = () => {
                   </div>
                 </div>
 
-                    <div className="bg-primary text-primary-foreground rounded-lg p-8 relative z-20">
-                  <h3 className="text-xl font-heading font-bold mb-4">Quick Response</h3>
+                    <div className="bg-primary text-primary-foreground rounded-lg p-4 sm:p-6 md:p-8 relative z-20">
+                  <h3 className="text-lg sm:text-xl font-heading font-bold mb-3 sm:mb-4">Quick Response</h3>
                   <p className="text-sm text-primary-foreground/80 leading-relaxed mb-4">
                     Our dedicated sales team responds to all inquiries within 24 hours. 
                     For urgent requests, please call our hotline directly.
@@ -164,14 +164,14 @@ const Contact = () => {
         </section>
 
         {/* Google Map Section */}
-        <section className="py-24 bg-background">
-          <div className="container mx-auto px-6">
+        <section className="py-12 sm:py-16 md:py-24 bg-background">
+          <div className="container mx-auto px-4 sm:px-6">
             <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl md:text-4xl font-heading font-bold text-center mb-12">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold text-center mb-6 sm:mb-8 md:mb-12 px-4">
                 Find Us
               </h2>
               <div className="bg-card rounded-lg p-4 border border-border">
-                <div className="w-full h-96 rounded-lg overflow-hidden">
+                <div className="w-full h-64 sm:h-80 md:h-96 rounded-lg overflow-hidden">
                   <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3501.764889489!2d77.18162331508197!3d28.71542568241223!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd1b2b1d3c3f%3A0x8b7b8b8b8b8b8b8b!2sAzadpur%2C%20Delhi%2C%20India!5e0!3m2!1sen!2sin!4v1635789123456!5m2!1sen!2sin"
                     width="100%"

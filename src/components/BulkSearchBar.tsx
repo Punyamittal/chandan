@@ -46,11 +46,11 @@ const BulkSearchBar = ({ onSearch, variant = "hero" }: BulkSearchBarProps) => {
       transition={{ duration: 0.6, delay: 0.3 }}
       className={`${
         isHero
-          ? "bg-white/95 backdrop-blur-lg shadow-2xl rounded-2xl p-8"
-          : "bg-card border border-border rounded-xl p-6"
+          ? "bg-white/95 backdrop-blur-lg shadow-2xl rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8"
+          : "bg-card border border-border rounded-xl p-4 sm:p-6"
       }`}
     >
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4">
         {/* Product Search */}
         <div className="relative">
           <label className="block text-sm font-medium mb-2 text-foreground">
@@ -156,7 +156,7 @@ const BulkSearchBar = ({ onSearch, variant = "hero" }: BulkSearchBarProps) => {
         <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
           <Button
             size="lg"
-            className="px-12 py-6 text-lg font-semibold"
+            className="px-6 sm:px-8 md:px-12 py-4 sm:py-5 md:py-6 text-base sm:text-lg font-semibold w-full sm:w-auto"
             onClick={handleSearch}
           >
             <Search className="mr-2 w-5 h-5" />
@@ -171,7 +171,7 @@ const BulkSearchBar = ({ onSearch, variant = "hero" }: BulkSearchBarProps) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8 }}
-          className="mt-6 pt-6 border-t border-border/50 flex justify-center gap-8 text-sm"
+          className="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-border/50 flex flex-wrap justify-center gap-4 sm:gap-6 md:gap-8 text-xs sm:text-sm px-4"
         >
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
@@ -198,4 +198,5 @@ const BulkSearchBar = ({ onSearch, variant = "hero" }: BulkSearchBarProps) => {
 };
 
 export default BulkSearchBar;
+
 

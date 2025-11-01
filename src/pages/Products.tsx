@@ -215,10 +215,10 @@ const Products = () => {
     <div className="min-h-screen">
       <Navigation />
 
-      <main className="pt-24">
+      <main className="pt-16 sm:pt-20 md:pt-24">
         {/* Header with Search */}
-        <section className="py-12 bg-gradient-to-b from-muted/50 to-background">
-          <div className="container mx-auto px-6">
+        <section className="py-8 sm:py-10 md:py-12 bg-gradient-to-b from-muted/50 to-background">
+          <div className="container mx-auto px-4 sm:px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -227,10 +227,10 @@ const Products = () => {
               <Badge variant="secondary" className="mb-4">
                 🎯 Browse Bulk Products
               </Badge>
-              <h1 className="text-4xl md:text-6xl font-heading font-bold mb-4">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-heading font-bold mb-3 sm:mb-4 px-4">
                 Premium Bulk Products
               </h1>
-              <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+              <p className="text-base sm:text-lg text-muted-foreground max-w-3xl mx-auto px-4">
                 Discover our complete range of printing stationery with
                 exclusive bulk discounts
               </p>
@@ -248,9 +248,9 @@ const Products = () => {
         </section>
 
         {/* Products Section */}
-        <section className="py-12 bg-background">
-          <div className="container mx-auto px-6">
-            <div className="flex gap-8">
+        <section className="py-8 sm:py-10 md:py-12 bg-background">
+          <div className="container mx-auto px-4 sm:px-6">
+            <div className="flex flex-col lg:flex-row gap-4 sm:gap-6 md:gap-8">
               {/* Filters Sidebar */}
               <ProductFilters
                 onFilterChange={handleFilterChange}
@@ -260,14 +260,14 @@ const Products = () => {
               {/* Products Grid */}
               <div className="flex-1">
                 {/* Toolbar */}
-                <div className="flex items-center justify-between mb-6">
-                  <div>
-                    <p className="text-sm text-muted-foreground">
-                      Showing <strong>{products.length}</strong> products
-                    </p>
-                  </div>
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 sm:mb-6 gap-3 sm:gap-4">
+                    <div>
+                      <p className="text-sm text-muted-foreground">
+                        Showing <strong>{products.length}</strong> products
+                      </p>
+                    </div>
 
-                  <div className="flex items-center gap-4">
+                  <div className="flex flex-wrap items-center gap-2 sm:gap-4 w-full sm:w-auto">
                     {/* View Mode Toggle */}
                     <div className="hidden md:flex items-center gap-1 bg-muted rounded-lg p-1">
                       <Button
@@ -288,7 +288,7 @@ const Products = () => {
 
                     {/* Sort Dropdown */}
                     <Select value={sortBy} onValueChange={setSortBy}>
-                      <SelectTrigger className="w-[180px]">
+                      <SelectTrigger className="w-full sm:w-[180px]">
                         <SelectValue placeholder="Sort by" />
                       </SelectTrigger>
                       <SelectContent>

@@ -30,7 +30,7 @@ const DealCard = ({
       className="group relative overflow-hidden rounded-2xl cursor-pointer"
     >
       {/* Image */}
-      <div className="relative h-80 overflow-hidden">
+      <div className="relative h-48 sm:h-64 md:h-80 overflow-hidden">
         <motion.img
           src={image}
           alt={title}
@@ -60,8 +60,8 @@ const DealCard = ({
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
           >
-            <h3 className="text-2xl font-heading font-bold mb-2">{title}</h3>
-            <p className="text-sm text-white/80 mb-4 line-clamp-2">
+            <h3 className="text-xl sm:text-2xl font-heading font-bold mb-2">{title}</h3>
+            <p className="text-xs sm:text-sm text-white/80 mb-3 sm:mb-4 line-clamp-2">
               {description}
             </p>
           </motion.div>
@@ -142,8 +142,8 @@ const FeaturedBulkDeals = () => {
   ];
 
   return (
-    <section className="py-24 bg-muted/30">
-      <div className="container mx-auto px-6">
+    <section className="py-12 sm:py-16 md:py-24 bg-muted/30">
+      <div className="container mx-auto px-4 sm:px-6">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -160,17 +160,17 @@ const FeaturedBulkDeals = () => {
               🎯 Featured Bulk Deals
             </Badge>
           </motion.div>
-          <h2 className="text-4xl md:text-6xl font-heading font-bold mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-heading font-bold mb-3 sm:mb-4 px-4">
             Exclusive Bulk Discounts
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
             Save more when you order in bulk. Limited time offers on premium
             printing products.
           </p>
         </motion.div>
 
         {/* Deals Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 mb-8 sm:mb-12 px-4">
           {deals.map((deal, index) => (
             <DealCard key={index} {...deal} />
           ))}
@@ -204,4 +204,5 @@ const FeaturedBulkDeals = () => {
 };
 
 export default FeaturedBulkDeals;
+
 

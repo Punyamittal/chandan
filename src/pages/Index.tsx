@@ -68,9 +68,9 @@ const Index = () => {
       <HeroBulkOrder onSearch={(data) => console.log("Search:", data)} />
 
       {/* Trust Badges */}
-      <section className="py-16 bg-background border-b border-border">
-        <div className="container mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <section className="py-8 sm:py-12 md:py-16 bg-background border-b border-border">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
             <TrustBadge type="verified" label="Verified Supplier" variant="compact" />
             <TrustBadge type="fast-delivery" label="Fast Delivery" variant="compact" />
             <TrustBadge type="quality" label="Premium Quality" variant="compact" />
@@ -83,8 +83,8 @@ const Index = () => {
       <FeaturedBulkDeals />
 
       {/* Why Order Bulk Section */}
-      <section className="py-24 bg-background paper-texture">
-        <div className="container mx-auto px-6" ref={ref}>
+      <section className="py-12 sm:py-16 md:py-24 bg-background paper-texture">
+        <div className="container mx-auto px-4 sm:px-6" ref={ref}>
           <motion.div 
             className="text-center mb-16"
             initial={{ opacity: 0, y: 40 }}
@@ -94,7 +94,7 @@ const Index = () => {
           >
             <Badge variant="secondary" className="mb-4">💡 Why Choose Us</Badge>
             <motion.h2 
-              className="text-3xl md:text-5xl font-heading font-bold mb-4"
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-heading font-bold mb-3 sm:mb-4 px-4"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -103,7 +103,7 @@ const Index = () => {
               Benefits of Bulk Ordering
             </motion.h2>
             <motion.p 
-              className="text-muted-foreground max-w-2xl mx-auto"
+              className="text-muted-foreground max-w-2xl mx-auto px-4 text-sm sm:text-base"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -114,7 +114,7 @@ const Index = () => {
           </motion.div>
 
           <motion.div 
-            className="flex flex-wrap justify-center items-center gap-8 md:gap-12 mb-12"
+            className="flex flex-wrap justify-center items-center gap-4 sm:gap-6 md:gap-8 lg:gap-12 mb-8 sm:mb-12 px-4"
             variants={containerVariants}
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
@@ -141,8 +141,8 @@ const Index = () => {
                       ease: "easeOut"
                     }}
                   >
-                    <ReelAnimation size={160} scrollBased>
-                      <Icon className="w-8 h-8 text-primary" />
+                    <ReelAnimation size={120} scrollBased className="sm:w-40 sm:h-40 md:w-[160px] md:h-[160px]">
+                      <Icon className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-primary" />
                     </ReelAnimation>
                   </motion.div>
                   <motion.div 
@@ -152,8 +152,8 @@ const Index = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: index * 0.2 + 0.4 }}
                   >
-                    <p className="font-heading font-semibold text-lg">{step.label}</p>
-                    <p className="text-sm text-muted-foreground">{step.description}</p>
+                    <p className="font-heading font-semibold text-base sm:text-lg">{step.label}</p>
+                    <p className="text-xs sm:text-sm text-muted-foreground">{step.description}</p>
                   </motion.div>
                   {index < processSteps.length - 1 && (
                     <motion.div
@@ -172,7 +172,7 @@ const Index = () => {
           </motion.div>
 
           <motion.div 
-            className="flex justify-center space-x-4 text-xs text-muted-foreground uppercase tracking-wider mt-16"
+            className="flex flex-wrap justify-center gap-2 sm:gap-4 text-xs text-muted-foreground uppercase tracking-wider mt-8 sm:mt-12 md:mt-16 px-4"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -242,8 +242,8 @@ const Index = () => {
       <ReviewsSection />
 
       {/* Services Preview */}
-      <section className="py-24 bg-muted/30">
-        <div className="container mx-auto px-6">
+      <section className="py-12 sm:py-16 md:py-24 bg-muted/30">
+        <div className="container mx-auto px-4 sm:px-6">
           <motion.div 
             className="text-center mb-16"
             initial={{ opacity: 0, y: 40 }}
@@ -253,7 +253,7 @@ const Index = () => {
           >
             <Badge variant="secondary" className="mb-4">📦 Product Categories</Badge>
             <motion.h2 
-              className="text-3xl md:text-5xl font-heading font-bold mb-4"
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-heading font-bold mb-3 sm:mb-4 px-4"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -262,7 +262,7 @@ const Index = () => {
               Our Product Range
             </motion.h2>
             <motion.p 
-              className="text-muted-foreground max-w-2xl mx-auto"
+              className="text-muted-foreground max-w-2xl mx-auto px-4 text-sm sm:text-base"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -273,7 +273,7 @@ const Index = () => {
           </motion.div>
 
           <motion.div 
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 px-4"
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
@@ -291,7 +291,7 @@ const Index = () => {
               return (
                 <motion.div
                   key={index}
-                  className="group relative bg-card rounded-lg p-8 border border-border hover:shadow-xl transition-all duration-500 hover:scale-[1.02] hover:-translate-y-2"
+                  className="group relative bg-card rounded-lg p-4 sm:p-6 md:p-8 border border-border hover:shadow-xl transition-all duration-500 hover:scale-[1.02] hover:-translate-y-2"
                   variants={cardVariants}
                   whileHover={{ 
                     y: -8,
@@ -312,10 +312,10 @@ const Index = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                   >
-                    <Icon className="w-12 h-12 text-primary mb-4 group-hover:text-primary/80 transition-colors duration-300" />
+                    <Icon className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-primary mb-3 sm:mb-4 group-hover:text-primary/80 transition-colors duration-300" />
                   </motion.div>
                   <motion.h3 
-                    className="text-xl font-heading font-semibold mb-2 group-hover:text-primary transition-colors duration-300"
+                    className="text-lg sm:text-xl font-heading font-semibold mb-2 group-hover:text-primary transition-colors duration-300"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -384,7 +384,7 @@ const Index = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-primary text-primary-foreground relative overflow-hidden">
+      <section className="py-12 sm:py-16 md:py-24 bg-primary text-primary-foreground relative overflow-hidden">
         <motion.div 
           className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary to-primary/90"
           initial={{ scale: 1.2, opacity: 0 }}
@@ -392,7 +392,7 @@ const Index = () => {
           viewport={{ once: true }}
           transition={{ duration: 1 }}
         />
-        <div className="container mx-auto px-6 text-center relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 text-center relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -400,7 +400,7 @@ const Index = () => {
             transition={{ duration: 0.8 }}
           >
             <motion.h2 
-              className="text-3xl md:text-5xl font-heading font-bold mb-6"
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-heading font-bold mb-4 sm:mb-6 px-4"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -409,7 +409,7 @@ const Index = () => {
               Ready for Bulk Orders?
             </motion.h2>
             <motion.p 
-              className="text-lg text-primary-foreground/80 mb-8 max-w-2xl mx-auto"
+              className="text-base sm:text-lg text-primary-foreground/80 mb-6 sm:mb-8 max-w-2xl mx-auto px-4"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
