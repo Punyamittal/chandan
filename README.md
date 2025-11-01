@@ -1,4 +1,23 @@
-# Print Arc Hub - Bulk Order Platform
+# 🖨️ Chandan Trading Company – Print Arc Hub
+
+A modern bulk-order e-commerce platform for **Chandan Trading Company**, a leading name in **printing stationery and print media**. Built with **React + Vite + Tailwind CSS**, combining a **premium industrial design aesthetic** with **scroll-reactive animations** and **mobile-optimized responsive design**.
+
+## 🏭 Company Overview
+
+**Chandan Trading Company** specializes in **printing, stationery, and bulk product trading** — offering a diverse range of high-quality products such as:
+
+- Letterheads & Business Cards
+- Visiting Cards
+- Calendars & Diaries
+- Notebooks, Notepads & Spiral Pads
+- Posters, Flyers, and Print Media
+- Carry Bags
+- File Covers (Index, Cobra, Plastic)
+- Desk & Mouse Pads
+
+> **Tagline:** "Precision in Every Print."
+
+---
 
 ## 🎨 UI Redesign (v2.0)
 
@@ -12,7 +31,7 @@ This project has been completely redesigned as a modern bulk-order e-commerce pl
 - **⭐ Reviews & Trust:** Customer testimonials, ratings, and verified badges
 - **💰 Featured Deals:** Dedicated bulk deals page with exclusive discounts
 - **📊 Dashboard:** Order tracking, quote management, and saved products
-- **📱 Fully Responsive:** Mobile-first design with smooth animations
+- **📱 Fully Responsive:** Mobile-first design with smooth animations and optimized layouts
 
 ### 📚 Documentation
 
@@ -24,92 +43,116 @@ This project has been completely redesigned as a modern bulk-order e-commerce pl
 - **Homepage** (`/`) - Hero with search, featured deals, reviews, and product showcase
 - **Products** (`/products`) - Full catalog with filters and bulk pricing
 - **Bulk Deals** (`/bulk-deals`) - Featured discounts and flash sales
-- **Dashboard** (`/dashboard`) - Order management and tracking
-- **About** (`/about`) - Company information
-- **Contact** (`/contact`) - Get in touch
+- **About** (`/about`) - Company information and leadership
+- **Contact** (`/contact`) - Get in touch with quote requests
 
 ### 🎯 Key Components
 
 - `BulkSearchBar` - Multi-field search interface
 - `BulkProductCard` - Product cards with bulk pricing
 - `BulkCart` - Floating cart with order management
-- `ProductFilters` - Advanced filtering sidebar
+- `ProductFilters` - Advanced filtering sidebar (mobile-responsive)
 - `ReviewCard` - Customer review display
 - `TrustBadge` - Trust signal components
 - `HeroBulkOrder` - Hero section with search
 - `FeaturedBulkDeals` - Deal showcase
 - `ReviewsSection` - Complete reviews section
+- `Navigation` - Mobile-optimized navigation with hamburger menu
 
 ---
 
-## Project info
+## 🎨 Design Philosophy
 
-**URL**: https://lovable.dev/projects/dea65bae-a005-42bb-9ac2-ef1041ac9604
+The design follows a **"Precision • Production • Perfection"** philosophy, merging the aesthetics of industrial printing reels with clean, flat UI design.
 
-## How can I edit this code?
+**Theme Colors**
+- Off-White `#F5F5F4`
+- Graphite Black `#1E1E1E`
+- Metallic Gray `#8C8C8C`
+- Ink Blue `#003E6B`
 
-There are several ways of editing your application.
+**Typography**
+- Headings: `Space Grotesk` (font-heading)
+- Body: `Inter`
 
-**Use Lovable**
+**Visual Features**
+- Scroll-based **zoom transitions** between paper and printing reel imagery  
+- **Circular reel scroll animations** using Framer Motion  
+- Subtle matte gradients and static lighting (no neon or RGB glow)  
+- Flat industrial UI with clear grid structures for product displays  
+- **Fully responsive** mobile-first design
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/dea65bae-a005-42bb-9ac2-ef1041ac9604) and start prompting.
+---
 
-Changes made via Lovable will be committed automatically to this repo.
+## ⚙️ Tech Stack
 
-**Use your preferred IDE**
+| Layer | Technology |
+|-------|-------------|
+| **Frontend** | React 18 + TypeScript |
+| **Build Tool** | Vite |
+| **Styling** | Tailwind CSS |
+| **Animations** | Framer Motion |
+| **Routing** | React Router v6 |
+| **UI Components** | shadcn/ui + Radix UI |
+| **State Management** | React Query (TanStack Query) |
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+---
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## 📞 Contact Information
 
-Follow these steps:
+**Chandan Trading Company**  
+📍 A-1, Main Road, Kewal Park, Azadpur, Delhi – 110033  
+📧 [Chandantrading2014@gmail.com](mailto:Chandantrading2014@gmail.com)  
+📞 +91 9873535400  
+🕒 Mon – Sat | 10 AM – 7 PM
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+---
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+## 🚀 Getting Started
 
-# Step 3: Install the necessary dependencies.
-npm i
+### 1️⃣ Clone the Repository
+```bash
+git clone https://github.com/Punyamittal/print-arc-hub.git
+cd print-arc-hub
+```
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+### 2️⃣ Install Dependencies
+```bash
+npm install
+```
+
+### 3️⃣ Start Development Server
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+The application will be available at `http://localhost:8080`
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### 4️⃣ Build for Production
+```bash
+npm run build
+npm run preview
+```
 
-**Use GitHub Codespaces**
+---
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## 🧩 Future Enhancements
 
-## What technologies are used for this project?
+- Product Inquiry Form with Email Integration
+- Dynamic Product Management (Admin Panel)
+- PDF Catalogue Download Option
+- Light and Dark Mode
+- Multi-language Support
 
-This project is built with:
+---
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## 💡 Credits
 
-## How can I deploy this project?
+**Designed & Developed by** Punya Mittal  
+Built with ❤️ using React, Vite, TypeScript, Tailwind CSS, and Framer Motion
 
-Simply open [Lovable](https://lovable.dev/projects/dea65bae-a005-42bb-9ac2-ef1041ac9604) and click on Share -> Publish.
+---
 
-## Can I connect a custom domain to my Lovable project?
+## 🔗 Project Links
 
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+**URL**: https://lovable.dev/projects/dea65bae-a005-42bb-9ac2-ef41ac9604
