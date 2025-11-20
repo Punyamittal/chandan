@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ShoppingCart,
@@ -45,6 +45,7 @@ const BulkCart = ({
   onCheckout,
 }: BulkCartProps) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [cartPosition, setCartPosition] = useState({ bottom: 24, isStuck: false });
 
   const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
   const subtotal = items.reduce(
@@ -57,6 +58,49 @@ const BulkCart = ({
     0
   );
   const total = subtotal - totalDiscount;
+
+  // Handle scroll behavior to stop at footer
+  useEffect(() => {
+    const handleScroll = () => {
+      const footer = document.querySelector('footer');
+      if (!footer) return;
+
+      const footerRect = footer.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      const cartButtonHeight = 64; // Height of cart button (h-16 = 64px)
+      const defaultBottomSpacing = 24; // bottom-6 = 24px
+      const minimumGap = 16; // Minimum gap between cart and footer
+
+      // Calculate if footer is visible in viewport
+      const footerTop = footerRect.top;
+      
+      if (footerTop < windowHeight) {
+        // Footer is visible, calculate new bottom position
+        const distanceFromBottom = windowHeight - footerTop;
+        const newBottom = distanceFromBottom + minimumGap;
+        
+        setCartPosition({
+          bottom: Math.max(defaultBottomSpacing, newBottom),
+          isStuck: true
+        });
+      } else {
+        // Footer not visible, use default position
+        setCartPosition({
+          bottom: defaultBottomSpacing,
+          isStuck: false
+        });
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleScroll);
+    handleScroll(); // Initial check
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+    };
+  }, []);
 
   const handleQuantityChange = (id: string, delta: number) => {
     const item = items.find((i) => i.id === id);
@@ -71,25 +115,55 @@ const BulkCart = ({
       {/* Floating Cart Button */}
       <motion.div
         initial={{ scale: 0, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        className="fixed bottom-6 right-6 z-50"
+        animate={{ 
+          scale: 1, 
+          opacity: 1,
+          bottom: cartPosition.bottom
+        }}
+        transition={{ 
+          scale: { duration: 0.3 },
+          opacity: { duration: 0.3 },
+          bottom: { 
+            type: "spring",
+            stiffness: 300,
+            damping: 30,
+            mass: 0.8
+          }
+        }}
+        className="fixed right-6 z-50"
+        style={{ bottom: `${cartPosition.bottom}px` }}
       >
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
           <SheetTrigger asChild>
             <motion.div
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{ 
+                scale: 1.1,
+                rotate: [0, -5, 5, 0],
+                transition: { 
+                  scale: { duration: 0.2 },
+                  rotate: { duration: 0.5, ease: "easeInOut" }
+                }
+              }}
+              whileTap={{ 
+                scale: 0.95,
+                transition: { duration: 0.1 }
+              }}
             >
               <Button
                 size="lg"
-                className="relative rounded-full h-16 w-16 shadow-2xl"
+                className="relative rounded-full h-16 w-16 shadow-2xl hover:shadow-3xl transition-shadow duration-300"
               >
                 <ShoppingCart className="w-6 h-6" />
                 {totalItems > 0 && (
                   <motion.span
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
-                    className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-7 h-7 flex items-center justify-center font-bold"
+                    transition={{ 
+                      type: "spring",
+                      stiffness: 500,
+                      damping: 15
+                    }}
+                    className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-7 h-7 flex items-center justify-center font-bold shadow-lg"
                   >
                     {totalItems}
                   </motion.span>
@@ -258,7 +332,16 @@ const BulkCart = ({
                 </div>
 
                 {/* Checkout Button */}
-                <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                <motion.div 
+                  whileHover={{ 
+                    scale: 1.02,
+                    transition: { duration: 0.2 }
+                  }} 
+                  whileTap={{ 
+                    scale: 0.98,
+                    transition: { duration: 0.1 }
+                  }}
+                >
                   <Button
                     size="lg"
                     className="w-full"
@@ -268,7 +351,17 @@ const BulkCart = ({
                     }}
                   >
                     Proceed to Checkout
-                    <ArrowRight className="w-4 h-4 ml-2" />
+                    <motion.div
+                      animate={{ x: [0, 5, 0] }}
+                      transition={{ 
+                        repeat: Infinity,
+                        duration: 1.5,
+                        ease: "easeInOut"
+                      }}
+                      className="inline-block ml-2"
+                    >
+                      <ArrowRight className="w-4 h-4" />
+                    </motion.div>
                   </Button>
                 </motion.div>
 
