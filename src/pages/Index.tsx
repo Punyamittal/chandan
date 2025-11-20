@@ -65,17 +65,47 @@ const Index = () => {
       <Navigation />
       
       {/* Hero Section with Bulk Search */}
-      <HeroBulkOrder onSearch={(data) => console.log("Search:", data)} />
+      <HeroBulkOrder />
 
-      {/* Trust Badges */}
-      <section className="py-8 sm:py-12 md:py-16 bg-background border-b border-border">
+      {/* Trust Badges - Modern Grid */}
+      <section className="py-16 sm:py-20 md:py-24 bg-background">
         <div className="container mx-auto px-4 sm:px-6">
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
-            <TrustBadge type="verified" label="Verified Supplier" variant="compact" />
-            <TrustBadge type="fast-delivery" label="Fast Delivery" variant="compact" />
-            <TrustBadge type="quality" label="Premium Quality" variant="compact" />
-            <TrustBadge type="bulk-discount" label="Bulk Discounts" variant="compact" />
-          </div>
+          <motion.div 
+            className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={{
+              hidden: { opacity: 0 },
+              visible: {
+                opacity: 1,
+                transition: {
+                  staggerChildren: 0.1
+                }
+              }
+            }}
+          >
+            {[
+              { icon: "✓", label: "Verified Supplier", desc: "Certified & Trusted" },
+              { icon: "⚡", label: "Fast Delivery", desc: "Quick Turnaround" },
+              { icon: "★", label: "Premium Quality", desc: "Top-Grade Materials" },
+              { icon: "%", label: "Bulk Discounts", desc: "Up to 40% Off" },
+            ].map((item, index) => (
+              <motion.div
+                key={index}
+                variants={{
+                  hidden: { opacity: 0, y: 20 },
+                  visible: { opacity: 1, y: 0 }
+                }}
+                whileHover={{ y: -8, transition: { duration: 0.3 } }}
+                className="bg-card border border-border rounded-xl p-6 text-center hover:border-accent/50 transition-all duration-300"
+              >
+                <div className="text-4xl mb-4">{item.icon}</div>
+                <h3 className="text-lg font-semibold text-foreground mb-2">{item.label}</h3>
+                <p className="text-sm text-muted-foreground">{item.desc}</p>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </section>
 
@@ -241,35 +271,29 @@ const Index = () => {
       {/* Customer Reviews */}
       <ReviewsSection />
 
-      {/* Services Preview */}
-      <section className="py-12 sm:py-16 md:py-24 bg-muted/30">
-        <div className="container mx-auto px-4 sm:px-6">
+      {/* Services Preview - Modern Layout */}
+      <section className="py-20 sm:py-24 md:py-32 bg-background relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-accent/5 to-transparent opacity-50" />
+        <div className="container mx-auto px-4 sm:px-6 relative">
           <motion.div 
-            className="text-center mb-16"
+            className="mb-16 sm:mb-20"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={{ duration: 0.8 }}
           >
-            <Badge variant="secondary" className="mb-4">📦 Product Categories</Badge>
-            <motion.h2 
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-heading font-bold mb-3 sm:mb-4 px-4"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-            >
-              Our Product Range
-            </motion.h2>
-            <motion.p 
-              className="text-muted-foreground max-w-2xl mx-auto px-4 text-sm sm:text-base"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-            >
-              Comprehensive printing stationery and print media solutions for all your business needs
-            </motion.p>
+            <div className="inline-flex items-center gap-2 text-accent text-sm font-medium tracking-wider uppercase mb-4">
+              <span className="w-8 h-px bg-accent"></span>
+              Products
+            </div>
+            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-heading font-bold mb-6 leading-tight">
+              Complete Print
+              <br />
+              <span className="text-muted-foreground">Solutions</span>
+            </h2>
+            <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl">
+              From business essentials to custom packaging, we deliver precision in every product.
+            </p>
           </motion.div>
 
           <motion.div 

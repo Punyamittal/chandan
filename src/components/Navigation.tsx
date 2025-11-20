@@ -33,62 +33,48 @@ const Navigation = () => {
     <>
       {/* Desktop Navigation Bar */}
       <motion.nav
-        className="hidden md:flex fixed top-6 z-[1000] bg-background/95 backdrop-blur-lg border border-border/50 rounded-full shadow-xl overflow-hidden"
-        initial={{ x: "-100%", opacity: 0 }}
+        className="hidden md:flex fixed top-6 left-6 right-6 z-[1000] bg-background/80 backdrop-blur-xl border border-border/50 rounded-2xl shadow-2xl"
+        initial={{ y: -100, opacity: 0 }}
         animate={{ 
-          x: isVisible ? "0%" : "-100%",
+          y: isVisible ? 0 : -100,
           opacity: isVisible ? 1 : 0
         }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
         style={{
-          left: "21%",
-          width: "auto",
-          height: "60px",
+          height: "72px",
         }}
       >
-        <div className="flex items-center h-full">
-          {/* Logo/Icon Section */}
-          <motion.div
-            className="flex-shrink-0 w-15 h-15 flex items-center justify-center"
-            whileHover={{ scale: 1.1 }}
-            transition={{ duration: 0.2 }}
-          >
-            <Link to="/" className="flex items-center justify-center w-12 h-12">
-              <motion.div 
-                className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center shadow-lg"
-                whileHover={{ rotate: 360 }}
-                transition={{ duration: 0.6 }}
-              >
-                <motion.div 
-                  className="w-6 h-6 border-2 border-primary-foreground rounded-full"
-                  animate={{ scale: [1, 1.1, 1] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                />
-              </motion.div>
-            </Link>
-          </motion.div>
+        <div className="flex items-center justify-between h-full px-8">
+          {/* Logo/Brand */}
+          <Link to="/" className="flex items-center space-x-3">
+            <motion.div 
+              className="w-10 h-10 rounded-lg bg-accent flex items-center justify-center"
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.2 }}
+            >
+              <span className="text-2xl font-bold text-white">C</span>
+            </motion.div>
+            <span className="text-lg font-bold text-foreground hidden lg:block">Chandan Trading</span>
+          </Link>
 
           {/* Navigation Links */}
           {isVisible && (
-            <div className="flex items-center space-x-2 px-4">
+            <div className="flex items-center space-x-1">
               {navLinks.map((link) => {
-                const Icon = link.icon;
                 return (
                   <Link
                     key={link.path}
                     to={link.path}
                     className={`
-                      flex items-center space-x-2 px-4 py-2 rounded-full text-sm font-medium
+                      px-5 py-2 rounded-lg text-sm font-medium
                       transition-all duration-200 ease-in-out
                       ${isActive(link.path) 
-                        ? "bg-primary text-primary-foreground shadow-md" 
+                        ? "bg-accent text-white" 
                         : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
                       }
-                      cursor-pointer select-none
                     `}
                   >
-                    <Icon size={16} />
-                    <span>{link.name}</span>
+                    {link.name}
                   </Link>
                 );
               })}
