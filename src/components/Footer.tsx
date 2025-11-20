@@ -66,8 +66,8 @@ const Footer = () => {
             © {new Date().getFullYear()} Chandan Trading Company. All rights reserved.
           </p>
           <div className="flex gap-6 text-sm text-muted-foreground">
-            <Link to="/contact" className="hover:text-accent transition-colors">Privacy Policy</Link>
-            <Link to="/contact" className="hover:text-accent transition-colors">Terms & Conditions</Link>
+            <Link to="/privacy-policy" className="hover:text-accent transition-colors">Privacy Policy</Link>
+            <Link to="/terms-conditions" className="hover:text-accent transition-colors">Terms & Conditions</Link>
           </div>
         </div>
       </div>

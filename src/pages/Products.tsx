@@ -33,7 +33,7 @@ const Products = () => {
     {
       id: "1",
       name: "Premium Business Cards",
-      image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800",
+      image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800&h=600&fit=crop",
       rating: 4.9,
       reviews: 245,
       pricePerUnit: 2.5,
@@ -50,7 +50,7 @@ const Products = () => {
     {
       id: "2",
       name: "Corporate Letterheads",
-      image: "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=800",
+      image: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=800&h=600&fit=crop",
       rating: 4.8,
       reviews: 189,
       pricePerUnit: 1.8,
@@ -67,7 +67,7 @@ const Products = () => {
     {
       id: "3",
       name: "Executive Diaries 2025",
-      image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=800",
+      image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=800&h=600&fit=crop",
       rating: 4.7,
       reviews: 156,
       pricePerUnit: 45,
@@ -83,7 +83,7 @@ const Products = () => {
     {
       id: "4",
       name: "Visiting Cards Premium",
-      image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800",
+      image: "https://images.unsplash.com/photo-1613243555978-0c2ea36f6c6e?w=800&h=600&fit=crop",
       rating: 4.6,
       reviews: 201,
       pricePerUnit: 3.2,
@@ -99,7 +99,7 @@ const Products = () => {
     {
       id: "5",
       name: "File Covers & Folders",
-      image: "https://images.unsplash.com/photo-1544906388-1aef9d7ab57b?w=800",
+      image: "https://images.unsplash.com/photo-1544906388-1aef9d7ab57b?w=800&h=600&fit=crop",
       rating: 4.5,
       reviews: 134,
       pricePerUnit: 12,
@@ -115,7 +115,7 @@ const Products = () => {
     {
       id: "6",
       name: "Custom Notebooks",
-      image: "https://images.unsplash.com/photo-1517842645767-c639042777db?w=800",
+      image: "https://images.unsplash.com/photo-1517842645767-c639042777db?w=800&h=600&fit=crop",
       rating: 4.8,
       reviews: 178,
       pricePerUnit: 25,
@@ -131,7 +131,7 @@ const Products = () => {
     {
       id: "7",
       name: "Eco-Friendly Carry Bags",
-      image: "https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=800",
+      image: "https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=800&h=600&fit=crop",
       rating: 4.6,
       reviews: 98,
       pricePerUnit: 8,
@@ -148,7 +148,7 @@ const Products = () => {
     {
       id: "8",
       name: "Large Format Posters",
-      image: "https://images.unsplash.com/photo-1551712185-ad471b2cee50?w=800",
+      image: "https://images.unsplash.com/photo-1567359781514-3b964e2b04d6?w=800&h=600&fit=crop",
       rating: 4.7,
       reviews: 112,
       pricePerUnit: 55,
@@ -318,6 +318,7 @@ const Products = () => {
                     <BulkProductCard
                       key={product.id}
                       {...product}
+                      viewMode={viewMode}
                       onAddToCart={handleAddToCart}
                     />
                   ))}
