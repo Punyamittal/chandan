@@ -31,23 +31,20 @@ const Navigation = () => {
 
   return (
     <>
-      {/* Desktop Navigation Bar - Pill Style */}
+      {/* Desktop Navigation Bar - Pill Style Centered */}
       <motion.nav
-        className="hidden md:flex fixed top-6 left-1/2 -translate-x-1/2 z-[1000] bg-card/90 backdrop-blur-xl border border-border/50 rounded-full shadow-2xl"
-        initial={{ y: -100, opacity: 0 }}
+        className="hidden md:flex fixed top-6 left-1/2 z-[1000] bg-card/90 backdrop-blur-xl border border-border/50 rounded-full shadow-2xl"
+        initial={{ y: -100, opacity: 0, x: "-50%" }}
         animate={{ 
           y: isVisible ? 0 : -100,
-          opacity: isVisible ? 1 : 0
+          opacity: isVisible ? 1 : 0,
+          x: "-50%"
         }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        style={{
-          height: "64px",
-          width: "auto",
-        }}
       >
-        <div className="flex items-center h-full pl-2 pr-3">
+        <div className="flex items-center justify-center h-16 px-3">
           {/* Logo/Brand */}
-          <Link to="/" className="flex items-center space-x-2 px-3">
+          <Link to="/" className="flex items-center px-3">
             <motion.div 
               className="w-10 h-10 rounded-full bg-accent flex items-center justify-center"
               whileHover={{ scale: 1.05, rotate: 360 }}
@@ -61,14 +58,14 @@ const Navigation = () => {
 
           {/* Navigation Links */}
           {isVisible && (
-            <div className="flex items-center space-x-1">
+            <div className="flex items-center space-x-1 px-1">
               {navLinks.map((link) => {
                 return (
                   <Link
                     key={link.path}
                     to={link.path}
                     className={`
-                      px-5 py-2 rounded-full text-sm font-medium
+                      px-5 py-2 rounded-full text-sm font-medium whitespace-nowrap
                       transition-all duration-200 ease-in-out
                       ${isActive(link.path) 
                         ? "bg-accent text-white shadow-lg shadow-accent/20" 
