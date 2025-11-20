@@ -236,3 +236,5 @@ const BulkProductCard = ({
 export default BulkProductCard;
 
 
+
+
