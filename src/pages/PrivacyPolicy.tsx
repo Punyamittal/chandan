@@ -3,8 +3,10 @@ import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
 import { Shield, Lock, Eye, FileText, UserCheck, Database } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { useTheme } from "@/contexts/ThemeContext";
 
 const PrivacyPolicy = () => {
+  const { currentTheme } = useTheme();
   const sections = [
     {
       icon: Database,
@@ -121,7 +123,7 @@ const PrivacyPolicy = () => {
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen" style={{ background: currentTheme.colors.background, color: currentTheme.colors.foreground }}>
       <Navigation />
 
       <main className="pt-16 sm:pt-20 md:pt-24">

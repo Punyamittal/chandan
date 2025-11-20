@@ -5,8 +5,11 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
+import { useTheme } from "@/contexts/ThemeContext";
+import GradientOrbs from "@/components/backgrounds/GradientOrbs";
 
 const Contact = () => {
+  const { currentTheme } = useTheme();
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Form submission logic would go here
@@ -14,12 +17,13 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen" style={{ background: currentTheme.colors.background, color: currentTheme.colors.foreground }}>
       <Navigation />
       
       <main className="pt-16 sm:pt-20 md:pt-24">
         {/* Hero */}
-        <section className="py-12 sm:py-16 md:py-24 bg-background paper-texture">
+        <section className="relative py-12 sm:py-16 md:py-24 paper-texture" style={{ background: currentTheme.colors.background }}>
+          <GradientOrbs theme={currentTheme} count={2} />
           <div className="container mx-auto px-4 sm:px-6 text-center">
             <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-heading font-bold mb-4 sm:mb-6 px-4">
               Contact Chandan Trading Company

@@ -1,8 +1,12 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
+import { useTheme } from "@/contexts/ThemeContext";
+import GradientOrbs from "@/components/backgrounds/GradientOrbs";
 
 const About = () => {
+  const { currentTheme } = useTheme();
+  
   const milestones = [
     { year: "2014", title: "Founded", desc: "Established with a vision for quality printing stationery" },
     { year: "2018", title: "Growth", desc: "Expanded product range and client base significantly" },
@@ -11,12 +15,13 @@ const About = () => {
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen" style={{ background: currentTheme.colors.background, color: currentTheme.colors.foreground }}>
       <Navigation />
       
       <main className="pt-16 sm:pt-20 md:pt-24">
         {/* Hero */}
-        <section className="py-12 sm:py-16 md:py-24 bg-background">
+        <section className="relative py-12 sm:py-16 md:py-24" style={{ background: currentTheme.colors.background }}>
+          <GradientOrbs theme={currentTheme} count={3} />
           <div className="container mx-auto px-4 sm:px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}

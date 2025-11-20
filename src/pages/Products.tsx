@@ -16,8 +16,11 @@ import {
 } from "@/components/ui/select";
 import { LayoutGrid, List } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useTheme } from "@/contexts/ThemeContext";
+import ParticleField from "@/components/backgrounds/ParticleField";
 
 const Products = () => {
+  const { currentTheme } = useTheme();
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const [sortBy, setSortBy] = useState("popular");
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
@@ -212,7 +215,7 @@ const Products = () => {
     (activeFilters.rating > 0 ? 1 : 0);
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen" style={{ background: currentTheme.colors.background, color: currentTheme.colors.foreground }}>
       <Navigation />
 
       <main className="pt-16 sm:pt-20 md:pt-24">

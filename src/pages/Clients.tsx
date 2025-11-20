@@ -2,8 +2,11 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import QuoteDialog from "@/components/QuoteDialog";
 import { motion } from "framer-motion";
+import { useTheme } from "@/contexts/ThemeContext";
+import ParticleField from "@/components/backgrounds/ParticleField";
 
 const Clients = () => {
+  const { currentTheme } = useTheme();
   // Mock client logos (using initials for demonstration)
   const clients = [
     "TechCorp", "GlobalPrint", "MegaBrand", "Innovate Inc", 
@@ -12,7 +15,7 @@ const Clients = () => {
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen" style={{ background: currentTheme.colors.background, color: currentTheme.colors.foreground }}>
       <Navigation />
       
       <main className="pt-24">

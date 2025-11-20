@@ -12,6 +12,8 @@ import {
   Sparkles,
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useTheme } from "@/contexts/ThemeContext";
+import GradientOrbs from "@/components/backgrounds/GradientOrbs";
 
 interface DealProps {
   id: string;
@@ -29,6 +31,8 @@ interface DealProps {
 }
 
 const BulkDeals = () => {
+  const { currentTheme } = useTheme();
+  
   const featuredDeal: DealProps = {
     id: "featured-1",
     title: "Mega Business Cards Bundle",
@@ -250,7 +254,7 @@ const BulkDeals = () => {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen" style={{ background: currentTheme.colors.background, color: currentTheme.colors.foreground }}>
       <Navigation />
 
       <main className="pt-24">

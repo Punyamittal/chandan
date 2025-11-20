@@ -4,8 +4,11 @@ import ReelAnimation from "@/components/ReelAnimation";
 import QuoteDialog from "@/components/QuoteDialog";
 import { Printer, Tag, Truck, Package, Recycle, Boxes } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useTheme } from "@/contexts/ThemeContext";
+import GradientOrbs from "@/components/backgrounds/GradientOrbs";
 
 const Services = () => {
+  const { currentTheme } = useTheme();
   const services = [
     {
       icon: Printer,
@@ -46,7 +49,7 @@ const Services = () => {
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen" style={{ background: currentTheme.colors.background, color: currentTheme.colors.foreground }}>
       <Navigation />
       
       <main className="pt-24">

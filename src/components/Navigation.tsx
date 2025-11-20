@@ -33,7 +33,7 @@ const Navigation = () => {
     <>
       {/* Desktop Navigation Bar - Pill Style Centered */}
       <motion.nav
-        className="hidden md:flex fixed top-6 left-1/2 z-[1000] bg-card/90 backdrop-blur-xl border border-border/50 rounded-full shadow-2xl"
+        className="hidden md:flex fixed top-6 left-1/2 z-[1000] bg-card/95 backdrop-blur-sm border border-border/50 rounded-full shadow-2xl"
         initial={{ y: -100, opacity: 0, x: "-50%" }}
         animate={{ 
           y: isVisible ? 0 : -100,
@@ -84,7 +84,7 @@ const Navigation = () => {
 
       {/* Mobile Navigation Bar */}
       <motion.nav
-        className="md:hidden fixed top-0 left-0 right-0 z-[1000] bg-background/95 backdrop-blur-lg border-b border-border/50 shadow-lg"
+        className="md:hidden fixed top-0 left-0 right-0 z-[1000] bg-background/98 backdrop-blur-sm border-b border-border/50 shadow-lg"
         initial={{ y: "-100%", opacity: 0 }}
         animate={{ 
           y: isVisible ? "0%" : "-100%",
