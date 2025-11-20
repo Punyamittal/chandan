@@ -31,9 +31,9 @@ const Navigation = () => {
 
   return (
     <>
-      {/* Desktop Navigation Bar */}
+      {/* Desktop Navigation Bar - Pill Style */}
       <motion.nav
-        className="hidden md:flex fixed top-6 left-6 right-6 z-[1000] bg-background/80 backdrop-blur-xl border border-border/50 rounded-2xl shadow-2xl"
+        className="hidden md:flex fixed top-6 left-1/2 -translate-x-1/2 z-[1000] bg-card/90 backdrop-blur-xl border border-border/50 rounded-full shadow-2xl"
         initial={{ y: -100, opacity: 0 }}
         animate={{ 
           y: isVisible ? 0 : -100,
@@ -41,21 +41,23 @@ const Navigation = () => {
         }}
         transition={{ duration: 0.6, ease: "easeOut" }}
         style={{
-          height: "72px",
+          height: "64px",
+          width: "auto",
         }}
       >
-        <div className="flex items-center justify-between h-full px-8">
+        <div className="flex items-center h-full pl-2 pr-3">
           {/* Logo/Brand */}
-          <Link to="/" className="flex items-center space-x-3">
+          <Link to="/" className="flex items-center space-x-2 px-3">
             <motion.div 
-              className="w-10 h-10 rounded-lg bg-accent flex items-center justify-center"
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.2 }}
+              className="w-10 h-10 rounded-full bg-accent flex items-center justify-center"
+              whileHover={{ scale: 1.05, rotate: 360 }}
+              transition={{ duration: 0.5 }}
             >
-              <span className="text-2xl font-bold text-white">C</span>
+              <span className="text-xl font-bold text-white">C</span>
             </motion.div>
-            <span className="text-lg font-bold text-foreground hidden lg:block">Chandan Trading</span>
           </Link>
+
+          <div className="w-px h-8 bg-border mx-2" />
 
           {/* Navigation Links */}
           {isVisible && (
@@ -66,11 +68,11 @@ const Navigation = () => {
                     key={link.path}
                     to={link.path}
                     className={`
-                      px-5 py-2 rounded-lg text-sm font-medium
+                      px-5 py-2 rounded-full text-sm font-medium
                       transition-all duration-200 ease-in-out
                       ${isActive(link.path) 
-                        ? "bg-accent text-white" 
-                        : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                        ? "bg-accent text-white shadow-lg shadow-accent/20" 
+                        : "text-muted-foreground hover:text-foreground hover:bg-muted"
                       }
                     `}
                   >
