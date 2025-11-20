@@ -8,58 +8,58 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Modern Dark Elegant Theme - Inspired by Lucidly */
-    --background: 0 0% 7%;
-    --foreground: 0 0% 98%;
+    /* Vintage Retro Theme - Warm Muted Tones */
+    --background: 35 25% 92%;
+    --foreground: 25 35% 20%;
 
-    --card: 0 0% 10%;
-    --card-foreground: 0 0% 98%;
+    --card: 40 30% 96%;
+    --card-foreground: 25 35% 20%;
 
-    --popover: 0 0% 10%;
-    --popover-foreground: 0 0% 98%;
+    --popover: 40 30% 96%;
+    --popover-foreground: 25 35% 20%;
 
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 7%;
+    --primary: 25 35% 20%;
+    --primary-foreground: 40 30% 96%;
 
-    --secondary: 0 0% 15%;
-    --secondary-foreground: 0 0% 98%;
+    --secondary: 35 25% 75%;
+    --secondary-foreground: 25 35% 20%;
 
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 65%;
+    --muted: 35 20% 85%;
+    --muted-foreground: 25 20% 45%;
 
-    --accent: 210 100% 56%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 18 65% 52%;
+    --accent-foreground: 40 30% 96%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive: 0 65% 55%;
+    --destructive-foreground: 40 30% 96%;
 
-    --border: 0 0% 20%;
-    --input: 0 0% 15%;
-    --ring: 0 0% 98%;
+    --border: 35 20% 80%;
+    --input: 35 20% 88%;
+    --ring: 18 65% 52%;
 
     --radius: 0.5rem;
     
-    /* Modern gradients - dark elegant */
-    --gradient-metallic: linear-gradient(135deg, hsl(0, 0%, 15%), hsl(0, 0%, 8%));
-    --gradient-paper: linear-gradient(180deg, hsl(0, 0%, 10%), hsl(0, 0%, 7%));
-    --gradient-ink: linear-gradient(90deg, hsl(210, 100%, 56%), hsl(210, 100%, 48%));
-    --gradient-hero: linear-gradient(180deg, hsl(0, 0%, 7%), hsl(0, 0%, 12%));
+    /* Vintage gradients - warm sepia tones */
+    --gradient-metallic: linear-gradient(135deg, hsl(30, 25%, 65%), hsl(35, 20%, 55%));
+    --gradient-paper: linear-gradient(180deg, hsl(40, 30%, 96%), hsl(35, 25%, 90%));
+    --gradient-ink: linear-gradient(90deg, hsl(18, 65%, 52%), hsl(20, 60%, 45%));
+    --gradient-hero: linear-gradient(180deg, hsl(35, 25%, 92%), hsl(38, 28%, 88%));
     
-    /* Modern shadows - subtle depth */
-    --shadow-reel: 0 8px 32px -4px hsl(0 0% 0% / 0.4);
-    --shadow-card: 0 4px 16px -2px hsl(0 0% 0% / 0.3);
-    --shadow-lifted: 0 12px 48px -8px hsl(0 0% 0% / 0.5);
+    /* Vintage shadows - soft, warm */
+    --shadow-reel: 0 8px 32px -4px hsl(25 35% 20% / 0.12);
+    --shadow-card: 0 4px 16px -2px hsl(25 35% 20% / 0.08);
+    --shadow-lifted: 0 12px 48px -8px hsl(25 35% 20% / 0.15);
 
     --radius: 0.5rem;
 
-    --sidebar-background: 0 0% 10%;
-    --sidebar-foreground: 0 0% 98%;
-    --sidebar-primary: 0 0% 98%;
-    --sidebar-primary-foreground: 0 0% 7%;
-    --sidebar-accent: 0 0% 15%;
-    --sidebar-accent-foreground: 0 0% 98%;
-    --sidebar-border: 0 0% 20%;
-    --sidebar-ring: 210 100% 56%;
+    --sidebar-background: 40 30% 96%;
+    --sidebar-foreground: 25 35% 20%;
+    --sidebar-primary: 25 35% 20%;
+    --sidebar-primary-foreground: 40 30% 96%;
+    --sidebar-accent: 35 20% 85%;
+    --sidebar-accent-foreground: 25 35% 20%;
+    --sidebar-border: 35 20% 80%;
+    --sidebar-ring: 18 65% 52%;
   }
 
   .dark {
@@ -166,7 +166,7 @@ All colors MUST be HSL.
   }
   
   .text-glow {
-    text-shadow: 0 0 40px hsl(var(--accent) / 0.3);
+    text-shadow: 0 2px 8px hsl(var(--accent) / 0.2);
   }
   
   .hero-text {
@@ -174,5 +174,16 @@ All colors MUST be HSL.
     line-height: 1.1;
     letter-spacing: -0.02em;
     font-weight: 700;
+  }
+  
+  .vintage-texture {
+    background-image: 
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        hsl(var(--muted) / 0.3) 2px,
+        hsl(var(--muted) / 0.3) 3px
+      );
   }
 }
