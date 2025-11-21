@@ -14,7 +14,8 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { 
   Shield, Zap, Award, Users, TrendingUp, Globe,
-  Printer, Package, CheckCircle, Clock
+  Printer, Package, CheckCircle, Clock, FileText, CreditCard,
+  Box, Tag, Newspaper, Mail, Laptop, Leaf, BarChart3
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { staggeredGrid, gridItem, zoomIn, slideScale } from "@/lib/advancedAnimations";
@@ -57,7 +58,7 @@ const Index = () => {
     {
       company: 'TechCorp Solutions',
       industry: 'Technology',
-      logo: '💻',
+      icon: Laptop,
       stat: { value: '5,000+', label: 'Business cards printed monthly' },
       description: 'Streamlined their corporate branding with consistent, high-quality printing across 15 global offices.',
       link: '#',
@@ -65,7 +66,7 @@ const Index = () => {
     {
       company: 'GreenLeaf Retail',
       industry: 'Retail & E-commerce',
-      logo: '🌿',
+      icon: Leaf,
       stat: { value: '40%', label: 'Cost savings achieved' },
       description: 'Reduced packaging costs while improving sustainability with our eco-friendly printing solutions.',
       link: '#',
@@ -73,7 +74,7 @@ const Index = () => {
     {
       company: 'Summit Finance',
       industry: 'Financial Services',
-      logo: '📊',
+      icon: BarChart3,
       stat: { value: '72hrs', label: 'Average delivery time' },
       description: 'Fast-tracked corporate stationery needs with our express bulk ordering and priority shipping.',
       link: '#',
@@ -112,8 +113,8 @@ const Index = () => {
                 Trusted by <span style={{ color: currentTheme.colors.accent }}>thousands</span> worldwide
               </h2>
               <p 
-                className="text-lg max-w-2xl mx-auto"
-                style={{ color: currentTheme.colors.muted }}
+                className="text-lg max-w-2xl mx-auto font-medium"
+                style={{ color: currentTheme.colors.foreground, opacity: 0.85 }}
               >
                 Delivering excellence in every print since 2009
               </p>
@@ -146,8 +147,8 @@ const Index = () => {
               </h2>
               
               <p 
-                className="text-lg sm:text-xl max-w-3xl mx-auto"
-                style={{ color: currentTheme.colors.muted }}
+                className="text-lg sm:text-xl max-w-3xl mx-auto font-medium"
+                style={{ color: currentTheme.colors.foreground, opacity: 0.85 }}
               >
                 Experience excellence in every print with our state-of-the-art facilities
               </p>
@@ -246,8 +247,8 @@ const Index = () => {
                     {item.title}
                   </h3>
                   <p 
-                    className="text-sm"
-                    style={{ color: currentTheme.colors.muted }}
+                    className="text-sm font-medium"
+                    style={{ color: currentTheme.colors.foreground, opacity: 0.8 }}
                   >
                     {item.description}
                   </p>
@@ -279,8 +280,8 @@ const Index = () => {
               </h2>
               
               <p 
-                className="text-lg sm:text-xl max-w-3xl mx-auto"
-                style={{ color: currentTheme.colors.muted }}
+                className="text-lg sm:text-xl max-w-3xl mx-auto font-medium"
+                style={{ color: currentTheme.colors.foreground, opacity: 0.85 }}
               >
                 See how businesses like yours have transformed with our solutions
               </p>
@@ -322,12 +323,12 @@ const Index = () => {
               className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4"
             >
               {[
-                { icon: Printer, name: 'Letterheads', emoji: '📄' },
-                { icon: Package, name: 'Business Cards', emoji: '💳' },
-                { icon: Package, name: 'Packaging', emoji: '📦' },
-                { icon: Package, name: 'Labels', emoji: '🏷️' },
-                { icon: Printer, name: 'Brochures', emoji: '📰' },
-                { icon: Package, name: 'Envelopes', emoji: '✉️' },
+                { icon: FileText, name: 'Letterheads' },
+                { icon: CreditCard, name: 'Business Cards' },
+                { icon: Box, name: 'Packaging' },
+                { icon: Tag, name: 'Labels' },
+                { icon: Newspaper, name: 'Brochures' },
+                { icon: Mail, name: 'Envelopes' },
               ].map((category, index) => (
                 <motion.div
                   key={index}
@@ -336,13 +337,31 @@ const Index = () => {
                 >
                   <Link to="/products">
                     <div 
-                    className="p-6 rounded-2xl backdrop-blur-sm border-2 text-center cursor-pointer"
+                    className="p-6 rounded-2xl backdrop-blur-sm border-2 text-center cursor-pointer group"
                     style={{
                       background: `${currentTheme.colors.card}ee`,
                       borderColor: `${currentTheme.colors.border}88`,
                     }}
                     >
-                      <div className="text-5xl mb-3">{category.emoji}</div>
+                      <motion.div 
+                        className="mb-4 flex items-center justify-center"
+                        whileHover={{ rotate: 5, scale: 1.1 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <div 
+                          className="w-16 h-16 rounded-xl flex items-center justify-center border-2 transition-all duration-300 group-hover:border-opacity-100"
+                          style={{
+                            background: `${currentTheme.colors.accent}15`,
+                            borderColor: `${currentTheme.colors.accent}30`,
+                          }}
+                        >
+                          <category.icon 
+                            className="w-8 h-8" 
+                            style={{ color: currentTheme.colors.accent }}
+                            strokeWidth={1.5}
+                          />
+                        </div>
+                      </motion.div>
                       <div 
                         className="text-sm font-medium"
                         style={{ color: currentTheme.colors.foreground }}
@@ -381,8 +400,8 @@ const Index = () => {
               </h2>
               
               <p 
-                className="text-lg sm:text-xl md:text-2xl mb-12"
-                style={{ color: currentTheme.colors.muted }}
+                className="text-lg sm:text-xl md:text-2xl mb-12 font-medium"
+                style={{ color: currentTheme.colors.foreground, opacity: 0.85 }}
               >
                 Let's create something amazing together
               </p>

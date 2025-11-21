@@ -311,3 +311,89 @@ export const viewportConfig = {
   margin: '-10%',
 };
 
+// Paint Splash Animation
+export const paintSplash: Variants = {
+  hidden: {
+    opacity: 0,
+    scale: 0,
+    rotate: -180,
+  },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    rotate: 0,
+    transition: {
+      type: 'spring',
+      stiffness: 260,
+      damping: 20,
+      duration: 0.8,
+    },
+  },
+};
+
+// Blur In Animation
+export const blurIn: Variants = {
+  hidden: {
+    opacity: 0,
+    filter: 'blur(10px)',
+  },
+  visible: {
+    opacity: 1,
+    filter: 'blur(0px)',
+    transition: {
+      duration: 0.6,
+      ease: advancedEasing.premium,
+    },
+  },
+};
+
+// Fade Pop Animation
+export const fadePop: Variants = {
+  hidden: {
+    opacity: 0,
+    scale: 0.8,
+  },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      type: 'spring',
+      stiffness: 400,
+      damping: 25,
+    },
+  },
+};
+
+// Rise Up Animation
+export const riseUp: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 60,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.7,
+      ease: advancedEasing.premium,
+    },
+  },
+};
+
+// Expand From Corner Animation
+export const expandFromCorner: Variants = {
+  hidden: {
+    opacity: 0,
+    scale: 0,
+    transformOrigin: 'top right',
+  },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 0.8,
+      ease: advancedEasing.dramatic,
+    },
+  },
+};
+

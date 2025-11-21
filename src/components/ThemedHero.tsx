@@ -4,11 +4,10 @@
  */
 
 import { motion } from 'framer-motion';
-import { ArrowRight, Sparkles, Zap, Star } from 'lucide-react';
+import { ArrowRight, Trophy, Package, Palette, Star } from 'lucide-react';
 import { Button } from './ui/button';
 import { Link } from 'react-router-dom';
 import { Theme } from '@/lib/themes';
-import AnimatedBadge from './AnimatedBadge';
 import ParticleField from './backgrounds/ParticleField';
 import FloatingBlobs from './backgrounds/FloatingBlobs';
 import WaveBackground from './backgrounds/WaveBackground';
@@ -52,22 +51,6 @@ export default function ThemedHero({ theme, backgroundType = 'orbs' }: ThemedHer
           animate="visible"
           className="max-w-6xl mx-auto text-center"
         >
-          {/* Floating Badges */}
-          <motion.div 
-            variants={slideScale}
-            className="flex flex-wrap justify-center gap-4 mb-8"
-          >
-            <AnimatedBadge icon={Sparkles} variant="accent" delay={0.2}>
-              Premium Quality
-            </AnimatedBadge>
-            <AnimatedBadge icon={Zap} variant="primary" delay={0.3}>
-              Fast Delivery
-            </AnimatedBadge>
-            <AnimatedBadge icon={Star} variant="primary" delay={0.4}>
-              15+ Years
-            </AnimatedBadge>
-          </motion.div>
-
           {/* Hero Title with Gradient & Shimmer */}
           <motion.h1
             variants={zoomIn}
@@ -100,12 +83,12 @@ export default function ThemedHero({ theme, backgroundType = 'orbs' }: ThemedHer
           {/* Subtitle */}
           <motion.p
             variants={slideScale}
-            className="text-lg sm:text-xl md:text-2xl lg:text-3xl mb-12 leading-relaxed max-w-4xl mx-auto"
-            style={{ color: theme.colors.muted }}
+            className="text-lg sm:text-xl md:text-2xl lg:text-3xl mb-12 leading-relaxed max-w-4xl mx-auto font-medium"
+            style={{ color: theme.colors.foreground, opacity: 0.9 }}
           >
             Premium printing stationery and bulk trading solutions.
             <span 
-              className="font-medium"
+              className="font-semibold"
               style={{ color: theme.colors.foreground }}
             > From letterheads to custom packaging</span>, 
             we deliver precision in every print.
@@ -176,10 +159,10 @@ export default function ThemedHero({ theme, backgroundType = 'orbs' }: ThemedHer
             className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto"
           >
             {[
-              { number: '15+', label: 'Years Experience', icon: '🏆' },
-              { number: '10K+', label: 'Orders Delivered', icon: '📦' },
-              { number: '500+', label: 'Products', icon: '🎨' },
-              { number: '4.9', label: 'Rating', icon: '⭐' },
+              { number: '15+', label: 'Years Experience', icon: Trophy },
+              { number: '10K+', label: 'Orders Delivered', icon: Package },
+              { number: '500+', label: 'Products', icon: Palette },
+              { number: '4.9', label: 'Rating', icon: Star },
             ].map((stat, index) => (
               <motion.div
                 key={index}
@@ -187,13 +170,31 @@ export default function ThemedHero({ theme, backgroundType = 'orbs' }: ThemedHer
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 1 + index * 0.1, duration: 0.5 }}
                 whileHover={{ scale: 1.05, y: -5 }}
-                className="p-6 rounded-2xl backdrop-blur-sm border-2"
+                className="p-6 rounded-2xl backdrop-blur-sm border-2 group"
                 style={{
                   background: `${theme.colors.card}dd`,
                   borderColor: `${theme.colors.border}88`,
                 }}
               >
-                <div className="text-4xl mb-2">{stat.icon}</div>
+                <motion.div 
+                  className="mb-3 flex items-center justify-center"
+                  whileHover={{ rotate: 5, scale: 1.1 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <div 
+                    className="w-12 h-12 rounded-xl flex items-center justify-center border transition-all duration-300"
+                    style={{
+                      background: `${theme.colors.accent}15`,
+                      borderColor: `${theme.colors.accent}30`,
+                    }}
+                  >
+                    <stat.icon 
+                      className="w-6 h-6" 
+                      style={{ color: theme.colors.accent }}
+                      strokeWidth={1.5}
+                    />
+                  </div>
+                </motion.div>
                 <div 
                   className="text-3xl sm:text-4xl font-bold mb-2"
                   style={{ color: theme.colors.accent }}
@@ -201,8 +202,8 @@ export default function ThemedHero({ theme, backgroundType = 'orbs' }: ThemedHer
                   {stat.number}
                 </div>
                 <div 
-                  className="text-xs sm:text-sm uppercase tracking-wider"
-                  style={{ color: theme.colors.muted }}
+                  className="text-xs sm:text-sm uppercase tracking-wider font-medium"
+                  style={{ color: theme.colors.foreground, opacity: 0.8 }}
                 >
                   {stat.label}
                 </div>

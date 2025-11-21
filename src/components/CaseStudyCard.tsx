@@ -4,13 +4,16 @@
  */
 
 import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, LucideIcon } from 'lucide-react';
 import GlassmorphismCard from './GlassmorphismCard';
+
+import { LucideIcon } from 'lucide-react';
 
 interface CaseStudy {
   company: string;
   industry: string;
-  logo: string; // Emoji or image
+  icon?: LucideIcon; // Icon component
+  logo?: string; // Fallback emoji or image
   image?: string;
   stat: {
     value: string;
@@ -54,13 +57,26 @@ export default function CaseStudyCard({ caseStudy, index = 0 }: CaseStudyCardPro
             />
           ) : (
             <div className="w-full h-full flex items-center justify-center">
-              <span className="text-8xl opacity-30">{caseStudy.logo}</span>
+              {caseStudy.icon ? (
+                <motion.div
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <caseStudy.icon className="w-24 h-24 opacity-30 text-accent" strokeWidth={1} />
+                </motion.div>
+              ) : (
+                <span className="text-8xl opacity-30">{caseStudy.logo}</span>
+              )}
             </div>
           )}
           
-          {/* Logo overlay */}
-          <div className="absolute top-4 left-4 bg-background/90 backdrop-blur-xl rounded-xl px-4 py-2 border border-border/50">
-            <span className="text-3xl">{caseStudy.logo}</span>
+          {/* Logo/Icon overlay */}
+          <div className="absolute top-4 left-4 bg-background/90 backdrop-blur-xl rounded-xl px-4 py-3 border border-border/50">
+            {caseStudy.icon ? (
+              <caseStudy.icon className="w-8 h-8 text-accent" strokeWidth={1.5} />
+            ) : (
+              <span className="text-3xl">{caseStudy.logo}</span>
+            )}
           </div>
         </div>
 
@@ -71,7 +87,7 @@ export default function CaseStudyCard({ caseStudy, index = 0 }: CaseStudyCardPro
             <h3 className="text-2xl font-bold mb-1 group-hover:text-accent transition-colors">
               {caseStudy.company}
             </h3>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-sm font-medium" style={{ opacity: 0.75 }}>
               {caseStudy.industry}
             </p>
           </div>
@@ -81,13 +97,13 @@ export default function CaseStudyCard({ caseStudy, index = 0 }: CaseStudyCardPro
             <div className="text-4xl font-bold text-accent mb-1">
               {caseStudy.stat.value}
             </div>
-            <div className="text-sm text-muted-foreground">
+            <div className="text-sm font-medium" style={{ opacity: 0.8 }}>
               {caseStudy.stat.label}
             </div>
           </div>
 
           {/* Description */}
-          <p className="text-muted-foreground leading-relaxed">
+          <p className="leading-relaxed font-medium" style={{ opacity: 0.85 }}>
             {caseStudy.description}
           </p>
 

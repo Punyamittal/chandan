@@ -62,7 +62,7 @@ export default function AnimatedFeatureCard({
       </motion.h3>
 
       {/* Description */}
-      <p className="text-muted-foreground leading-relaxed">
+      <p className="leading-relaxed font-medium" style={{ opacity: 0.85 }}>
         {description}
       </p>
 

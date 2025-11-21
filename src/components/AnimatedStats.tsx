@@ -106,17 +106,19 @@ function StatContent({ stat }: { stat: Stat }) {
       </motion.div>
       
       <div className={`
-        text-sm sm:text-base uppercase tracking-wider font-semibold mb-2
-        ${stat.highlight ? 'text-white/90' : 'text-foreground'}
+        text-sm sm:text-base uppercase tracking-wider font-bold mb-2
+        ${stat.highlight ? 'text-white' : 'text-foreground'}
       `}>
         {stat.label}
       </div>
       
       {stat.description && (
         <div className={`
-          text-xs sm:text-sm
-          ${stat.highlight ? 'text-white/70' : 'text-muted-foreground'}
-        `}>
+          text-xs sm:text-sm font-medium
+          ${stat.highlight ? 'text-white' : ''}
+        `}
+        style={!stat.highlight ? { opacity: 0.8 } : {}}
+        >
           {stat.description}
         </div>
       )}

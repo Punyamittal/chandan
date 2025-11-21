@@ -36,7 +36,7 @@ const Products = () => {
     {
       id: "1",
       name: "Premium Business Cards",
-      image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800&h=600&fit=crop",
+      image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=800&h=600&fit=crop",
       rating: 4.9,
       reviews: 245,
       pricePerUnit: 2.5,
@@ -53,7 +53,7 @@ const Products = () => {
     {
       id: "2",
       name: "Corporate Letterheads",
-      image: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=800&h=600&fit=crop",
+      image: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?q=80&w=800&h=600&fit=crop",
       rating: 4.8,
       reviews: 189,
       pricePerUnit: 1.8,
@@ -70,7 +70,7 @@ const Products = () => {
     {
       id: "3",
       name: "Executive Diaries 2025",
-      image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=800&h=600&fit=crop",
+      image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=800&h=600&fit=crop",
       rating: 4.7,
       reviews: 156,
       pricePerUnit: 45,
@@ -86,7 +86,7 @@ const Products = () => {
     {
       id: "4",
       name: "Visiting Cards Premium",
-      image: "https://images.unsplash.com/photo-1613243555978-0c2ea36f6c6e?w=800&h=600&fit=crop",
+      image: "https://images.unsplash.com/photo-1561070791-36c11767b26a?q=80&w=800&h=600&fit=crop",
       rating: 4.6,
       reviews: 201,
       pricePerUnit: 3.2,
@@ -102,7 +102,7 @@ const Products = () => {
     {
       id: "5",
       name: "File Covers & Folders",
-      image: "https://images.unsplash.com/photo-1544906388-1aef9d7ab57b?w=800&h=600&fit=crop",
+      image: "https://images.unsplash.com/photo-1568667256549-094345857637?q=80&w=800&h=600&fit=crop",
       rating: 4.5,
       reviews: 134,
       pricePerUnit: 12,
@@ -118,7 +118,7 @@ const Products = () => {
     {
       id: "6",
       name: "Custom Notebooks",
-      image: "https://images.unsplash.com/photo-1517842645767-c639042777db?w=800&h=600&fit=crop",
+      image: "https://images.unsplash.com/photo-1517842645767-c639042777db?q=80&w=800&h=600&fit=crop",
       rating: 4.8,
       reviews: 178,
       pricePerUnit: 25,
