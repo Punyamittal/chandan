@@ -18,7 +18,6 @@ import {
   Zap,
 } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useTheme } from "@/contexts/ThemeContext";
 
 interface DealProps {
   id: string;
@@ -35,7 +34,6 @@ interface DealProps {
 }
 
 const BulkDeals = () => {
-  const { currentTheme } = useTheme();
 
   const featuredDeal: DealProps = {
     id: "featured-1",
@@ -143,25 +141,25 @@ const BulkDeals = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         whileHover={{ y: -8 }}
-        className="bg-card border border-border rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300"
+        className="bg-white border border-orange-300 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300"
       >
-        {/* Image */}
+          {/* Image */}
         <div className="relative h-72 overflow-hidden">
           <img
-            src={deal.image}
-            alt={deal.title}
+              src={deal.image}
+              alt={deal.title}
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
 
-          {/* Discount Badge */}
-          <div className="absolute top-4 left-4">
+            {/* Discount Badge */}
+            <div className="absolute top-4 left-4">
             <div className="bg-gradient-to-br from-green-500 to-emerald-600 text-white rounded-xl p-4 shadow-xl">
-              <Percent className="w-5 h-5 mb-1" />
+                <Percent className="w-5 h-5 mb-1" />
               <div className="text-2xl font-bold">{deal.discount}</div>
               <div className="text-[10px]">OFF</div>
+              </div>
             </div>
-          </div>
 
           {/* Tag */}
           {deal.tag && (
@@ -169,91 +167,90 @@ const BulkDeals = () => {
               <Badge className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-3 py-2 flex items-center gap-1 shadow-lg">
                 <TrendingUp className="w-4 h-4" />
                 {deal.tag}
-              </Badge>
-            </div>
-          )}
+                </Badge>
+              </div>
+            )}
 
           {/* Overlay Content */}
           <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
             <h3 className="text-2xl font-heading font-bold mb-2">{deal.title}</h3>
             <p className="text-sm text-white/80 line-clamp-2 font-medium mb-3">
-              {deal.description}
-            </p>
+                {deal.description}
+              </p>
           </div>
         </div>
 
-        {/* Card Content */}
-        <div className="p-5">
-          {/* Pricing */}
-          <div className="bg-muted/50 rounded-xl p-4 mb-4 border border-border/50">
-            <div className="flex items-baseline gap-2 mb-2">
-              <span className="text-3xl font-bold text-primary">
-                ₹{deal.discountedPrice}
-              </span>
-              <span className="text-lg line-through text-muted-foreground">
-                ₹{deal.originalPrice}
-              </span>
-              <span className="text-sm text-muted-foreground">/unit</span>
-            </div>
-
-            <div className="flex items-center gap-2 text-sm text-foreground/70 font-medium">
-              <Package className="w-4 h-4" />
-              <span>Min: {deal.minQuantity.toLocaleString()} units</span>
-            </div>
-
-            {deal.savedAmount && (
-              <Badge variant="secondary" className="mt-2 text-xs">
-                Save {deal.savedAmount}
-              </Badge>
-            )}
-          </div>
-
-          {/* Features Preview */}
-          {deal.features && deal.features.length > 0 && (
-            <div className="space-y-2 mb-4">
-              {deal.features.slice(0, 2).map((feature, idx) => (
-                <div key={idx} className="flex items-center gap-2 text-sm text-foreground/70 font-medium">
-                  <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0" />
-                  <span className="line-clamp-1">{feature}</span>
+          {/* Card Content */}
+          <div className="p-5 bg-gradient-to-br from-orange-50/30 to-white">
+              {/* Pricing */}
+            <div className="bg-orange-50 rounded-xl p-4 mb-4 border border-orange-300">
+              <div className="flex items-baseline gap-2 mb-2">
+                <span className="text-3xl font-bold text-orange-600">
+                    ₹{deal.discountedPrice}
+                  </span>
+                <span className="text-lg line-through text-gray-500">
+                    ₹{deal.originalPrice}
+                  </span>
+                <span className="text-sm text-gray-600">/unit</span>
                 </div>
-              ))}
-            </div>
-          )}
+
+              <div className="flex items-center gap-2 text-sm text-gray-700 font-medium">
+                  <Package className="w-4 h-4" />
+                <span>Min: {deal.minQuantity.toLocaleString()} units</span>
+                </div>
+
+                {deal.savedAmount && (
+                <Badge className="mt-2 text-xs bg-green-100 text-green-700 hover:bg-green-200 border-green-300">
+                  Save {deal.savedAmount}
+                  </Badge>
+                )}
+              </div>
+
+            {/* Features Preview */}
+            {deal.features && deal.features.length > 0 && (
+              <div className="space-y-2 mb-4">
+                {deal.features.slice(0, 2).map((feature, idx) => (
+                  <div key={idx} className="flex items-center gap-2 text-sm text-gray-700 font-medium">
+                    <CheckCircle2 className="w-4 h-4 text-orange-600 flex-shrink-0" />
+                    <span className="line-clamp-1">{feature}</span>
+                  </div>
+                ))}
+              </div>
+            )}
 
           {/* CTA Button */}
-          <Link to="/products">
+              <Link to="/products">
             <Button className="w-full">
               View Deal
-              <ArrowRight className="w-4 h-4 ml-2" />
-            </Button>
-          </Link>
+                      <ArrowRight className="w-4 h-4 ml-2" />
+                  </Button>
+              </Link>
         </div>
       </motion.div>
     );
   };
 
   return (
-    <div
-      className="min-h-screen"
-      style={{ background: currentTheme.colors.background, color: currentTheme.colors.foreground }}
-    >
+    <div className="min-h-screen bg-white text-gray-900">
+      {/* Subtle Grid Background */}
+      <div className="fixed inset-0 bg-[linear-gradient(rgba(249,115,22,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(249,115,22,0.08)_1px,transparent_1px)] bg-[size:50px_50px] pointer-events-none" />
       <Navigation />
 
       <main className="relative z-10 pt-24">
         {/* Hero Section */}
-        <section className="py-20">
+        <section className="py-20 relative">
           <div className="container mx-auto px-6">
             <div className="text-center max-w-5xl mx-auto">
-              <Badge variant="secondary" className="mb-6 px-4 py-2 text-base">
+              <Badge className="mb-6 px-4 py-2 text-base border-orange-500 bg-orange-50 text-orange-600 hover:bg-orange-100">
                 <Tag className="w-4 h-4 mr-2" />
                 Limited Time Offers
               </Badge>
 
-              <h1 className="text-5xl md:text-7xl font-heading font-bold mb-8">
+              <h1 className="text-5xl md:text-7xl font-heading font-bold mb-8 bg-gradient-to-r from-gray-900 via-orange-600 to-orange-500 bg-clip-text text-transparent">
                 Exclusive Bulk Deals
               </h1>
 
-              <p className="text-xl md:text-2xl text-foreground/70 font-medium mb-12 leading-relaxed max-w-3xl mx-auto">
+              <p className="text-xl md:text-2xl text-gray-600 font-medium mb-12 leading-relaxed max-w-3xl mx-auto">
                 Save big on bulk orders with our special discounts. Premium quality,
                 unbeatable prices, and fast delivery.
               </p>
@@ -266,36 +263,40 @@ const BulkDeals = () => {
                   { icon: Star, value: "4.9/5", label: "Rating" },
                   { icon: Zap, value: "Fast", label: "Delivery" },
                 ].map((stat, idx) => (
-                  <motion.div
+            <motion.div
                     key={idx}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.4 + idx * 0.1 }}
                     whileHover={{ scale: 1.05 }}
-                    className="bg-card border border-border rounded-xl p-6 text-center"
+                    className="bg-gradient-to-br from-orange-50 to-white border border-orange-300 rounded-xl p-6 text-center hover:shadow-lg transition-shadow"
                   >
-                    <stat.icon className="w-8 h-8 text-primary mx-auto mb-3" />
-                    <div className="text-2xl font-bold mb-1">{stat.value}</div>
-                    <div className="text-sm text-muted-foreground font-medium">{stat.label}</div>
+                    <stat.icon className="w-8 h-8 text-orange-600 mx-auto mb-3" />
+                    <div className="text-2xl font-bold text-gray-900 mb-1">{stat.value}</div>
+                    <div className="text-sm text-gray-600 font-medium">{stat.label}</div>
                   </motion.div>
                 ))}
               </div>
             </div>
+
+            {/* Floating Accent Elements */}
+            <div className="absolute top-1/4 left-10 w-64 h-64 bg-orange-200/30 rounded-full blur-3xl animate-pulse" />
+            <div className="absolute bottom-1/4 right-10 w-96 h-96 bg-orange-100/40 rounded-full blur-3xl animate-pulse delay-1000" />
           </div>
         </section>
 
         {/* Featured Deal Section */}
-        <section className="py-20 bg-muted/20">
+        <section className="py-20 bg-gradient-to-b from-transparent to-orange-50">
           <div className="container mx-auto px-6">
             <div className="text-center mb-12">
-              <Badge className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-4 py-2 text-lg mb-4">
+              <Badge className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-4 py-2 text-lg mb-4 shadow-lg">
                 <Flame className="w-5 h-5 mr-2" />
                 Featured Flash Sale
               </Badge>
-              <h2 className="text-4xl md:text-6xl font-heading font-bold mb-4">
+              <h2 className="text-4xl md:text-6xl font-heading font-bold mb-4 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
                 Deal of the Month
               </h2>
-              <p className="text-lg text-foreground/70 font-medium max-w-2xl mx-auto">
+              <p className="text-lg text-gray-600 font-medium max-w-2xl mx-auto">
                 Don't miss out on our best deal with exclusive features and maximum savings
               </p>
             </div>
@@ -305,7 +306,7 @@ const BulkDeals = () => {
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="max-w-6xl mx-auto bg-card border border-border rounded-2xl overflow-hidden shadow-2xl"
+              className="max-w-6xl mx-auto bg-white border border-orange-300 rounded-2xl overflow-hidden shadow-2xl"
             >
               <div className="grid md:grid-cols-2 gap-0">
                 {/* Image Side */}
@@ -337,56 +338,56 @@ const BulkDeals = () => {
                   )}
                 </div>
 
-                {/* Content Side */}
-                <div className="p-8 md:p-12 flex flex-col justify-center">
-                  <Badge variant="secondary" className="mb-4 w-fit">
-                    <Trophy className="w-3 h-3 mr-1" />
-                    Best Deal of the Month
-                  </Badge>
+                  {/* Content Side */}
+                  <div className="p-8 md:p-12 flex flex-col justify-center bg-gradient-to-br from-orange-50/30 to-white">
+                    <Badge className="mb-4 w-fit border-orange-500 bg-orange-50 text-orange-600">
+                      <Trophy className="w-3 h-3 mr-1" />
+                      Best Deal of the Month
+              </Badge>
 
-                  <h3 className="text-4xl md:text-5xl font-heading font-bold mb-4">
-                    {featuredDeal.title}
-                  </h3>
+                    <h3 className="text-4xl md:text-5xl font-heading font-bold mb-4 text-gray-900">
+                      {featuredDeal.title}
+                    </h3>
 
-                  <p className="text-lg text-foreground/70 font-medium mb-6 leading-relaxed">
-                    {featuredDeal.description}
-                  </p>
+                    <p className="text-lg text-gray-600 font-medium mb-6 leading-relaxed">
+                      {featuredDeal.description}
+                    </p>
 
-                  {/* Pricing */}
-                  <div className="bg-primary/10 rounded-2xl p-6 mb-6 border border-primary/20">
-                    <div className="flex items-baseline gap-3 mb-3">
-                      <span className="text-5xl font-bold text-primary">
-                        ₹{featuredDeal.discountedPrice}
-                      </span>
-                      <span className="text-2xl line-through text-muted-foreground">
-                        ₹{featuredDeal.originalPrice}
-                      </span>
-                      <span className="text-base text-muted-foreground">/unit</span>
-                    </div>
-
-                    <div className="flex items-center gap-2 text-foreground/70 font-medium mb-3">
-                      <Package className="w-5 h-5" />
-                      <span>Minimum order: {featuredDeal.minQuantity.toLocaleString()} units</span>
-                    </div>
-
-                    {featuredDeal.savedAmount && (
-                      <Badge className="bg-green-500/20 text-green-600">
-                        💰 Save {featuredDeal.savedAmount} on bulk orders
-                      </Badge>
-                    )}
-                  </div>
-
-                  {/* Features */}
-                  <div className="space-y-3 mb-8">
-                    {featuredDeal.features.map((feature, idx) => (
-                      <div key={idx} className="flex items-center gap-3">
-                        <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
-                          <CheckCircle2 className="w-4 h-4 text-primary" />
-                        </div>
-                        <span className="text-foreground/80 font-medium">{feature}</span>
+                    {/* Pricing */}
+                    <div className="bg-orange-50 rounded-2xl p-6 mb-6 border border-orange-300">
+                      <div className="flex items-baseline gap-3 mb-3">
+                        <span className="text-5xl font-bold text-orange-600">
+                          ₹{featuredDeal.discountedPrice}
+                        </span>
+                        <span className="text-2xl line-through text-gray-500">
+                          ₹{featuredDeal.originalPrice}
+                        </span>
+                        <span className="text-base text-gray-600">/unit</span>
                       </div>
-                    ))}
-                  </div>
+
+                      <div className="flex items-center gap-2 text-gray-700 font-medium mb-3">
+                        <Package className="w-5 h-5" />
+                        <span>Minimum order: {featuredDeal.minQuantity.toLocaleString()} units</span>
+                      </div>
+
+                      {featuredDeal.savedAmount && (
+                        <Badge className="bg-green-100 text-green-700 hover:bg-green-200 border-green-300">
+                          💰 Save {featuredDeal.savedAmount} on bulk orders
+                        </Badge>
+                      )}
+                    </div>
+
+                    {/* Features */}
+                    <div className="space-y-3 mb-8">
+                      {featuredDeal.features.map((feature, idx) => (
+                        <div key={idx} className="flex items-center gap-3">
+                          <div className="w-6 h-6 rounded-full bg-orange-100 flex items-center justify-center flex-shrink-0">
+                            <CheckCircle2 className="w-4 h-4 text-orange-600" />
+                          </div>
+                          <span className="text-gray-700 font-medium">{feature}</span>
+                        </div>
+                      ))}
+                </div>
 
                   {/* CTA Buttons */}
                   <div className="flex flex-col sm:flex-row gap-3">
@@ -402,7 +403,7 @@ const BulkDeals = () => {
                         Get Custom Quote
                       </Button>
                     </Link>
-                  </div>
+                </div>
                 </div>
               </div>
             </motion.div>
@@ -410,17 +411,17 @@ const BulkDeals = () => {
         </section>
 
         {/* More Deals Section */}
-        <section className="py-20">
+        <section className="py-20 bg-white">
           <div className="container mx-auto px-6">
             <div className="text-center mb-16">
-              <Badge variant="secondary" className="mb-4 px-4 py-2 text-base">
+              <Badge className="mb-4 px-4 py-2 text-base border-orange-500 bg-orange-50 text-orange-600 hover:bg-orange-100">
                 <TrendingUp className="w-4 h-4 mr-2" />
                 Trending Now
               </Badge>
-              <h2 className="text-4xl md:text-6xl font-heading font-bold mb-6">
+              <h2 className="text-4xl md:text-6xl font-heading font-bold mb-6 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
                 More Amazing Deals
               </h2>
-              <p className="text-lg text-foreground/70 font-medium max-w-2xl mx-auto">
+              <p className="text-lg text-gray-600 font-medium max-w-2xl mx-auto">
                 Explore our complete collection of bulk discount offers
               </p>
             </div>
@@ -434,43 +435,48 @@ const BulkDeals = () => {
         </section>
 
         {/* CTA Section */}
-        <section className="py-24 bg-primary text-primary-foreground">
-          <div className="container mx-auto px-6 text-center">
-            <div className="max-w-4xl mx-auto">
-              <Sparkles className="w-16 h-16 mx-auto mb-6" />
+        <section className="py-24 bg-gradient-to-br from-orange-100 via-orange-50 to-orange-100 relative overflow-hidden">
+          <div className="absolute top-10 left-10 w-96 h-96 bg-orange-200/40 rounded-full blur-3xl" />
+          <div className="absolute bottom-10 right-10 w-96 h-96 bg-orange-100/50 rounded-full blur-3xl" />
 
-              <h2 className="text-4xl md:text-6xl font-heading font-bold mb-6">
+          <div className="container mx-auto px-6 text-center relative z-10">
+            <div className="max-w-4xl mx-auto">
+              <div className="w-20 h-20 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                <Sparkles className="w-10 h-10 text-white" />
+              </div>
+
+              <h2 className="text-4xl md:text-6xl font-heading font-bold mb-6 bg-gradient-to-r from-gray-900 via-orange-600 to-orange-500 bg-clip-text text-transparent">
                 Need a Custom Quote?
               </h2>
-              <p className="text-xl text-primary-foreground/90 font-medium mb-10 max-w-2xl mx-auto leading-relaxed">
+              <p className="text-xl text-gray-700 font-medium mb-10 max-w-2xl mx-auto leading-relaxed">
                 Looking for something specific? Our team is ready to create
                 personalized bulk pricing and custom solutions tailored to your needs.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link to="/contact">
-                  <Button size="lg" variant="secondary" className="text-lg h-14 px-8">
+              <Link to="/contact">
+                  <Button size="lg" className="text-lg h-14 px-8 bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-white">
                     Contact Us Now
                     <ArrowRight className="w-5 h-5 ml-2" />
                   </Button>
                 </Link>
                 <Link to="/products">
-                  <Button size="lg" variant="outline" className="text-lg h-14 px-8 bg-transparent border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary">
+                  <Button size="lg" variant="outline" className="text-lg h-14 px-8 border-orange-500 text-gray-900 hover:bg-orange-50">
                     Browse All Products
                   </Button>
-                </Link>
+              </Link>
               </div>
 
               {/* Trust Indicators */}
-              <div className="grid grid-cols-3 gap-6 mt-12 pt-8 border-t border-primary-foreground/20">
+              <div className="grid grid-cols-3 gap-6 mt-12 pt-8 border-t border-orange-300">
                 {[
                   { icon: Trophy, text: "15+ Years" },
                   { icon: Star, text: "4.9 Rating" },
                   { icon: Package, text: "10K+ Orders" },
                 ].map((item, idx) => (
                   <div key={idx} className="flex flex-col items-center gap-2">
-                    <item.icon className="w-6 h-6" />
-                    <span className="text-sm font-medium text-primary-foreground/90">{item.text}</span>
+                    <item.icon className="w-6 h-6 text-orange-600" />
+                    <span className="text-sm font-medium text-gray-700">{item.text}</span>
                   </div>
                 ))}
               </div>

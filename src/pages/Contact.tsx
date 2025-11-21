@@ -4,196 +4,298 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Mail, Phone, MapPin, Clock } from "lucide-react";
-import { useTheme } from "@/contexts/ThemeContext";
-import GradientOrbs from "@/components/backgrounds/GradientOrbs";
+import { Mail, Phone, MapPin, Clock, Send } from "lucide-react";
+import { motion } from "framer-motion";
+import {
+  leftSlideIn,
+  rightSlideIn,
+  heroMinimal,
+  glowPulse,
+  viewportConfig,
+} from "@/lib/cinematicAnimations";
+import { Badge } from "@/components/ui/badge";
 
 const Contact = () => {
-  const { currentTheme } = useTheme();
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Form submission logic would go here
     alert("Quote request submitted! We'll respond within 24 hours.");
   };
 
+  const contactInfo = [
+    {
+      icon: MapPin,
+      title: "Visit Us",
+      details: ["A-1, Main Road, Kewal Park", "Azadpur, Delhi - 110033"],
+    },
+    {
+      icon: Phone,
+      title: "Call Us",
+      details: ["+91 9873535400", "Mon - Sat: 9:00 AM - 7:00 PM"],
+    },
+    {
+      icon: Mail,
+      title: "Email Us",
+      details: ["Chandantrading2014@gmail.com", "Response within 24 hours"],
+    },
+    {
+      icon: Clock,
+      title: "Business Hours",
+      details: ["Monday - Saturday", "9:00 AM - 7:00 PM"],
+    },
+  ];
+
   return (
-    <div className="min-h-screen" style={{ background: currentTheme.colors.background, color: currentTheme.colors.foreground }}>
+    <div className="min-h-screen bg-white text-gray-900 relative overflow-hidden">
+      {/* Subtle Grid Background */}
+      <div className="fixed inset-0 bg-[linear-gradient(rgba(249,115,22,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(249,115,22,0.08)_1px,transparent_1px)] bg-[size:50px_50px] pointer-events-none" />
+
       <Navigation />
-      
-      <main className="pt-16 sm:pt-20 md:pt-24">
-        {/* Hero */}
-        <section className="relative py-12 sm:py-16 md:py-24 paper-texture" style={{ background: currentTheme.colors.background }}>
-          <GradientOrbs theme={currentTheme} count={2} />
-          <div className="container mx-auto px-4 sm:px-6 text-center">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-heading font-bold mb-4 sm:mb-6 px-4">
-              Contact Chandan Trading Company
+
+      <main className="relative z-10 pt-24">
+        {/* Hero Section */}
+        <section className="py-20 px-6 relative">
+          <motion.div
+            variants={heroMinimal}
+            initial="hidden"
+            animate="visible"
+            className="container mx-auto text-center max-w-5xl"
+          >
+            {/* Glowing Badge */}
+            <motion.div
+              animate={glowPulse.animate}
+              className="inline-block mb-8 px-6 py-2 rounded-full border border-orange-500/50 bg-orange-50"
+            >
+              <span className="text-sm font-medium text-orange-600">
+                GET IN TOUCH
+              </span>
+            </motion.div>
+
+            <h1 className="text-5xl md:text-7xl font-bold mb-8 leading-tight">
+              <span className="bg-gradient-to-r from-gray-900 via-orange-600 to-orange-500 bg-clip-text text-transparent">
+                Contact Us
+              </span>
             </h1>
-            <p className="text-base sm:text-lg text-muted-foreground max-w-3xl mx-auto px-4">
-              Ready to get your printing stationery and print media solutions? 
+
+            <p className="text-xl md:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed">
+              Ready to get your printing stationery and print media solutions?
               Contact us today and we'll respond within 24 hours.
             </p>
-          </div>
+
+            {/* Floating Accent Elements */}
+            <div className="absolute top-1/4 left-10 w-64 h-64 bg-orange-200/30 rounded-full blur-3xl animate-pulse" />
+            <div className="absolute bottom-1/4 right-10 w-96 h-96 bg-orange-100/40 rounded-full blur-3xl animate-pulse delay-1000" />
+          </motion.div>
         </section>
 
-        {/* Contact Form & Info */}
-        <section className="py-12 sm:py-16 md:py-24 bg-muted/30 relative">
-          <div className="container mx-auto px-4 sm:px-6">
-            <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 md:gap-12 max-w-6xl mx-auto">
-              {/* Contact Form */}
-              <div className="bg-card rounded-lg p-4 sm:p-6 md:p-8 border border-border relative z-10">
-                <h2 className="text-xl sm:text-2xl font-heading font-bold mb-4 sm:mb-6">Request a Quote</h2>
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="name">Full Name</Label>
-                      <Input id="name" placeholder="John Doe" required />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="company">Company Name</Label>
-                      <Input id="company" placeholder="Your Company" required />
-                    </div>
-                  </div>
-                  
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="email">Email Address</Label>
-                      <Input id="email" type="email" placeholder="you@company.com" required />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="phone">Phone Number</Label>
-                      <Input id="phone" type="tel" placeholder="+91-XXXX-XXX-XXX" />
-                    </div>
-                  </div>
+        {/* Contact Form & Info Section */}
+        <section className="py-20 px-6 bg-gradient-to-b from-transparent to-orange-50">
+          <div className="container mx-auto max-w-6xl">
+            <div className="grid lg:grid-cols-2 gap-12">
+              {/* Contact Form - Left Slide In */}
+              <motion.div
+                variants={leftSlideIn}
+                initial="hidden"
+                whileInView="visible"
+                viewport={viewportConfig}
+                className="relative group"
+              >
+                <div className="bg-white rounded-2xl p-8 border border-orange-300 hover:border-orange-500 hover:shadow-xl transition-all duration-300">
+                  <Badge className="mb-6 px-4 py-2 border-orange-500 bg-orange-50 text-orange-600">
+                    REQUEST A QUOTE
+                  </Badge>
 
-                  <div className="space-y-2 relative z-30">
-                    <Label htmlFor="service">Service Required</Label>
-                    <select
-                      id="service"
-                      className="w-full px-3 py-2 rounded-md border border-input bg-background relative z-[9999]"
-                      required
-                    >
-                      <option value="">Select a product/service</option>
-                      <option>Letterheads & Business Cards</option>
-                      <option>Diaries & Notebooks</option>
-                      <option>Posters & Print Media</option>
-                      <option>Carry Bags & File Covers</option>
-                      <option>Visiting Cards</option>
-                      <option>Other Stationery Items</option>
-                    </select>
-                  </div>
+                  <h2 className="text-3xl font-bold mb-6 text-gray-900">Send Us a Message</h2>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="message">Project Details</Label>
-                    <Textarea
-                      id="message"
-                      placeholder="Tell us about your requirements, quantities, timeline, etc."
-                      rows={6}
-                      required
-                    />
-                  </div>
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="name" className="text-gray-700 font-medium">
+                          Full Name
+                        </Label>
+                        <Input
+                          id="name"
+                          placeholder="John Doe"
+                          required
+                          className="border-orange-300 focus:border-orange-500 focus:ring-orange-500"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="company" className="text-gray-700 font-medium">
+                          Company Name
+                        </Label>
+                        <Input
+                          id="company"
+                          placeholder="Your Company"
+                          required
+                          className="border-orange-300 focus:border-orange-500 focus:ring-orange-500"
+                        />
+                      </div>
+                    </div>
 
-                  <Button type="submit" size="lg" className="w-full">
-                    Submit Quote Request
-                  </Button>
-                </form>
-              </div>
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="email" className="text-gray-700 font-medium">
+                          Email Address
+                        </Label>
+                        <Input
+                          id="email"
+                          type="email"
+                          placeholder="you@company.com"
+                          required
+                          className="border-orange-300 focus:border-orange-500 focus:ring-orange-500"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="phone" className="text-gray-700 font-medium">
+                          Phone Number
+                        </Label>
+                        <Input
+                          id="phone"
+                          type="tel"
+                          placeholder="+91 98765 43210"
+                          required
+                          className="border-orange-300 focus:border-orange-500 focus:ring-orange-500"
+                        />
+                      </div>
+                    </div>
 
-              {/* Contact Information */}
-              <div className="space-y-6 sm:space-y-8 relative z-10">
-                <div className="bg-card rounded-lg p-4 sm:p-6 md:p-8 border border-border relative z-20">
-                  <h2 className="text-xl sm:text-2xl font-heading font-bold mb-4 sm:mb-6">Contact Information</h2>
-                  
+                    <div className="space-y-2">
+                      <Label htmlFor="product" className="text-gray-700 font-medium">
+                        Product Interest
+                      </Label>
+                      <Input
+                        id="product"
+                        placeholder="E.g. Business Cards, Letterheads, Diaries"
+                        className="border-orange-300 focus:border-orange-500 focus:ring-orange-500"
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="quantity" className="text-gray-700 font-medium">
+                        Estimated Quantity
+                      </Label>
+                      <Input
+                        id="quantity"
+                        placeholder="E.g. 1000 units"
+                        className="border-orange-300 focus:border-orange-500 focus:ring-orange-500"
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="message" className="text-gray-700 font-medium">
+                        Message
+                      </Label>
+                      <Textarea
+                        id="message"
+                        placeholder="Tell us about your requirements..."
+                        rows={5}
+                        required
+                        className="border-orange-300 focus:border-orange-500 focus:ring-orange-500"
+                      />
+                    </div>
+
+                    <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                      <Button
+                        type="submit"
+                        size="lg"
+                        className="w-full bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-white h-14 text-lg"
+                      >
+                        <Send className="w-5 h-5 mr-2" />
+                        Send Message
+                      </Button>
+                    </motion.div>
+                  </form>
+                </div>
+                <div className="absolute -inset-0.5 rounded-2xl bg-gradient-to-r from-orange-500/0 to-orange-400/0 group-hover:from-orange-500/30 group-hover:to-orange-400/30 blur opacity-0 group-hover:opacity-100 transition-opacity -z-10" />
+              </motion.div>
+
+              {/* Contact Info - Right Slide In */}
+              <motion.div
+                variants={rightSlideIn}
+                initial="hidden"
+                whileInView="visible"
+                viewport={viewportConfig}
+                className="space-y-6"
+              >
+                <div className="bg-gradient-to-br from-orange-50 to-white rounded-2xl p-8 border border-orange-300">
+                  <h2 className="text-3xl font-bold mb-2 text-gray-900">Get in Touch</h2>
+                  <p className="text-gray-600 mb-8">
+                    We're here to help with all your printing needs. Reach out through any of these channels.
+                  </p>
+
                   <div className="space-y-6">
-                    <div className="flex items-start space-x-4">
-                      <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                        <MapPin className="w-5 h-5 text-primary" />
-                      </div>
-                      <div>
-                        <p className="font-heading font-semibold mb-1">ADDRESS</p>
-                        <p className="text-sm text-muted-foreground leading-relaxed">
-                          A-1, Main Road, Kewal Park<br />
-                          Azadpur, Delhi - 110033<br />
-                          INDIA
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start space-x-4">
-                      <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                        <Phone className="w-5 h-5 text-primary" />
-                      </div>
-                      <div>
-                        <p className="font-heading font-semibold mb-1">PHONE</p>
-                        <p className="text-sm text-muted-foreground">+91 9873535400</p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start space-x-4">
-                      <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                        <Mail className="w-5 h-5 text-primary" />
-                      </div>
-                      <div>
-                        <p className="font-heading font-semibold mb-1">EMAIL</p>
-                        <p className="text-sm text-muted-foreground">Chandantrading2014@gmail.com</p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start space-x-4">
-                      <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                        <Clock className="w-5 h-5 text-primary" />
-                      </div>
-                      <div>
-                        <p className="font-heading font-semibold mb-1">BUSINESS HOURS</p>
-                        <p className="text-sm text-muted-foreground">Monday - Saturday: 10:00 AM - 7:00 PM</p>
-                        <p className="text-sm text-muted-foreground">Sunday: Closed</p>
-                      </div>
-                    </div>
+                    {contactInfo.map((info, idx) => (
+                      <motion.div
+                        key={idx}
+                        initial={{ opacity: 0, x: 20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={viewportConfig}
+                        transition={{ delay: idx * 0.1 }}
+                        className="flex gap-4"
+                      >
+                        <div className="flex-shrink-0">
+                          <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center shadow-lg">
+                            <info.icon className="w-6 h-6 text-white" />
+                          </div>
+                        </div>
+                        <div>
+                          <h3 className="font-bold text-gray-900 mb-1">{info.title}</h3>
+                          {info.details.map((detail, i) => (
+                            <p key={i} className="text-gray-600 text-sm">
+                              {detail}
+                            </p>
+                          ))}
+                        </div>
+                      </motion.div>
+                    ))}
                   </div>
                 </div>
 
-                    <div className="bg-primary text-primary-foreground rounded-lg p-4 sm:p-6 md:p-8 relative z-20">
-                  <h3 className="text-lg sm:text-xl font-heading font-bold mb-3 sm:mb-4">Quick Response</h3>
-                  <p className="text-sm text-primary-foreground/80 leading-relaxed mb-4">
-                    Our dedicated sales team responds to all inquiries within 24 hours. 
-                    For urgent requests, please call our hotline directly.
-                  </p>
-                  <div className="flex items-center space-x-2 text-sm">
-                    <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-                    <span>Currently available</span>
-                  </div>
+                {/* Map or Additional Info */}
+                <div className="bg-gradient-to-br from-orange-100 to-orange-50 rounded-2xl p-8 border border-orange-300">
+                  <h3 className="text-xl font-bold mb-4 text-gray-900">Why Choose Us?</h3>
+                  <ul className="space-y-3">
+                    {[
+                      "24-hour response time",
+                      "Free quotes and consultations",
+                      "Competitive bulk pricing",
+                      "Quality guaranteed",
+                      "Fast turnaround times",
+                    ].map((item, idx) => (
+                      <li key={idx} className="flex items-center gap-3 text-gray-700">
+                        <div className="w-2 h-2 rounded-full bg-orange-500" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-              </div>
+              </motion.div>
             </div>
           </div>
         </section>
 
-        {/* Google Map Section */}
-        <section className="py-12 sm:py-16 md:py-24 bg-background">
-          <div className="container mx-auto px-4 sm:px-6">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold text-center mb-6 sm:mb-8 md:mb-12 px-4">
-                Find Us
-              </h2>
-              <div className="bg-card rounded-lg p-4 border border-border">
-                <div className="w-full h-64 sm:h-80 md:h-96 rounded-lg overflow-hidden">
-                  <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3501.764889489!2d77.18162331508197!3d28.71542568241223!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd1b2b1d3c3f%3A0x8b7b8b8b8b8b8b8b!2sAzadpur%2C%20Delhi%2C%20India!5e0!3m2!1sen!2sin!4v1635789123456!5m2!1sen!2sin"
-                    width="100%"
-                    height="100%"
-                    style={{ border: 0 }}
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    title="Chandan Trading Company Location"
-                  />
-                </div>
-                <div className="mt-4 text-center">
-                  <p className="text-sm text-muted-foreground">
-                    A-1, Main Road, Kewal Park, Azadpur, Delhi - 110033
-                  </p>
-                </div>
+        {/* Map Section - Optional */}
+        <section className="py-20 px-6">
+          <div className="container mx-auto max-w-6xl">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={viewportConfig}
+              className="rounded-2xl overflow-hidden border border-orange-300 shadow-xl"
+            >
+              <div className="bg-gradient-to-br from-orange-50 to-white p-12 text-center">
+                <MapPin className="w-16 h-16 text-orange-600 mx-auto mb-4" />
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">Visit Our Office</h3>
+                <p className="text-gray-600 mb-4">A-1, Main Road, Kewal Park, Azadpur, Delhi - 110033</p>
+                <Button
+                  variant="outline"
+                  className="border-orange-500 text-gray-900 hover:bg-orange-50"
+                  onClick={() => window.open('https://maps.google.com/?q=Azadpur+Delhi', '_blank')}
+                >
+                  Open in Maps
+                </Button>
               </div>
-            </div>
+            </motion.div>
           </div>
         </section>
       </main>
