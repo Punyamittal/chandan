@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { z } from "zod";
+import emailjs from '@emailjs/browser';
 import {
   Dialog,
   DialogContent,
@@ -93,12 +94,31 @@ const QuoteDialog = ({
       // Validate form data
       const validatedData = quoteSchema.parse(formData);
 
-      // Simulate API call (replace with actual implementation)
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      // Initialize EmailJS (only needed once, but safe to call multiple times)
+      emailjs.init('YOUR_PUBLIC_KEY'); // Replace with your EmailJS Public Key
+
+      // Prepare email parameters
+      const templateParams = {
+        to_email: 'punya.m215@gmail.com',
+        from_name: validatedData.name,
+        from_email: validatedData.email,
+        company: validatedData.company,
+        phone: validatedData.phone,
+        service: validatedData.service,
+        message: validatedData.message,
+        reply_to: validatedData.email,
+      };
+
+      // Send email via EmailJS
+      await emailjs.send(
+        'YOUR_SERVICE_ID',      // Replace with your EmailJS Service ID
+        'YOUR_TEMPLATE_ID',     // Replace with your EmailJS Template ID
+        templateParams
+      );
 
       // Success
       toast({
-        title: "Quote Request Submitted",
+        title: "✅ Quote Request Submitted",
         description: "Our team will respond within 24 hours. Check your email for confirmation.",
       });
 
@@ -129,9 +149,10 @@ const QuoteDialog = ({
           variant: "destructive",
         });
       } else {
+        console.error('Email error:', error);
         toast({
           title: "Error",
-          description: "Something went wrong. Please try again.",
+          description: "Failed to send quote request. Please try again or contact us directly.",
           variant: "destructive",
         });
       }

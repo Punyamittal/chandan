@@ -14,6 +14,7 @@ import {
   viewportConfig,
 } from "@/lib/cinematicAnimations";
 import { Badge } from "@/components/ui/badge";
+import { Component } from "@/components/ui/gradient-bar-hero-section";
 
 const Contact = () => {
   const handleSubmit = (e: React.FormEvent) => {
@@ -51,41 +52,10 @@ const Contact = () => {
 
       <Navigation />
 
-      <main className="relative z-10 pt-24">
-        {/* Hero Section */}
-        <section className="py-20 px-6 relative">
-          <motion.div
-            variants={heroMinimal}
-            initial="hidden"
-            animate="visible"
-            className="container mx-auto text-center max-w-5xl"
-          >
-            {/* Glowing Badge */}
-            <motion.div
-              animate={glowPulse.animate}
-              className="inline-block mb-8 px-6 py-2 rounded-full border border-orange-500/50 bg-orange-50"
-            >
-              <span className="text-sm font-medium text-orange-600">
-                GET IN TOUCH
-              </span>
-            </motion.div>
+      {/* Gradient Bar Hero Section */}
+      <Component />
 
-            <h1 className="text-5xl md:text-7xl font-bold mb-8 leading-tight">
-              <span className="bg-gradient-to-r from-gray-900 via-orange-600 to-orange-500 bg-clip-text text-transparent">
-                Contact Us
-              </span>
-            </h1>
-
-            <p className="text-xl md:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed">
-              Ready to get your printing stationery and print media solutions?
-              Contact us today and we'll respond within 24 hours.
-            </p>
-
-            {/* Floating Accent Elements */}
-            <div className="absolute top-1/4 left-10 w-64 h-64 bg-orange-200/30 rounded-full blur-3xl animate-pulse" />
-            <div className="absolute bottom-1/4 right-10 w-96 h-96 bg-orange-100/40 rounded-full blur-3xl animate-pulse delay-1000" />
-          </motion.div>
-        </section>
+      <main className="relative z-10" id="contact-form">
 
         {/* Contact Form & Info Section */}
         <section className="py-20 px-6 bg-gradient-to-b from-transparent to-orange-50">

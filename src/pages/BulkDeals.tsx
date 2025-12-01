@@ -3,6 +3,8 @@ import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import FloatingLines from "@/components/FloatingLines";
+import HeroScrollAnimation from "@/components/ui/hero-scroll-animation";
 import {
   Percent,
   TrendingUp,
@@ -236,54 +238,9 @@ const BulkDeals = () => {
       <div className="fixed inset-0 bg-[linear-gradient(rgba(249,115,22,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(249,115,22,0.08)_1px,transparent_1px)] bg-[size:50px_50px] pointer-events-none" />
       <Navigation />
 
-      <main className="relative z-10 pt-24">
-        {/* Hero Section */}
-        <section className="py-20 relative">
-          <div className="container mx-auto px-6">
-            <div className="text-center max-w-5xl mx-auto">
-              <Badge className="mb-6 px-4 py-2 text-base border-orange-500 bg-orange-50 text-orange-600 hover:bg-orange-100">
-                <Tag className="w-4 h-4 mr-2" />
-                Limited Time Offers
-              </Badge>
-
-              <h1 className="text-5xl md:text-7xl font-heading font-bold mb-8 bg-gradient-to-r from-gray-900 via-orange-600 to-orange-500 bg-clip-text text-transparent">
-                Exclusive Bulk Deals
-              </h1>
-
-              <p className="text-xl md:text-2xl text-gray-600 font-medium mb-12 leading-relaxed max-w-3xl mx-auto">
-                Save big on bulk orders with our special discounts. Premium quality,
-                unbeatable prices, and fast delivery.
-              </p>
-
-              {/* Stats */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
-                {[
-                  { icon: Percent, value: "Up to 40%", label: "Discount" },
-                  { icon: Package, value: "1000+", label: "Products" },
-                  { icon: Star, value: "4.9/5", label: "Rating" },
-                  { icon: Zap, value: "Fast", label: "Delivery" },
-                ].map((stat, idx) => (
-            <motion.div
-                    key={idx}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.4 + idx * 0.1 }}
-                    whileHover={{ scale: 1.05 }}
-                    className="bg-gradient-to-br from-orange-50 to-white border border-orange-300 rounded-xl p-6 text-center hover:shadow-lg transition-shadow"
-                  >
-                    <stat.icon className="w-8 h-8 text-orange-600 mx-auto mb-3" />
-                    <div className="text-2xl font-bold text-gray-900 mb-1">{stat.value}</div>
-                    <div className="text-sm text-gray-600 font-medium">{stat.label}</div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-
-            {/* Floating Accent Elements */}
-            <div className="absolute top-1/4 left-10 w-64 h-64 bg-orange-200/30 rounded-full blur-3xl animate-pulse" />
-            <div className="absolute bottom-1/4 right-10 w-96 h-96 bg-orange-100/40 rounded-full blur-3xl animate-pulse delay-1000" />
-          </div>
-        </section>
+      <main className="relative z-10">
+        {/* Hero Section - Scroll Animation */}
+        <HeroScrollAnimation />
 
         {/* Featured Deal Section */}
         <section className="py-20 bg-gradient-to-b from-transparent to-orange-50">
@@ -491,3 +448,5 @@ const BulkDeals = () => {
 };
 
 export default BulkDeals;
+
+

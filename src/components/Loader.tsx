@@ -1,0 +1,22 @@
+/**
+ * Scan Loader Component
+ * Animated text loader with scanning effect
+ */
+
+import React from 'react';
+import './Loader.css';
+
+const Loader = () => {
+  return (
+    <div className="flex items-center justify-center min-h-screen bg-white">
+      <div className="loader-wrapper">
+        <p className="scan-loader">
+          <span>Scan</span>
+        </p>
+      </div>
+    </div>
+  );
+};
+
+export default Loader;
+

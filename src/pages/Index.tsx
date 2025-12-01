@@ -7,7 +7,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   leftSlideIn,
   rightSlideIn,
@@ -19,6 +19,12 @@ import {
   viewportConfig,
   viewportConfigSmall,
 } from "@/lib/cinematicAnimations";
+import { AnimatedText, AnimatedHeading } from "@/components/AnimatedText";
+import { ScrollProgress } from "@/components/ScrollProgress";
+import { StatCard } from "@/components/StatCard";
+import { CategoryDisplay } from "@/components/CategoryDisplay";
+// import FluidGlassSafe from "@/components/FluidGlassSafe"; // Uncomment when 3D models are added
+import { staggerContainer } from "@/lib/advancedAnimations";
 import {
   Printer,
   Package,
@@ -46,8 +52,10 @@ import {
   Users,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { AnimatedMarqueeHero } from "@/components/ui/hero-3";
 
 const Index = () => {
+  const navigate = useNavigate();
   const [activeCategory, setActiveCategory] = useState(0);
 
   const categories = [
@@ -131,94 +139,39 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-white text-gray-900 relative overflow-hidden">
+      {/* Scroll Progress Indicator */}
+      <ScrollProgress />
+
       {/* Subtle Grid Background */}
       <div className="fixed inset-0 bg-[linear-gradient(rgba(249,115,22,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(249,115,22,0.08)_1px,transparent_1px)] bg-[size:50px_50px] pointer-events-none" />
 
       <Navigation />
 
       <main className="relative z-10">
-        {/* Hero Section - Minimal Animation */}
-        <section className="min-h-screen flex items-center justify-center pt-20 px-6 relative">
-          <motion.div
-            variants={heroMinimal}
-            initial="hidden"
-            animate="visible"
-            className="text-center max-w-6xl"
-          >
-            {/* Glowing Badge */}
-            <motion.div
-              animate={glowPulse.animate}
-              className="inline-block mb-8 px-6 py-2 rounded-full border border-orange-500/50 bg-orange-50"
-            >
-              <span className="text-sm font-medium text-orange-600">
-                Delivering Excellence Since 2009
-              </span>
-            </motion.div>
-
-            <h1 className="text-5xl md:text-8xl lg:text-9xl font-bold mb-8 leading-tight">
-              <span className="bg-gradient-to-r from-gray-900 via-orange-600 to-orange-500 bg-clip-text text-transparent">
-                Premium Printing
-              </span>
+        {/* Hero Section - Animated Marquee Hero */}
+        <AnimatedMarqueeHero
+          tagline="Join over 10,000 satisfied customers"
+          title={
+            <>
+              Premium Printing
               <br />
-              <span className="text-gray-900">Stationery & Trading</span>
-            </h1>
-
-            <p className="text-xl md:text-2xl text-gray-600 mb-12 max-w-4xl mx-auto leading-relaxed">
-              Worldwide premium printing stationery and bulk trading solutions. From
-              letterheads to custom packaging, we deliver precision in every print.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-              <Link to="/products">
-                <Button
-                  size="lg"
-                  className="bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-white border-0 h-14 px-8 text-lg group"
-                >
-                  Explore Products
-                  <ChevronRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </Button>
-              </Link>
-              <Link to="/bulk-deals">
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-orange-500 text-gray-900 hover:bg-orange-50 h-14 px-8 text-lg"
-                >
-                  View Bulk Deals
-                </Button>
-              </Link>
-            </div>
-
-            {/* Hero Stats */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
-              {[
-                { icon: Trophy, value: "15+", label: "Years Experience" },
-                { icon: Package, value: "10K+", label: "Orders Delivered" },
-                { icon: Printer, value: "500+", label: "Products" },
-                { icon: Star, value: "4.9", label: "Rating" },
-              ].map((stat, idx) => (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.6 + idx * 0.1 }}
-                  className="relative group"
-                >
-                  <div className="p-6 rounded-xl border border-orange-300 bg-gradient-to-br from-orange-50 to-white hover:border-orange-500 hover:shadow-lg transition-all duration-300">
-                    <stat.icon className="w-8 h-8 text-orange-600 mx-auto mb-3" />
-                    <div className="text-3xl font-bold text-gray-900 mb-1">{stat.value}</div>
-                    <div className="text-sm text-gray-600">{stat.label}</div>
-                  </div>
-                  <div className="absolute -inset-0.5 rounded-xl bg-gradient-to-r from-orange-500/0 to-orange-500/0 group-hover:from-orange-500/30 group-hover:to-orange-400/30 blur opacity-0 group-hover:opacity-100 transition-opacity -z-10" />
-                </motion.div>
-              ))}
-            </div>
-
-            {/* Floating Accent Elements */}
-            <div className="absolute top-1/4 left-10 w-64 h-64 bg-orange-200/30 rounded-full blur-3xl animate-pulse" />
-            <div className="absolute bottom-1/4 right-10 w-96 h-96 bg-orange-100/40 rounded-full blur-3xl animate-pulse delay-1000" />
-          </motion.div>
-        </section>
+              Stationery & Trading
+            </>
+          }
+          description="Worldwide premium printing stationery and bulk trading solutions. From letterheads to custom packaging, we deliver precision in every print."
+          ctaText="Explore Products"
+          onCtaClick={() => navigate('/products')}
+          images={[
+            "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=900&h=1200&fit=crop&auto=format",
+            "https://images.unsplash.com/photo-1586281380349-632531db7ed4?q=80&w=900&h=1200&fit=crop&auto=format",
+            "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=900&h=1200&fit=crop&auto=format",
+            "https://images.unsplash.com/photo-1561070791-36c11767b26a?q=80&w=900&h=1200&fit=crop&auto=format",
+            "https://images.unsplash.com/photo-1517842645767-c639042777db?q=80&w=900&h=1200&fit=crop&auto=format",
+            "https://images.unsplash.com/photo-1568667256549-094345857637?q=80&w=900&h=1200&fit=crop&auto=format",
+            "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=900&h=1200&fit=crop&auto=format",
+            "https://images.unsplash.com/photo-1586281380349-632531db7ed4?q=80&w=900&h=1200&fit=crop&auto=format",
+          ]}
+        />
 
         {/* Browse by Category Section - Alternating Slide */}
         <section className="min-h-screen flex items-center py-20 px-6">
@@ -237,13 +190,13 @@ const Index = () => {
                   </span>
                 </div>
 
-                <h2 className="text-5xl md:text-6xl font-bold mb-6">
+                <AnimatedHeading className="text-5xl md:text-6xl font-bold mb-6">
                   <span className="text-gray-900">Browse by</span>
                   <br />
                   <span className="bg-gradient-to-r from-orange-600 to-orange-500 bg-clip-text text-transparent">
                     Category
                   </span>
-                </h2>
+                </AnimatedHeading>
 
                 <p className="text-lg text-gray-600 mb-8 leading-relaxed">
                   Discover our comprehensive range of premium printing products. From
@@ -297,23 +250,17 @@ const Index = () => {
                 viewport={viewportConfig}
                 className="relative"
               >
-                <div className="relative rounded-2xl overflow-hidden border border-orange-300 bg-gradient-to-br from-orange-50 to-white p-8 shadow-lg">
-                  <div className="aspect-square bg-gradient-to-br from-orange-100 to-orange-50 rounded-xl flex items-center justify-center">
-                    <motion.div
-                      key={activeCategory}
-                      initial={{ scale: 0.8, opacity: 0, rotate: -10 }}
-                      animate={{ scale: 1, opacity: 1, rotate: 0 }}
-                      transition={{ duration: 0.5 }}
-                    >
-                      {(() => {
-                        const Icon = categories[activeCategory].icon;
-                        return <Icon className="w-32 h-32 text-orange-600" />;
-                      })()}
-                    </motion.div>
-                  </div>
-                  <div className="absolute inset-0 rounded-2xl border border-orange-400 pointer-events-none" />
-                  <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-orange-200/40 to-orange-100/40 blur-xl -z-10" />
-                </div>
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeCategory}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.9 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <CategoryDisplay icon={categories[activeCategory].icon} />
+                  </motion.div>
+                </AnimatePresence>
               </motion.div>
             </div>
           </div>
@@ -334,17 +281,11 @@ const Index = () => {
                 </span>
               </motion.div>
 
-              <motion.h2
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={viewportConfigSmall}
-                transition={{ delay: 0.2 }}
-                className="text-5xl md:text-6xl font-bold mb-6"
-              >
+              <AnimatedHeading delay={0.2} className="text-5xl md:text-6xl font-bold mb-6">
                 <span className="bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
                   Premium Print Solutions
                 </span>
-              </motion.h2>
+              </AnimatedHeading>
 
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
@@ -366,16 +307,29 @@ const Index = () => {
               className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
             >
               {features.map((feature, idx) => (
-                <motion.div key={idx} variants={staircaseItem} className="relative group">
-                  <div className="p-6 rounded-xl border border-orange-300 bg-gradient-to-br from-orange-50 to-white hover:border-orange-500 hover:shadow-lg transition-all duration-300 h-full">
-                    <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-orange-100 to-white flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <motion.div
+                  key={idx}
+                  variants={staircaseItem}
+                  className="relative group perspective-1000"
+                  whileHover={{ y: -8, scale: 1.02 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                >
+                  <motion.div
+                    className="p-6 rounded-xl border border-orange-300 bg-gradient-to-br from-orange-50 to-white hover:border-orange-500 hover:shadow-lg transition-all duration-300 h-full"
+                    whileHover={{ rotateY: 2, rotateX: -2 }}
+                  >
+                    <motion.div
+                      className="w-12 h-12 rounded-lg bg-gradient-to-br from-orange-100 to-white flex items-center justify-center mb-4"
+                      whileHover={{ scale: 1.15, rotate: 5 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                    >
                       <feature.icon className="w-6 h-6 text-orange-600" />
-                    </div>
+                    </motion.div>
                     <h3 className="text-xl font-bold text-gray-900 mb-2">
                       {feature.title}
                     </h3>
                     <p className="text-sm text-gray-600">{feature.desc}</p>
-                  </div>
+                  </motion.div>
                   <div className="absolute -inset-0.5 rounded-xl bg-gradient-to-r from-orange-500/0 to-orange-400/0 group-hover:from-orange-500/30 group-hover:to-orange-400/30 blur opacity-0 group-hover:opacity-100 transition-opacity -z-10" />
                 </motion.div>
               ))}
@@ -399,18 +353,29 @@ const Index = () => {
                   {caseStudies.map((study, idx) => (
                     <motion.div
                       key={idx}
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
+                      initial={{ opacity: 0, x: -30, y: 20 }}
+                      whileInView={{ opacity: 1, x: 0, y: 0 }}
                       viewport={viewportConfigSmall}
-                      transition={{ delay: idx * 0.2 }}
-                      whileHover={{ scale: 1.02 }}
-                      className="relative group"
+                      transition={{ 
+                        delay: idx * 0.15,
+                        duration: 0.6,
+                        ease: [0.25, 0.46, 0.45, 0.94]
+                      }}
+                      whileHover={{ y: -8, scale: 1.02 }}
+                      className="relative group perspective-1000"
                     >
-                      <div className="p-6 rounded-xl border border-orange-300 bg-gradient-to-br from-orange-50 to-white hover:border-orange-500 hover:shadow-lg transition-all duration-300">
+                      <motion.div
+                        className="p-6 rounded-xl border border-orange-300 bg-gradient-to-br from-orange-50 to-white hover:border-orange-500 hover:shadow-lg transition-all duration-300"
+                        whileHover={{ rotateY: 2, rotateX: -1 }}
+                      >
                         <div className="flex items-start gap-4 mb-4">
-                          <div className="w-12 h-12 rounded-lg bg-orange-100 flex items-center justify-center flex-shrink-0">
+                          <motion.div
+                            className="w-12 h-12 rounded-lg bg-orange-100 flex items-center justify-center flex-shrink-0"
+                            whileHover={{ scale: 1.1, rotate: 5 }}
+                            transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                          >
                             <study.icon className="w-6 h-6 text-orange-600" />
-                          </div>
+                          </motion.div>
                           <div>
                             <h3 className="text-xl font-bold text-gray-900 mb-1">
                               {study.company}
@@ -418,14 +383,17 @@ const Index = () => {
                             <p className="text-sm text-gray-600">{study.industry}</p>
                           </div>
                         </div>
-                        <div className="mb-4 p-3 rounded-lg bg-orange-100 border border-orange-300">
+                        <motion.div
+                          className="mb-4 p-3 rounded-lg bg-orange-100 border border-orange-300"
+                          whileHover={{ scale: 1.05 }}
+                        >
                           <div className="text-2xl font-bold text-orange-600">
                             {study.stat.value}
                           </div>
                           <div className="text-sm text-gray-600">{study.stat.label}</div>
-                        </div>
+                        </motion.div>
                         <p className="text-gray-700">{study.description}</p>
-                      </div>
+                      </motion.div>
                       <div className="absolute -inset-0.5 rounded-xl bg-gradient-to-r from-orange-500/0 to-orange-400/0 group-hover:from-orange-500/30 group-hover:to-orange-400/30 blur opacity-0 group-hover:opacity-100 transition-opacity -z-10" />
                     </motion.div>
                   ))}
@@ -446,13 +414,13 @@ const Index = () => {
                   </span>
                 </div>
 
-                <h2 className="text-5xl md:text-6xl font-bold mb-6">
+                <AnimatedHeading className="text-5xl md:text-6xl font-bold mb-6">
                   <span className="text-gray-900">Trusted by</span>
                   <br />
                   <span className="bg-gradient-to-r from-orange-600 to-orange-500 bg-clip-text text-transparent">
                     Thousands Worldwide
                   </span>
-                </h2>
+                </AnimatedHeading>
 
                 <p className="text-lg text-gray-600 mb-8 leading-relaxed">
                   See how businesses like yours have transformed with our solutions.
@@ -504,38 +472,58 @@ const Index = () => {
                   </span>
                 </div>
 
-                <h2 className="text-6xl md:text-7xl font-bold mb-8">
-                  <span className="bg-gradient-to-r from-gray-900 via-orange-600 to-orange-500 bg-clip-text text-transparent">
-                    Elevate Your Print Experience
-                  </span>
-                </h2>
+                <AnimatedHeading className="text-6xl md:text-7xl font-bold mb-8">
+                  <AnimatedText
+                    text="Elevate Your Print Experience"
+                    type="word"
+                    className="bg-gradient-to-r from-gray-900 via-orange-600 to-orange-500 bg-clip-text text-transparent"
+                  />
+                </AnimatedHeading>
 
                 <p className="text-xl text-gray-700 mb-12 leading-relaxed max-w-2xl mx-auto">
                   Let's create something amazing together. Get in touch for custom
                   solutions tailored to your needs.
                 </p>
 
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={viewportConfig}
+                  transition={{ delay: 0.6 }}
+                  className="flex flex-col sm:flex-row gap-4 justify-center"
+                >
                   <Link to="/contact">
-                    <Button
-                      size="lg"
-                      className="bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-white border-0 h-16 px-10 text-lg group"
+                    <motion.div
+                      whileHover={{ scale: 1.05, y: -2 }}
+                      whileTap={{ scale: 0.95 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 17 }}
                     >
-                      <Sparkles className="w-5 h-5 mr-2" />
-                      Get Started Now
-                      <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                    </Button>
+                      <Button
+                        size="lg"
+                        className="bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-white border-0 h-16 px-10 text-lg group"
+                      >
+                        <Sparkles className="w-5 h-5 mr-2" />
+                        Get Started Now
+                        <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                      </Button>
+                    </motion.div>
                   </Link>
                   <Link to="/products">
-                    <Button
-                      size="lg"
-                      variant="outline"
-                      className="border-orange-500 text-gray-900 hover:bg-orange-50 h-16 px-10 text-lg"
+                    <motion.div
+                      whileHover={{ scale: 1.05, y: -2 }}
+                      whileTap={{ scale: 0.95 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 17 }}
                     >
-                      Browse Products
-                    </Button>
+                      <Button
+                        size="lg"
+                        variant="outline"
+                        className="border-orange-500 text-gray-900 hover:bg-orange-50 h-16 px-10 text-lg"
+                      >
+                        Browse Products
+                      </Button>
+                    </motion.div>
                   </Link>
-                </div>
+                </motion.div>
 
                 {/* Contact Info */}
                 <div className="grid md:grid-cols-3 gap-8 mt-16 pt-16 border-t border-orange-300">

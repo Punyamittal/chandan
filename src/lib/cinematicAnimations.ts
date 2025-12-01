@@ -154,11 +154,11 @@ export const glowPulse = {
       '0 0 40px rgba(249, 115, 22, 0.6)',
       '0 0 20px rgba(249, 115, 22, 0.4)',
     ],
-    transition: {
-      duration: 2,
-      repeat: Infinity,
-      ease: 'easeInOut',
-    },
+  },
+  transition: {
+    duration: 2,
+    repeat: Infinity,
+    ease: 'easeInOut' as const,
   },
 };
 

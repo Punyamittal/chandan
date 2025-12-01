@@ -45,10 +45,12 @@ const ReviewCard = ({
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      className="bg-card border border-border rounded-xl p-6 hover:shadow-lg transition-shadow duration-300"
+      initial={{ opacity: 0, y: 30, scale: 0.95 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true, amount: 0.3 }}
+      transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+      whileHover={{ y: -8, scale: 1.02 }}
+      className="bg-card border border-border rounded-xl p-6 hover:shadow-lg transition-shadow duration-300 perspective-1000"
     >
       {/* Header */}
       <div className="flex items-start justify-between mb-4">
@@ -146,6 +148,7 @@ const ReviewCard = ({
 };
 
 export default ReviewCard;
+
 
 
 

@@ -1,6 +1,6 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { motion } from "framer-motion";
+import { motion, stagger } from "framer-motion";
 import {
   leftSlideIn,
   rightSlideIn,
@@ -21,6 +21,8 @@ import {
   Sparkles,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import Floating, { FloatingElement } from "@/components/ui/parallax-floating";
+import { SmoothScrollHero } from "@/components/ui/modern-hero";
 
 const About = () => {
   const milestones = [
@@ -43,43 +45,163 @@ const About = () => {
 
       <Navigation />
       
-      <main className="relative z-10 pt-24">
-        {/* Hero Section */}
-        <section className="py-20 px-6 relative">
-          <motion.div
-            variants={heroMinimal}
-            initial="hidden"
-            animate="visible"
-            className="container mx-auto text-center max-w-5xl"
-          >
-            {/* Glowing Badge */}
+      <main className="relative z-10">
+        {/* Hero Section with Parallax Floating */}
+        <section className="relative min-h-[600px] flex items-center justify-center overflow-hidden bg-gradient-to-b from-white to-orange-50/30">
+          {/* Parallax Floating Background */}
+          <Floating sensitivity={-1} className="overflow-hidden">
+            <FloatingElement depth={0.5} className="top-[8%] left-[11%]">
+              <motion.img
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=400&h=400&fit=crop"
+                alt="Business Cards"
+                className="w-16 h-16 md:w-24 md:h-24 object-cover rounded-lg shadow-lg hover:scale-105 duration-200 cursor-pointer transition-transform border-2 border-orange-200"
+              />
+            </FloatingElement>
+
+            <FloatingElement depth={1} className="top-[10%] left-[32%]">
+              <motion.img
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?q=80&w=400&h=400&fit=crop"
+                alt="Letterheads"
+                className="w-20 h-20 md:w-28 md:h-28 object-cover rounded-lg shadow-lg hover:scale-105 duration-200 cursor-pointer transition-transform border-2 border-orange-200"
+              />
+            </FloatingElement>
+
+            <FloatingElement depth={2} className="top-[2%] left-[53%]">
+              <motion.img
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=400&h=600&fit=crop"
+                alt="Diaries"
+                className="w-28 h-40 md:w-40 md:h-52 object-cover rounded-lg shadow-lg hover:scale-105 duration-200 cursor-pointer transition-transform border-2 border-orange-200"
+              />
+            </FloatingElement>
+
+            <FloatingElement depth={1} className="top-[0%] left-[83%]">
+              <motion.img
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+                src="https://images.unsplash.com/photo-1517842645767-c639042777db?q=80&w=400&h=400&fit=crop"
+                alt="Notebooks"
+                className="w-24 h-24 md:w-32 md:h-32 object-cover rounded-lg shadow-lg hover:scale-105 duration-200 cursor-pointer transition-transform border-2 border-orange-200"
+              />
+            </FloatingElement>
+
+            <FloatingElement depth={1} className="top-[40%] left-[2%]">
+              <motion.img
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+                src="https://images.unsplash.com/photo-1561070791-36c11767b26a?q=80&w=400&h=400&fit=crop"
+                alt="Visiting Cards"
+                className="w-28 h-28 md:w-36 md:h-36 object-cover rounded-lg shadow-lg hover:scale-105 duration-200 cursor-pointer transition-transform border-2 border-orange-200"
+              />
+            </FloatingElement>
+
+            <FloatingElement depth={2} className="top-[70%] left-[77%]">
+              <motion.img
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.6 }}
+                src="https://images.unsplash.com/photo-1568667256549-094345857637?q=80&w=400&h=600&fit=crop"
+                alt="File Covers"
+                className="w-28 h-28 md:w-36 md:h-48 object-cover rounded-lg shadow-lg hover:scale-105 duration-200 cursor-pointer transition-transform border-2 border-orange-200"
+              />
+            </FloatingElement>
+
+            <FloatingElement depth={4} className="top-[73%] left-[15%]">
+              <motion.img
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.7 }}
+                src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=600&h=400&fit=crop"
+                alt="Premium Printing"
+                className="w-40 md:w-52 h-full object-cover rounded-lg shadow-lg hover:scale-105 duration-200 cursor-pointer transition-transform border-2 border-orange-200"
+              />
+            </FloatingElement>
+
+            <FloatingElement depth={1} className="top-[80%] left-[50%]">
+              <motion.img
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.8 }}
+                src="https://images.unsplash.com/photo-1517842645767-c639042777db?q=80&w=400&h=400&fit=crop"
+                alt="Stationery"
+                className="w-24 h-24 md:w-32 md:h-32 object-cover rounded-lg shadow-lg hover:scale-105 duration-200 cursor-pointer transition-transform border-2 border-orange-200"
+              />
+            </FloatingElement>
+          </Floating>
+
+          {/* Hero Content Overlay */}
+          <div className="relative z-10 container mx-auto px-6">
             <motion.div
-              animate={glowPulse.animate}
-              className="inline-block mb-8 px-6 py-2 rounded-full border border-orange-500/50 bg-orange-50"
+              variants={heroMinimal}
+              initial="hidden"
+              animate="visible"
+              className="text-center max-w-5xl mx-auto"
             >
-              <span className="text-sm font-medium text-orange-600">
-                ABOUT US
-              </span>
-            </motion.div>
+              {/* Glowing Badge */}
+              <motion.div
+                animate={glowPulse.animate}
+                className="inline-block mb-8 px-6 py-2 rounded-full border border-orange-500/50 bg-orange-50/90 backdrop-blur-sm"
+              >
+                <span className="text-sm font-medium text-orange-600">
+                  ABOUT US
+                </span>
+              </motion.div>
 
-            <h1 className="text-5xl md:text-7xl font-bold mb-8 leading-tight">
-              <span className="bg-gradient-to-r from-gray-900 via-orange-600 to-orange-500 bg-clip-text text-transparent">
-                Precision in Every Print
-              </span>
-              <br />
-              <span className="text-gray-900">Established Excellence</span>
-              </h1>
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="text-5xl md:text-7xl font-bold mb-8 leading-tight"
+              >
+                <span className="bg-gradient-to-r from-gray-900 via-orange-600 to-orange-500 bg-clip-text text-transparent">
+                  Precision in Every Print
+                </span>
+                <br />
+                <span className="text-gray-900">Established Excellence</span>
+              </motion.h1>
 
-            <p className="text-xl md:text-2xl text-gray-600 mb-12 max-w-4xl mx-auto leading-relaxed">
-                For over a decade, Chandan Trading Company has been at the forefront of printing stationery and print media, 
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="text-xl md:text-2xl text-gray-700 mb-12 max-w-4xl mx-auto leading-relaxed font-medium"
+              >
+                For over a decade, Chandan Trading Company has been at the forefront of printing stationery and print media,
                 combining traditional expertise with modern practices to deliver unmatched quality and service.
-              </p>
-
-            {/* Floating Accent Elements */}
-            <div className="absolute top-1/4 left-10 w-64 h-64 bg-orange-200/30 rounded-full blur-3xl animate-pulse" />
-            <div className="absolute bottom-1/4 right-10 w-96 h-96 bg-orange-100/40 rounded-full blur-3xl animate-pulse delay-1000" />
+              </motion.p>
             </motion.div>
+          </div>
         </section>
+
+        {/* Partition/Separator after Hero */}
+        <div className="relative w-full bg-gradient-to-b from-orange-50/30 via-white to-white">
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-orange-500/20 to-transparent h-px"></div>
+          <div className="h-24 md:h-32 flex items-center justify-center">
+            <div className="w-full max-w-6xl mx-auto px-6">
+              <div className="flex items-center gap-4">
+                <div className="flex-1 h-px bg-gradient-to-r from-transparent via-orange-500/50 to-orange-500/50"></div>
+                <div className="flex items-center gap-2 px-4 py-2 bg-orange-500/10 backdrop-blur-sm border border-orange-500/30 rounded-full">
+                  <Award className="w-4 h-4 text-orange-400" />
+                  <span className="text-sm font-medium text-orange-700">Our Story</span>
+                </div>
+                <div className="flex-1 h-px bg-gradient-to-l from-transparent via-orange-500/50 to-orange-500/50"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Modern Hero Section with Smooth Scroll */}
+        <SmoothScrollHero />
 
         {/* Values Section - Alternating Slides */}
         <section className="py-20 px-6 bg-gradient-to-b from-transparent to-orange-50">

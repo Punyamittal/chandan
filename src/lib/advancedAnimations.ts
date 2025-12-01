@@ -1,371 +1,233 @@
 /**
  * Advanced Animation Variants
- * Premium animations with spring physics and custom easing
+ * Inspired by modern portfolio sites with sophisticated interactions
  */
 
-import { Variants } from 'framer-motion';
+import { Variants, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { useEffect, RefObject } from "react";
 
-// Advanced Easing Curves
-export const advancedEasing = {
-  // Premium smooth cubic bezier
-  premium: [0.6, 0.01, 0.05, 0.95],
-  // Dramatic entrance
-  dramatic: [0.87, 0, 0.13, 1],
-  // Bouncy spring
-  springy: { type: 'spring', stiffness: 400, damping: 25 },
-  // Soft elastic
-  elastic: { type: 'spring', stiffness: 200, damping: 12 },
-  // Anticipation
-  anticipate: [0.68, -0.55, 0.265, 1.55],
-};
-
-// Zoom In Reveal
-export const zoomIn: Variants = {
-  hidden: {
-    opacity: 0,
-    scale: 0.5,
-    filter: 'blur(20px)',
-  },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    filter: 'blur(0px)',
-    transition: {
-      duration: 0.8,
-      ease: advancedEasing.premium,
-    },
-  },
-};
-
-// Pop Effect
-export const popEffect: Variants = {
-  hidden: {
-    opacity: 0,
-    scale: 0,
-  },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    transition: advancedEasing.springy,
-  },
-};
-
-// Slide Scale (zoom + slide combination)
-export const slideScale: Variants = {
-  hidden: {
-    opacity: 0,
-    y: 100,
-    scale: 0.8,
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: {
-      duration: 0.9,
-      ease: advancedEasing.dramatic,
-    },
-  },
-};
-
-// 3D Flip In
-export const flipIn: Variants = {
-  hidden: {
-    opacity: 0,
-    rotateX: -90,
-    scale: 0.8,
-  },
-  visible: {
-    opacity: 1,
-    rotateX: 0,
-    scale: 1,
-    transition: {
-      duration: 0.8,
-      ease: advancedEasing.premium,
-    },
-  },
-};
-
-// Magnetic Hover Effect
-export const magneticHover = {
-  hover: {
-    scale: 1.05,
-    transition: advancedEasing.elastic,
-  },
-  tap: {
-    scale: 0.95,
-  },
-};
-
-// Glow Pulse Animation
-export const glowPulse = {
-  animate: {
-    boxShadow: [
-      '0 0 20px rgba(138, 43, 226, 0.3)',
-      '0 0 60px rgba(138, 43, 226, 0.6)',
-      '0 0 20px rgba(138, 43, 226, 0.3)',
-    ],
-    transition: {
-      duration: 2,
-      repeat: Infinity,
-      ease: 'easeInOut',
-    },
-  },
-};
-
-// Text Shimmer
-export const textShimmer: Variants = {
-  animate: {
-    backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
-    transition: {
-      duration: 3,
-      repeat: Infinity,
-      ease: 'linear',
-    },
-  },
-};
-
-// Morph Shape
-export const morphShape = {
-  animate: {
-    borderRadius: ['30% 70% 70% 30% / 30% 30% 70% 70%', '70% 30% 30% 70% / 70% 70% 30% 30%', '30% 70% 70% 30% / 30% 30% 70% 70%'],
-    transition: {
-      duration: 10,
-      repeat: Infinity,
-      ease: 'easeInOut',
-    },
-  },
-};
-
-// Staggered Grid
-export const staggeredGrid: Variants = {
+// Text reveal animation - character by character
+export const textReveal: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.08,
+      staggerChildren: 0.02,
       delayChildren: 0.1,
-      when: 'beforeChildren',
     },
   },
 };
 
-// Grid Item
-export const gridItem: Variants = {
+export const textRevealChar: Variants = {
   hidden: {
     opacity: 0,
-    scale: 0.8,
     y: 20,
+    rotateX: -90,
   },
   visible: {
     opacity: 1,
-    scale: 1,
     y: 0,
-    transition: advancedEasing.elastic,
-  },
-};
-
-// Spiral In
-export const spiralIn: Variants = {
-  hidden: {
-    opacity: 0,
-    scale: 0,
-    rotate: -180,
-  },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    rotate: 0,
+    rotateX: 0,
     transition: {
-      duration: 1,
-      ease: advancedEasing.premium,
+      duration: 0.5,
+      ease: [0.25, 0.46, 0.45, 0.94],
     },
   },
 };
 
-// Wave Stagger
-export const waveStagger: Variants = {
+// Word-by-word reveal
+export const wordReveal: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.05,
-      staggerDirection: 1,
+      staggerChildren: 0.1,
+      delayChildren: 0.2,
     },
   },
 };
 
-// Wave Item
-export const waveItem: Variants = {
+export const wordRevealItem: Variants = {
   hidden: {
     opacity: 0,
-    y: 50,
+    y: 30,
+    clipPath: "inset(100% 0 0 0)",
   },
   visible: {
     opacity: 1,
     y: 0,
-    transition: {
-      type: 'spring',
-      stiffness: 300,
-      damping: 20,
-    },
-  },
-};
-
-// Parallax Layer Generator
-export const parallaxLayer = (depth: number): Variants => ({
-  hidden: { opacity: 0, y: depth * 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 1 + depth * 0.2,
-      ease: advancedEasing.premium,
-    },
-  },
-});
-
-// Liquid Morph
-export const liquidMorph = {
-  animate: {
-    scale: [1, 1.05, 0.95, 1],
-    rotate: [0, 2, -2, 0],
-    transition: {
-      duration: 4,
-      repeat: Infinity,
-      ease: 'easeInOut',
-    },
-  },
-};
-
-// Aurora Glow
-export const auroraGlow = {
-  animate: {
-    background: [
-      'linear-gradient(45deg, #ff0080, #ff8c00, #40e0d0)',
-      'linear-gradient(90deg, #ff8c00, #40e0d0, #ff0080)',
-      'linear-gradient(135deg, #40e0d0, #ff0080, #ff8c00)',
-      'linear-gradient(45deg, #ff0080, #ff8c00, #40e0d0)',
-    ],
-    transition: {
-      duration: 10,
-      repeat: Infinity,
-      ease: 'linear',
-    },
-  },
-};
-
-// Scale Rotate
-export const scaleRotate: Variants = {
-  hidden: {
-    opacity: 0,
-    scale: 0.5,
-    rotate: -45,
-  },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    rotate: 0,
-    transition: {
-      duration: 0.8,
-      ease: advancedEasing.elastic,
-    },
-  },
-};
-
-// Hover Shine Effect
-export const hoverShine = {
-  hover: {
-    background: [
-      'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.3) 50%, transparent 100%) 0% 0% / 200% 100%',
-      'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.3) 50%, transparent 100%) 100% 0% / 200% 100%',
-    ],
+    clipPath: "inset(0% 0 0 0)",
     transition: {
       duration: 0.6,
+      ease: [0.25, 0.46, 0.45, 0.94],
     },
   },
 };
 
-// Perspective Flip
-export const perspectiveFlip: Variants = {
-  hidden: {
-    opacity: 0,
-    rotateY: 90,
-    scale: 0.8,
-  },
-  visible: {
-    opacity: 1,
-    rotateY: 0,
-    scale: 1,
-    transition: {
-      duration: 0.8,
-      ease: advancedEasing.premium,
-    },
-  },
+// Magnetic hover effect hook
+export const useMagnetic = (strength: number = 0.3) => {
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const springX = useSpring(x, { stiffness: 150, damping: 15 });
+  const springY = useSpring(y, { stiffness: 150, damping: 15 });
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    const distanceX = (e.clientX - centerX) * strength;
+    const distanceY = (e.clientY - centerY) * strength;
+    x.set(distanceX);
+    y.set(distanceY);
+  };
+
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+  };
+
+  return {
+    style: { x: springX, y: springY },
+    onMouseMove: handleMouseMove,
+    onMouseLeave: handleMouseLeave,
+  };
 };
 
-// Viewport Animation Config
-export const viewportConfig = {
-  once: true,
-  amount: 0.3,
-  margin: '-10%',
+// 3D tilt effect hook
+export const useTilt3D = (maxTilt: number = 15) => {
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const rotateX = useTransform(y, [-0.5, 0.5], [maxTilt, -maxTilt]);
+  const rotateY = useTransform(x, [-0.5, 0.5], [-maxTilt, maxTilt]);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    const xPos = (e.clientX - centerX) / rect.width;
+    const yPos = (e.clientY - centerY) / rect.height;
+    x.set(xPos);
+    y.set(yPos);
+  };
+
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+  };
+
+  return {
+    style: { rotateX, rotateY, transformStyle: "preserve-3d" as const },
+    onMouseMove: handleMouseMove,
+    onMouseLeave: handleMouseLeave,
+  };
 };
 
-// Paint Splash Animation
-export const paintSplash: Variants = {
-  hidden: {
-    opacity: 0,
-    scale: 0,
-    rotate: -180,
-  },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    rotate: 0,
-    transition: {
-      type: 'spring',
-      stiffness: 260,
-      damping: 20,
-      duration: 0.8,
-    },
-  },
+// Scroll progress hook
+export const useScrollProgress = (ref: RefObject<HTMLElement>) => {
+  const scrollProgress = useMotionValue(0);
+
+  useEffect(() => {
+    const element = ref.current;
+    if (!element) return;
+
+    const updateProgress = () => {
+      const rect = element.getBoundingClientRect();
+      const scrollTop = window.scrollY;
+      const elementTop = rect.top + scrollTop;
+      const elementHeight = rect.height;
+      const windowHeight = window.innerHeight;
+      const progress = Math.max(
+        0,
+        Math.min(
+          1,
+          (scrollTop + windowHeight - elementTop) / (elementHeight + windowHeight)
+        )
+      );
+      scrollProgress.set(progress);
+    };
+
+    window.addEventListener("scroll", updateProgress);
+    updateProgress();
+
+    return () => window.removeEventListener("scroll", updateProgress);
+  }, [ref, scrollProgress]);
+
+  return scrollProgress;
 };
 
-// Blur In Animation
-export const blurIn: Variants = {
-  hidden: {
-    opacity: 0,
-    filter: 'blur(10px)',
-  },
-  visible: {
-    opacity: 1,
-    filter: 'blur(0px)',
-    transition: {
-      duration: 0.6,
-      ease: advancedEasing.premium,
-    },
-  },
+// Animated counter hook
+export const useAnimatedCounter = (
+  target: number,
+  duration: number = 2,
+  startOnView: boolean = true
+) => {
+  const count = useMotionValue(0);
+  const rounded = useTransform(count, (latest) => Math.round(latest));
+
+  useEffect(() => {
+    if (!startOnView) {
+      const controls = { stop: () => {} };
+      return () => controls.stop();
+    }
+
+    const animate = () => {
+      count.set(0);
+      const startTime = Date.now();
+      const animateFrame = () => {
+        const elapsed = (Date.now() - startTime) / 1000;
+        const progress = Math.min(elapsed / duration, 1);
+        const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+        count.set(target * easeOutQuart);
+
+        if (progress < 1) {
+          requestAnimationFrame(animateFrame);
+        }
+      };
+      requestAnimationFrame(animateFrame);
+    };
+
+    animate();
+  }, [target, duration, count, startOnView]);
+
+  return rounded;
 };
 
-// Fade Pop Animation
-export const fadePop: Variants = {
-  hidden: {
-    opacity: 0,
-    scale: 0.8,
-  },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    transition: {
-      type: 'spring',
-      stiffness: 400,
-      damping: 25,
-    },
-  },
+// Parallax scroll hook
+export const useParallax = (
+  ref: RefObject<HTMLElement>,
+  speed: number = 0.5
+) => {
+  const y = useMotionValue(0);
+
+  useEffect(() => {
+    const element = ref.current;
+    if (!element) return;
+
+    const updateParallax = () => {
+      const rect = element.getBoundingClientRect();
+      const scrollY = window.scrollY;
+      const elementTop = rect.top + scrollY;
+      const windowHeight = window.innerHeight;
+      const elementHeight = rect.height;
+
+      const scrolled = scrollY + windowHeight - elementTop;
+      const progress = scrolled / (windowHeight + elementHeight);
+      y.set(progress * 100 * speed);
+    };
+
+    window.addEventListener("scroll", updateParallax);
+    updateParallax();
+
+    return () => window.removeEventListener("scroll", updateParallax);
+  }, [ref, y, speed]);
+
+  return y;
 };
 
-// Rise Up Animation
-export const riseUp: Variants = {
+// Fade in on scroll
+export const fadeInUp: Variants = {
   hidden: {
     opacity: 0,
     y: 60,
@@ -374,26 +236,103 @@ export const riseUp: Variants = {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.7,
-      ease: advancedEasing.premium,
+      duration: 0.8,
+      ease: [0.25, 0.46, 0.45, 0.94],
     },
   },
 };
 
-// Expand From Corner Animation
-export const expandFromCorner: Variants = {
+// Scale in animation
+export const scaleIn: Variants = {
   hidden: {
     opacity: 0,
-    scale: 0,
-    transformOrigin: 'top right',
+    scale: 0.8,
   },
   visible: {
     opacity: 1,
     scale: 1,
     transition: {
-      duration: 0.8,
-      ease: advancedEasing.dramatic,
+      duration: 0.6,
+      ease: [0.25, 0.46, 0.45, 0.94],
     },
   },
 };
 
+// Rotate in animation
+export const rotateIn: Variants = {
+  hidden: {
+    opacity: 0,
+    rotate: -10,
+    scale: 0.9,
+  },
+  visible: {
+    opacity: 1,
+    rotate: 0,
+    scale: 1,
+    transition: {
+      duration: 0.7,
+      ease: [0.25, 0.46, 0.45, 0.94],
+    },
+  },
+};
+
+// Slide in from sides with blur
+export const slideInBlur: Variants = {
+  hidden: {
+    opacity: 0,
+    x: -100,
+    filter: "blur(10px)",
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+    filter: "blur(0px)",
+    transition: {
+      duration: 0.8,
+      ease: [0.25, 0.46, 0.45, 0.94],
+    },
+  },
+};
+
+// Stagger container
+export const staggerContainer: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2,
+    },
+  },
+};
+
+// Hover lift effect
+export const hoverLift = {
+  whileHover: {
+    y: -10,
+    scale: 1.02,
+    transition: {
+      duration: 0.3,
+      ease: [0.25, 0.46, 0.45, 0.94],
+    },
+  },
+  whileTap: {
+    scale: 0.98,
+  },
+};
+
+// Glow pulse animation
+export const glowPulse = {
+  animate: {
+    boxShadow: [
+      "0 0 20px rgba(249, 115, 22, 0.4)",
+      "0 0 40px rgba(249, 115, 22, 0.6)",
+      "0 0 20px rgba(249, 115, 22, 0.4)",
+    ],
+  },
+  transition: {
+    duration: 2,
+    repeat: Infinity,
+    ease: "easeInOut",
+  },
+};

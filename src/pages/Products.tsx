@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/select";
 import { LayoutGrid, List, Package, Star, TrendingUp, ShoppingCart, SlidersHorizontal } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { BackgroundPaths } from "@/components/ui/background-paths";
 import {
   leftSlideIn,
   rightSlideIn,
@@ -242,39 +243,47 @@ const Products = () => {
 
       <Navigation />
 
-      <main className="relative z-10 pt-24">
-        {/* Hero Section */}
-        <section className="py-20 px-6 relative">
-          <motion.div
-            variants={heroMinimal}
-            initial="hidden"
-            animate="visible"
-            className="container mx-auto text-center max-w-5xl"
-          >
-            {/* Glowing Badge */}
+      <main className="relative z-10">
+        {/* Hero Section - Background Paths */}
+        <BackgroundPaths 
+          title="Our Premium Products" 
+          buttonText="Explore Collection"
+          onButtonClick={() => {
+            // Scroll to products section
+            const productsSection = document.querySelector('[data-products-section]');
+            if (productsSection) {
+              productsSection.scrollIntoView({ behavior: 'smooth' });
+            }
+          }}
+        />
+
+        {/* Partition/Separator after Hero */}
+        <div className="relative w-full bg-gradient-to-b from-white via-orange-50 to-white">
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-orange-500/20 to-transparent h-px"></div>
+          <div className="h-24 md:h-32 flex items-center justify-center">
+            <div className="w-full max-w-6xl mx-auto px-6">
+              <div className="flex items-center gap-4">
+                <div className="flex-1 h-px bg-gradient-to-r from-transparent via-orange-500/50 to-orange-500/50"></div>
+                <div className="flex items-center gap-2 px-4 py-2 bg-orange-500/10 backdrop-blur-sm border border-orange-500/30 rounded-full">
+                  <Package className="w-4 h-4 text-orange-400" />
+                  <span className="text-sm font-medium text-orange-700">Premium Quality</span>
+                </div>
+                <div className="flex-1 h-px bg-gradient-to-l from-transparent via-orange-500/50 to-orange-500/50"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Stats Section */}
+        <section className="py-12 px-6 bg-gradient-to-b from-white to-orange-50">
+          <div className="container mx-auto">
             <motion.div
-              animate={glowPulse.animate}
-              className="inline-block mb-8 px-6 py-2 rounded-full border border-orange-500/50 bg-orange-50"
+              variants={staircaseContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={viewportConfig}
+              className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto"
             >
-              <span className="text-sm font-medium text-orange-600">
-                <Package className="w-4 h-4 inline mr-2" />
-                PREMIUM PRODUCTS
-              </span>
-            </motion.div>
-
-            <h1 className="text-5xl md:text-7xl font-bold mb-8 leading-tight">
-              <span className="bg-gradient-to-r from-gray-900 via-orange-600 to-orange-500 bg-clip-text text-transparent">
-                Our Products
-              </span>
-            </h1>
-
-            <p className="text-xl md:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed">
-              Discover our comprehensive range of premium printing products. Quality
-              materials, competitive prices, and fast turnaround times.
-            </p>
-
-            {/* Stats */}
-            <div className="grid grid-cols-3 gap-6 max-w-3xl mx-auto">
               {[
                 { icon: Package, value: "500+", label: "Products" },
                 { icon: Star, value: "4.8", label: "Rating" },
@@ -282,26 +291,20 @@ const Products = () => {
               ].map((stat, idx) => (
                 <motion.div
                   key={idx}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5 + idx * 0.1 }}
-                  className="p-6 rounded-xl border border-orange-300 bg-gradient-to-br from-orange-50 to-white"
+                  variants={staircaseItem}
+                  className="p-6 rounded-xl border border-orange-300 bg-gradient-to-br from-orange-50 to-white hover:shadow-lg transition-shadow"
                 >
                   <stat.icon className="w-8 h-8 text-orange-600 mx-auto mb-3" />
                   <div className="text-3xl font-bold text-gray-900 mb-1">{stat.value}</div>
                   <div className="text-sm text-gray-600">{stat.label}</div>
                 </motion.div>
               ))}
-            </div>
-
-            {/* Floating Accent Elements */}
-            <div className="absolute top-1/4 left-10 w-64 h-64 bg-orange-200/30 rounded-full blur-3xl animate-pulse" />
-            <div className="absolute bottom-1/4 right-10 w-96 h-96 bg-orange-100/40 rounded-full blur-3xl animate-pulse delay-1000" />
-          </motion.div>
+            </motion.div>
+          </div>
         </section>
 
         {/* Filters and Sorting */}
-        <section className="py-8 px-6 bg-gradient-to-b from-transparent to-orange-50">
+        <section className="py-8 px-6 bg-gradient-to-b from-transparent to-orange-50" data-products-section>
           <div className="container mx-auto">
             <motion.div
               variants={leftSlideIn}
@@ -366,9 +369,9 @@ const Products = () => {
         </section>
 
         {/* Products with Filters */}
-        <section className="py-12 px-6">
-          <div className="container mx-auto">
-            <div className="flex flex-col lg:flex-row gap-8">
+        <section className="py-12 px-4 sm:px-6" data-products-section>
+          <div className="container mx-auto max-w-7xl">
+            <div className="flex flex-col lg:flex-row gap-4 md:gap-6 lg:gap-8">
               {/* Filters Sidebar */}
               <motion.div
                 variants={leftSlideIn}
@@ -388,7 +391,7 @@ const Products = () => {
               </motion.div>
 
               {/* Products Grid */}
-              <div className="flex-1">
+              <div className="flex-1 w-full min-w-0 overflow-visible">
                 {sortedProducts.length === 0 ? (
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -426,12 +429,12 @@ const Products = () => {
                     viewport={viewportConfig}
                     className={
                       viewMode === "grid"
-                        ? "grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8"
-                        : "flex flex-col gap-6"
+                        ? "grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6 lg:gap-8 w-full"
+                        : "flex flex-col gap-4 md:gap-6 w-full"
                     }
                   >
                     {sortedProducts.map((product, idx) => (
-                      <motion.div key={product.id} variants={staircaseItem}>
+                      <motion.div key={product.id} variants={staircaseItem} className="w-full">
                         <BulkProductCard
                           {...product}
                           viewMode={viewMode}
