@@ -60,23 +60,27 @@ const Contact = () => {
         {/* Contact Form & Info Section */}
         <section className="py-20 px-6 bg-gradient-to-b from-transparent to-orange-50">
           <div className="container mx-auto max-w-6xl">
-            <div className="grid lg:grid-cols-2 gap-12">
+            <div className="grid lg:grid-cols-2 gap-12 items-stretch">
               {/* Contact Form - Left Slide In */}
               <motion.div
                 variants={leftSlideIn}
                 initial="hidden"
                 whileInView="visible"
                 viewport={viewportConfig}
-                className="relative group"
+                className="relative group flex"
               >
-                <div className="bg-white rounded-2xl p-8 border border-orange-300 hover:border-orange-500 hover:shadow-xl transition-all duration-300">
-                  <Badge className="mb-6 px-4 py-2 border-orange-500 bg-orange-50 text-orange-600">
-                    REQUEST A QUOTE
-                  </Badge>
+                <div className="bg-white rounded-2xl p-8 border border-orange-300 hover:border-orange-500 hover:shadow-xl transition-all duration-300 w-full flex flex-col">
+                  <div className="mb-8">
+                    <Badge className="mb-4 px-3 py-1 text-xs font-semibold border-orange-500/50 bg-orange-50/80 text-orange-600 rounded-full">
+                      REQUEST A QUOTE
+                    </Badge>
+                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight">Send Us a Message</h2>
+                    <p className="text-gray-600 mt-3 text-sm">
+                      Fill out the form below and we'll get back to you within 24 hours.
+                    </p>
+                  </div>
 
-                  <h2 className="text-3xl font-bold mb-6 text-gray-900">Send Us a Message</h2>
-
-                  <form onSubmit={handleSubmit} className="space-y-6">
+                  <form onSubmit={handleSubmit} className="space-y-6 flex-1 flex flex-col">
                     <div className="grid md:grid-cols-2 gap-4">
                       <div className="space-y-2">
                         <Label htmlFor="name" className="text-gray-700 font-medium">
@@ -151,20 +155,20 @@ const Contact = () => {
                       />
                     </div>
 
-                    <div className="space-y-2">
+                    <div className="space-y-2 flex-1 flex flex-col">
                       <Label htmlFor="message" className="text-gray-700 font-medium">
                         Message
                       </Label>
                       <Textarea
                         id="message"
                         placeholder="Tell us about your requirements..."
-                        rows={5}
+                        rows={6}
                         required
-                        className="border-orange-300 focus:border-orange-500 focus:ring-orange-500"
+                        className="border-orange-300 focus:border-orange-500 focus:ring-orange-500 min-h-[120px]"
                       />
                     </div>
 
-                    <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                    <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="mt-auto">
                       <Button
                         type="submit"
                         size="lg"

@@ -174,9 +174,9 @@ const Index = () => {
         />
 
         {/* Browse by Category Section - Alternating Slide */}
-        <section className="min-h-screen flex items-center py-20 px-6">
+        <section className="min-h-screen flex items-center py-16 px-6">
           <div className="container mx-auto">
-            <div className="grid md:grid-cols-2 gap-16 items-center">
+            <div className="grid md:grid-cols-2 gap-16 items-end">
               {/* Text - Left Slide In */}
               <motion.div
                 variants={leftSlideIn}
@@ -184,8 +184,8 @@ const Index = () => {
                 whileInView="visible"
                 viewport={viewportConfig}
               >
-                <div className="inline-block mb-4 px-4 py-1 rounded-full border border-orange-500/50 bg-orange-50">
-                  <span className="text-xs font-medium text-orange-600">
+                <div className="inline-block mb-3 px-3.5 py-0.5 rounded-full border border-orange-500/50 bg-orange-50">
+                  <span className="text-[10px] font-medium text-orange-600">
                     PRODUCT CATEGORIES
                   </span>
                 </div>
@@ -198,7 +198,7 @@ const Index = () => {
                   </span>
                 </AnimatedHeading>
 
-                <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+                <p className="text-base text-gray-600 mb-6 leading-relaxed">
                   Discover our comprehensive range of premium printing products. From
                   corporate stationery to custom packaging, we have everything you need.
                 </p>
@@ -211,31 +211,31 @@ const Index = () => {
                         key={idx}
                         onClick={() => setActiveCategory(idx)}
                         whileHover={{ x: 10 }}
-                        className={`w-full flex items-center gap-4 p-4 rounded-xl border transition-all duration-300 ${
+                        className={`w-full flex items-center gap-3 p-3.5 rounded-xl border transition-all duration-300 ${
                           activeCategory === idx
                             ? "border-orange-500 bg-gradient-to-r from-orange-50 to-white shadow-md"
                             : "border-orange-300 bg-white hover:border-orange-500 hover:shadow-sm"
                         }`}
                       >
                         <div
-                          className={`w-12 h-12 rounded-lg flex items-center justify-center ${
+                          className={`w-10 h-10 rounded-lg flex items-center justify-center ${
                             category.color === "orange"
                               ? "bg-orange-100"
                               : "bg-gray-100"
                           }`}
                         >
                           <Icon
-                            className={`w-6 h-6 ${
+                            className={`w-5 h-5 ${
                               category.color === "orange"
                                 ? "text-orange-600"
                                 : "text-gray-700"
                             }`}
                           />
                         </div>
-                        <span className="text-lg font-medium text-gray-900">
+                        <span className="text-base font-medium text-gray-900">
                           {category.name}
                         </span>
-                        <ChevronRight className="w-5 h-5 text-gray-500 ml-auto" />
+                        <ChevronRight className="w-4 h-4 text-gray-500 ml-auto" />
                       </motion.button>
                     );
                   })}
@@ -267,16 +267,16 @@ const Index = () => {
         </section>
 
         {/* Why Choose Us - Staircase Reveal */}
-        <section className="min-h-screen flex items-center py-20 px-6 bg-gradient-to-b from-transparent to-orange-50">
+        <section className="min-h-screen flex items-center py-16 px-6 bg-gradient-to-b from-transparent to-orange-50">
           <div className="container mx-auto">
-            <div className="text-center mb-16">
+            <div className="text-center mb-12">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={viewportConfigSmall}
-                className="inline-block mb-4 px-4 py-1 rounded-full border border-orange-500/50 bg-orange-50"
+                className="inline-block mb-3 px-3.5 py-0.5 rounded-full border border-orange-500/50 bg-orange-50"
               >
-                <span className="text-xs font-medium text-orange-600">
+                <span className="text-[10px] font-medium text-orange-600">
                   WHY CHOOSE US
                 </span>
               </motion.div>
@@ -292,7 +292,7 @@ const Index = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={viewportConfigSmall}
                 transition={{ delay: 0.3 }}
-                className="text-xl text-gray-600 max-w-3xl mx-auto"
+                className="text-base text-gray-600 max-w-3xl mx-auto"
               >
                 Experience excellence in every print with our state-of-the-art facilities
               </motion.p>
@@ -304,7 +304,7 @@ const Index = () => {
               initial="hidden"
               whileInView="visible"
               viewport={viewportConfig}
-              className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
+              className="grid md:grid-cols-2 lg:grid-cols-4 gap-5"
             >
               {features.map((feature, idx) => (
                 <motion.div
@@ -338,9 +338,9 @@ const Index = () => {
         </section>
 
         {/* Customer Success Stories - Alternating Slide Reversed */}
-        <section className="min-h-screen flex items-center py-20 px-6">
+        <section className="min-h-screen flex items-center py-16 px-6">
           <div className="container mx-auto">
-            <div className="grid md:grid-cols-2 gap-16 items-center">
+            <div className="grid md:grid-cols-2 gap-16 items-start">
               {/* Image/Content - Right Slide In (on left side) */}
               <motion.div
                 variants={rightSlideIn}
@@ -349,7 +349,7 @@ const Index = () => {
                 viewport={viewportConfig}
                 className="relative order-2 md:order-1"
               >
-                <div className="space-y-6">
+                <div className="space-y-5">
                   {caseStudies.map((study, idx) => (
                     <motion.div
                       key={idx}
@@ -377,10 +377,10 @@ const Index = () => {
                             <study.icon className="w-6 h-6 text-orange-600" />
                           </motion.div>
                           <div>
-                            <h3 className="text-xl font-bold text-gray-900 mb-1">
+                            <h3 className="text-lg font-bold text-gray-900 mb-1">
                               {study.company}
                             </h3>
-                            <p className="text-sm text-gray-600">{study.industry}</p>
+                            <p className="text-xs text-gray-600">{study.industry}</p>
                           </div>
                         </div>
                         <motion.div
@@ -408,8 +408,8 @@ const Index = () => {
                 viewport={viewportConfig}
                 className="order-1 md:order-2"
               >
-                <div className="inline-block mb-4 px-4 py-1 rounded-full border border-orange-500/50 bg-orange-50">
-                  <span className="text-xs font-medium text-orange-600">
+                <div className="inline-block mb-3 px-3.5 py-0.5 rounded-full border border-orange-500/50 bg-orange-50">
+                  <span className="text-[10px] font-medium text-orange-600">
                     SUCCESS STORIES
                   </span>
                 </div>
@@ -422,23 +422,23 @@ const Index = () => {
                   </span>
                 </AnimatedHeading>
 
-                <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+                <p className="text-base text-gray-600 mb-6 leading-relaxed">
                   See how businesses like yours have transformed with our solutions.
                   Delivering excellence in every print since 2009.
                 </p>
 
-                <ul className="space-y-4">
+                <ul className="space-y-3">
                   {[
                     "15+ Years of industry expertise",
                     "10,000+ projects delivered globally",
                     "500+ premium printing products",
                     "98% client satisfaction rating",
                   ].map((item, idx) => (
-                    <li key={idx} className="flex items-start gap-3">
-                      <div className="w-6 h-6 rounded-full bg-orange-100 flex items-center justify-center flex-shrink-0 mt-1">
-                        <CheckCircle className="w-4 h-4 text-orange-600" />
+                    <li key={idx} className="flex items-start gap-2.5">
+                      <div className="w-5 h-5 rounded-full bg-orange-100 flex items-center justify-center flex-shrink-0 mt-1">
+                        <CheckCircle className="w-3.5 h-3.5 text-orange-600" />
                       </div>
-                      <span className="text-gray-700">{item}</span>
+                      <span className="text-sm text-gray-700">{item}</span>
                     </li>
                   ))}
                 </ul>
@@ -448,7 +448,7 @@ const Index = () => {
         </section>
 
         {/* CTA Section - Cinematic Cut Reveal */}
-        <section className="relative min-h-screen flex items-center py-20 px-6 overflow-hidden">
+        <section className="relative min-h-screen flex items-center py-16 px-6 overflow-hidden">
           {/* Cut Reveal Background */}
           <motion.div
             variants={cutReveal}
@@ -466,8 +466,8 @@ const Index = () => {
                 viewport={viewportConfig}
                 transition={{ delay: 0.5, duration: 0.8 }}
               >
-                <div className="inline-block mb-6 px-6 py-2 rounded-full border border-orange-500 bg-orange-50">
-                  <span className="text-sm font-medium text-orange-600">
+                <div className="inline-block mb-5 px-5 py-1.5 rounded-full border border-orange-500 bg-orange-50">
+                  <span className="text-xs font-medium text-orange-600">
                     READY TO START?
                   </span>
                 </div>
@@ -480,7 +480,7 @@ const Index = () => {
                   />
                 </AnimatedHeading>
 
-                <p className="text-xl text-gray-700 mb-12 leading-relaxed max-w-2xl mx-auto">
+                <p className="text-lg text-gray-700 mb-10 leading-relaxed max-w-2xl mx-auto">
                   Let's create something amazing together. Get in touch for custom
                   solutions tailored to your needs.
                 </p>
@@ -526,22 +526,22 @@ const Index = () => {
                 </motion.div>
 
                 {/* Contact Info */}
-                <div className="grid md:grid-cols-3 gap-8 mt-16 pt-16 border-t border-orange-300">
+                <div className="grid md:grid-cols-3 gap-6 mt-12 pt-12 border-t border-orange-300">
                   <div>
-                    <div className="text-sm text-gray-600 mb-2">Location</div>
-                    <div className="text-gray-900 font-medium">
+                    <div className="text-xs text-gray-600 mb-1.5">Location</div>
+                    <div className="text-sm text-gray-900 font-medium">
                       A-1, Kewal Park, Azadpur
                       <br />
                       Delhi - 110033
                     </div>
                   </div>
                   <div>
-                    <div className="text-sm text-gray-600 mb-2">Phone</div>
-                    <div className="text-gray-900 font-medium">+91 9873535400</div>
+                    <div className="text-xs text-gray-600 mb-1.5">Phone</div>
+                    <div className="text-sm text-gray-900 font-medium">+91 9873535400</div>
                   </div>
                   <div>
-                    <div className="text-sm text-gray-600 mb-2">Email</div>
-                    <div className="text-gray-900 font-medium">
+                    <div className="text-xs text-gray-600 mb-1.5">Email</div>
+                    <div className="text-sm text-gray-900 font-medium">
                       Chandantrading2014@gmail.com
                     </div>
                   </div>
