@@ -1,6 +1,53 @@
+// CRITICAL: Load environment variables FIRST before any imports that need them
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
+import { readFileSync, existsSync } from 'fs';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+// Load environment variables manually from .env file BEFORE other imports
+try {
+  const envPath = join(__dirname, '..', '.env');
+  if (existsSync(envPath)) {
+    const envFile = readFileSync(envPath, 'utf-8');
+    envFile.split('\n').forEach(line => {
+      const trimmed = line.trim();
+      if (trimmed && !trimmed.startsWith('#') && trimmed.includes('=')) {
+        const [key, ...valueParts] = trimmed.split('=');
+        if (key && valueParts.length > 0) {
+          let value = valueParts.join('=').trim().replace(/^["']|["']$/g, '');
+          // Remove any trailing whitespace/newlines
+          value = value.replace(/\r?\n?$/, '').trim();
+          // Always set, don't check if exists (override)
+          process.env[key.trim()] = value;
+        }
+      }
+    });
+    console.log('✅ Loaded environment variables from .env');
+    console.log('Environment check:', {
+      DB_HOST: process.env.DB_HOST ? '✅ Set' : '❌ Missing',
+      DB_USER: process.env.DB_USER ? '✅ Set' : '❌ Missing',
+      DB_NAME: process.env.DB_NAME ? '✅ Set' : '❌ Missing',
+      DB_PASSWORD: process.env.DB_PASSWORD ? '✅ Set (' + process.env.DB_PASSWORD.length + ' chars)' : '❌ Missing',
+      DB_PORT: process.env.DB_PORT ? '✅ Set' : '❌ Missing',
+    });
+  } else {
+    console.warn('⚠️ .env file not found at:', envPath);
+  }
+} catch (error) {
+  console.warn('⚠️ Could not load .env file:', error.message);
+}
+
+// NOW import modules that don't depend on environment variables
 import express from 'express';
 import nodemailer from 'nodemailer';
 import cors from 'cors';
+
+// Import cart routes (which will import db.js, but db.js will now have env vars loaded)
+import cartRoutes from './routes/cart.js';
+// Import db functions after env vars are loaded
+import { testConnection, query } from './database/db.js';
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -8,6 +55,9 @@ const PORT = process.env.PORT || 3001;
 // Middleware
 app.use(cors());
 app.use(express.json());
+
+// Test database connection on startup
+testConnection().catch(console.error);
 
 // Email configuration
 const transporter = nodemailer.createTransport({
@@ -390,9 +440,47 @@ app.post('/api/send-quote', async (req, res) => {
   }
 });
 
+// API Routes
+app.use('/api/cart', cartRoutes);
+
 // Health check endpoint
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok', message: 'Email API is running' });
+  res.json({ status: 'ok', message: 'API is running' });
+});
+
+// Database diagnostic endpoint
+app.get('/api/db-check', async (req, res) => {
+  try {
+    // Check if tables exist
+    const tablesCheck = await query(`
+      SELECT table_name 
+      FROM information_schema.tables 
+      WHERE table_schema = 'public' 
+      AND table_name IN ('carts', 'cart_items')
+    `);
+    
+    const tables = tablesCheck.rows.map(r => r.table_name);
+    
+    res.json({
+      status: 'ok',
+      tablesExist: {
+        carts: tables.includes('carts'),
+        cart_items: tables.includes('cart_items'),
+      },
+      allTables: tables,
+      message: tables.length === 2 
+        ? 'All tables exist' 
+        : 'Some tables are missing. Run the SQL from SUPABASE_SQL_ONLY.sql in Supabase SQL Editor',
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: 'error',
+      message: 'Database check failed',
+      error: error.message,
+      detail: error.detail,
+      code: error.code,
+    });
+  }
 });
 
 app.listen(PORT, () => {

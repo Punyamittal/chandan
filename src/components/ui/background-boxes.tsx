@@ -77,3 +77,8 @@ export const BoxesCore = ({ className, ...rest }: { className?: string }) => {
 
 export const Boxes = React.memo(BoxesCore);
 
+
+
+
+
+

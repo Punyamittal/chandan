@@ -408,4 +408,25 @@ All colors MUST be HSL.
       transform: scaleY(calc(var(--bar-height) * 1.1)) translateY(-5px);
     }
   }
+
+  /* Hide Clerk phone number fields - India not supported */
+  [data-clerk-element="phoneInputBox"],
+  [data-clerk-element="phoneInputRow"],
+  [data-clerk-element="phoneInput"],
+  .cl-phoneInputBox,
+  .cl-phoneInputRow,
+  .cl-phoneInput,
+  /* Alternative selectors for phone fields */
+  input[type="tel"][name*="phone"],
+  input[type="tel"][id*="phone"],
+  /* Hide phone number option in sign-in/sign-up */
+  button[data-clerk-element="phoneButton"],
+  a[data-clerk-element="phoneButton"] {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    width: 0 !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
 }

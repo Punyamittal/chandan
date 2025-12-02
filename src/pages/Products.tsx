@@ -2,10 +2,12 @@ import { useState } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import BulkProductCard from "@/components/BulkProductCard";
-import BulkCart, { CartItem } from "@/components/BulkCart";
+import BulkCart from "@/components/BulkCart";
 import ProductFilters, { FilterOptions } from "@/components/ProductFilters";
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
+import { useCart } from "@/hooks/useCart";
+import { toast } from "sonner";
 import {
   Select,
   SelectContent,
@@ -29,7 +31,6 @@ import {
 const Products = () => {
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const [sortBy, setSortBy] = useState("popular");
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [showFilters, setShowFilters] = useState(false);
   const [activeFilters, setActiveFilters] = useState<FilterOptions>({
@@ -39,6 +40,23 @@ const Products = () => {
     rating: 0,
     minQuantity: 0,
   });
+
+  // Use cart hook for database-backed cart
+  const {
+    items: cartItems,
+    isLoading: cartLoading,
+    addToCart: addToCartAPI,
+    updateQuantity: updateQuantityAPI,
+    removeFromCart: removeFromCartAPI,
+    totalItems,
+    isSignedIn,
+    error: cartError,
+  } = useCart();
+
+  // Log cart errors
+  if (cartError) {
+    console.error('Cart error:', cartError);
+  }
 
   const products = [
     {
@@ -141,48 +159,57 @@ const Products = () => {
     },
   ];
 
-  const handleAddToCart = (productId: string, quantity: number) => {
+  const handleAddToCart = async (productId: string, quantity: number) => {
     const product = products.find((p) => p.id === productId);
     if (!product) return;
 
-    setCartItems((prev) => {
-      const existing = prev.find((item) => item.productId === productId);
-      if (existing) {
-        return prev.map((item) =>
-          item.productId === productId
-            ? { ...item, quantity: item.quantity + quantity }
-            : item
-        );
-      }
-      return [
-        ...prev,
-        {
-          productId,
-          productName: product.name,
-          quantity,
-          pricePerUnit: product.pricePerUnit,
-        },
-      ];
-    });
-  };
-
-  const handleUpdateQuantity = (productId: string, newQuantity: number) => {
-    if (newQuantity <= 0) {
-      handleRemoveFromCart(productId);
+    // Check if user is signed in
+    if (!isSignedIn) {
+      toast.error('Please sign in to add items to cart');
       return;
     }
-    setCartItems((prev) =>
-      prev.map((item) =>
-        item.productId === productId ? { ...item, quantity: newQuantity } : item
-      )
-    );
+
+    try {
+      // Calculate discount based on quantity
+      const discount = product.bulkDiscounts
+        .filter((d) => quantity >= d.minQty)
+        .sort((a, b) => b.discount - a.discount)[0]?.discount || 0;
+
+      console.log('Adding to cart:', { productId, quantity, discount, isSignedIn });
+      await addToCartAPI({
+        productId,
+        productName: product.name,
+        image: product.image,
+        quantity,
+        pricePerUnit: product.pricePerUnit,
+        discount,
+      });
+      toast.success(`${product.name} added to cart!`);
+    } catch (error: any) {
+      console.error('Failed to add to cart:', error);
+      const errorMessage = error?.message || 'Failed to add item to cart. Please try again.';
+      toast.error(errorMessage);
+    }
   };
 
-  const handleRemoveFromCart = (productId: string) => {
-    setCartItems((prev) => prev.filter((item) => item.productId !== productId));
+  const handleUpdateQuantity = async (itemId: string, newQuantity: number) => {
+    try {
+      await updateQuantityAPI(itemId, newQuantity);
+    } catch (error) {
+      console.error('Failed to update quantity:', error);
+      toast.error('Failed to update quantity. Please try again.');
+    }
   };
 
-  const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+  const handleRemoveFromCart = async (itemId: string) => {
+    try {
+      await removeFromCartAPI(itemId);
+      toast.success('Item removed from cart');
+    } catch (error) {
+      console.error('Failed to remove from cart:', error);
+      toast.error('Failed to remove item. Please try again.');
+    }
+  };
 
   // Filter products based on active filters
   const filteredProducts = products.filter((product) => {
@@ -518,9 +545,16 @@ const Products = () => {
       <BulkCart
         isOpen={isCartOpen}
         onClose={() => setIsCartOpen(false)}
-        items={cartItems}
-        onUpdateQuantity={handleUpdateQuantity}
-        onRemoveItem={handleRemoveFromCart}
+        items={cartItems.map((item) => ({
+          id: item.id,
+          name: item.productName,
+          image: item.image || '',
+          quantity: item.quantity,
+          pricePerUnit: item.pricePerUnit,
+          discount: item.discount,
+        }))}
+        onUpdateQuantity={(id, quantity) => handleUpdateQuantity(id, quantity)}
+        onRemoveItem={(id) => handleRemoveFromCart(id)}
       />
 
       <Footer />

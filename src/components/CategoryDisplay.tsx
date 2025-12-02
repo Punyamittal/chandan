@@ -36,3 +36,8 @@ export const CategoryDisplay = ({ icon: Icon, className = "" }: CategoryDisplayP
 };
 
 
+
+
+
+
+

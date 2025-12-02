@@ -1,12 +1,38 @@
-import { Link, useLocation } from "react-router-dom";
-import { Home, User, Package, Star, Mail, Menu, X } from "lucide-react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Home, User, Package, Star, Mail, Menu, X, LogIn } from "lucide-react";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useAuthContext } from "@/contexts/AuthContext";
+import { UserButton } from "@/components/auth/UserButton";
+import { LoginModal } from "@/components/auth/LoginModal";
+import { SignUpModal } from "@/components/auth/SignUpModal";
+import { Button } from "@/components/ui/button";
+import { isClerkConfigured } from "@/lib/clerk-config";
 
 const Navigation = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [loginOpen, setLoginOpen] = useState(false);
+  const [signUpOpen, setSignUpOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
+  const { isSignedIn } = useAuthContext();
+
+  const handleSignInClick = () => {
+    if (isClerkConfigured) {
+      navigate('/sign-in');
+    } else {
+      setLoginOpen(true);
+    }
+  };
+
+  const handleSignUpClick = () => {
+    if (isClerkConfigured) {
+      navigate('/sign-up');
+    } else {
+      setSignUpOpen(true);
+    }
+  };
 
   const navLinks = [
     { name: "Home", path: "/", icon: Home },
@@ -79,6 +105,34 @@ const Navigation = () => {
               })}
             </div>
           )}
+
+          <div className="w-px h-8 bg-border mx-2" />
+
+          {/* Auth Section - Always visible */}
+          <div className="flex items-center space-x-2 px-2">
+            {isSignedIn === true ? (
+              <UserButton />
+            ) : (
+                <>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={handleSignInClick}
+                    className="px-4 py-2 rounded-full text-sm font-medium hover:bg-muted"
+                  >
+                    <LogIn className="w-4 h-4 mr-2" />
+                    Sign In
+                  </Button>
+                  <Button
+                    size="sm"
+                    onClick={handleSignUpClick}
+                    className="px-4 py-2 rounded-full text-sm font-medium bg-orange-600 hover:bg-orange-700 text-white shadow-md"
+                  >
+                    Sign Up
+                  </Button>
+                </>
+            )}
+          </div>
         </div>
       </motion.nav>
 
@@ -179,11 +233,47 @@ const Navigation = () => {
                     </Link>
                   );
                 })}
+                
+                {/* Mobile Auth Section */}
+                <div className="pt-4 border-t border-border space-y-2">
+                  {isSignedIn === true ? (
+                    <div className="px-4 py-2">
+                      <UserButton />
+                    </div>
+                  ) : (
+                    <>
+                      <Button
+                        variant="outline"
+                        className="w-full justify-start"
+                        onClick={() => {
+                          handleSignInClick();
+                          closeMobileMenu();
+                        }}
+                      >
+                        <LogIn className="w-4 h-4 mr-2" />
+                        Sign In
+                      </Button>
+                      <Button
+                        className="w-full justify-start bg-orange-600 hover:bg-orange-700 text-white"
+                        onClick={() => {
+                          handleSignUpClick();
+                          closeMobileMenu();
+                        }}
+                      >
+                        Sign Up
+                      </Button>
+                    </>
+                  )}
+                </div>
               </div>
             </motion.div>
           )}
         </AnimatePresence>
       </motion.nav>
+
+      {/* Auth Modals */}
+      <LoginModal open={loginOpen} onOpenChange={setLoginOpen} />
+      <SignUpModal open={signUpOpen} onOpenChange={setSignUpOpen} />
     </>
   );
 };
